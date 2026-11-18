@@ -8,9 +8,39 @@ from pydantic_monty import Monty
 
 from modeldistl import teacher
 from modeldistl.tasks import curriculum, grade
+from scripts import model_file
 
 
 class PipelineTests(unittest.TestCase):
+    def test_pilot_snapshot_matches_verified_prompts(self):
+        splits = curriculum()
+        provenance = json.loads(Path("runs/pilot/data/provenance.json").read_text())
+        claims = {row["id"]: row for row in provenance["examples"]}
+        with Monty(max_processes=1, request_timeout=3) as pool:
+            for split in ("train", "valid"):
+                chats = Path(f"runs/pilot/data/{split}.jsonl").read_text().splitlines()
+                for task, line in zip(splits[split], chats, strict=True):
+                    user, assistant = json.loads(line)["messages"]
+                    self.assertEqual(user, {"role": "user", "content": task["prompt"]})
+                    self.assertEqual(assistant["role"], "assistant")
+                    self.assertTrue(grade(task, assistant["content"], pool)[0], task["id"])
+                    self.assertEqual(claims[task["id"]]["request_sha256"], teacher.cache_dir(task).name)
+
+    def test_model_parts_roundtrip_and_corruption(self):
+        with tempfile.TemporaryDirectory() as tmp, patch.object(model_file, "PART_BYTES", 11):
+            root = Path(tmp)
+            model = root / "tiny.gguf"
+            model.write_bytes(b"GGUF" + bytes(range(35)))
+            parts = root / "parts"
+            manifest = model_file.pack(model, parts, root / "manifest.json")
+            output = root / "copy.gguf"
+            model_file.assemble(manifest, parts, output, False)
+            self.assertEqual(output.read_bytes(), model.read_bytes())
+            (parts / manifest["parts"][0]["file"]).write_bytes(b"bad")
+            with self.assertRaisesRegex(ValueError, "damaged"):
+                model_file.assemble(manifest, parts, root / "broken.gguf", False)
+            self.assertFalse((root / "broken.gguf").exists())
+
     def test_split_leakage(self):
         with tempfile.TemporaryDirectory() as path:
             root = Path(path)
