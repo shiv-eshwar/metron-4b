@@ -1,0 +1,105 @@
+{
+  "backend": "llama.cpp",
+  "source_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "model": "artifacts/export/ModelDistl-4B-Q4_K_M.gguf",
+  "adapter": null,
+  "temperature": 0,
+  "seed": 42,
+  "max_tokens": 320,
+  "complete": true,
+  "suite": "mbpp",
+  "code_runtime": "cpython",
+  "jobs": 4,
+  "test_sha256": "f36a7867ddc5126c8ff010ca39e3efb8943d0a8cfd9cdac0ab672aed55b945ce",
+  "gguf_file_sha256": "e43b845632b710ac106a3c9677ced3b7076961590a14bdbdcaaed2dee024009a",
+  "results": [
+    {
+      "id": "mbpp-test-58",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef opposite_Signs(a, b):\n    return (a > 0) != (b > 0)\n```",
+      "seconds": 2.806,
+      "tokens": 29,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-test-80",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef tetrahedral_number(n):\n    return n * (n + 1) * (n + 2) // 6\n```",
+      "seconds": 3.418,
+      "tokens": 33,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-test-239",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef get_total_number_of_sequences(m, n):\n    if n == 0:\n        return 1\n    if n == 1:\n        return m\n    \n    # dp[i][j] represents number of sequences of length i ending with value j\n    dp = [[0] * (m + 1) for _ in range(n + 1)]\n    \n    # Base case: sequences of length 1\n    for j in range(1, m + 1):\n        dp[1][j] = 1\n    \n    # Fill the dp table for sequences of length 2 to n\n    for i in range(2, n + 1):\n        for j in range(1, m + 1):\n            # Previous element must be <= j//2\n            prev_max = j // 2\n            for prev in range(1, prev_max + 1):\n                dp[i][j] += dp[i-1][prev]\n    \n    # Sum all sequences of length n\n    total = 0\n    for j in range(1, m + 1):\n        total += dp[n][j]\n    \n    return total\n```",
+      "seconds": 21.183,
+      "tokens": 246,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-test-264",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef dog_age(human_years):\n    return human_years * 7\n```",
+      "seconds": 1.738,
+      "tokens": 20,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-test-274",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef even_binomial_Coeff_Sum(n):\n    total = 0\n    for i in range(n + 1):\n        if i % 2 == 0:\n            total += binomial_coefficient(n, i)\n    return total\n\ndef binomial_coefficient(n, k):\n    if k > n or k < 0:\n        return 0\n    if k == 0 or k == n:\n        return 1\n    result = 1\n    for i in range(min(k, n - k)):\n        result = result * (n - i) // (i + 1)\n    return result\n```",
+      "seconds": 14.291,
+      "tokens": 136,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-test-400",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef extract_freq(lst):\n    return len(set(lst))\n```",
+      "seconds": 2.219,
+      "tokens": 16,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-test-446",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef count_Occurrence(tuple_data, list_data):\n    count = 0\n    for element in list_data:\n        count += tuple_data.count(element)\n    return count\n```",
+      "seconds": 3.793,
+      "tokens": 41,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-test-468",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef max_product(arr):\n    if not arr:\n        return 0\n    \n    n = len(arr)\n    # dp[i] represents the maximum product of an increasing subsequence ending at index i\n    dp = [0] * n\n    dp[0] = arr[0]\n    \n    for i in range(1, n):\n        dp[i] = arr[i]\n        # Check all previous elements to see if we can extend an increasing subsequence\n        for j in range(i):\n            if arr[j] < arr[i]:\n                dp[i] = max(dp[i], dp[j] * arr[i])\n    \n    return max(dp)\n```",
+      "seconds": 13.356,
+      "tokens": 138,
+      "finish": "stop"
+    }
+  ],
+  "domains": {
+    "coding": {
+      "correct": 5,
+      "total": 8
+    }
+  },
+  "correct": 5,
+  "total": 8
+}

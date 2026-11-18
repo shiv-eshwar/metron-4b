@@ -2,6 +2,8 @@
 
 ModelDistl fine-tunes Qwen3-4B-Instruct-2507 on verified demonstrations from OpenAI’s GPT-6.2 Astra. The 4,022,468,096-parameter student runs locally. The teacher is needed only when generating new demonstrations.
 
+On the M5 MacBook Air, Q4_K_M generated 20.0 tokens/s and passed 6/6 local Python tasks. The smaller Q3_K_S build generated 18.4 tokens/s and passed 3/6. The Q4 student solved 14/16 sampled GSM8K problems versus 12/16 for stock Q4. [Model card and complete evaluation](MODEL_CARD.md)
+
 ## Download the trained model
 
 | Build | File size | How to get it |
@@ -11,6 +13,8 @@ ModelDistl fine-tunes Qwen3-4B-Instruct-2507 on verified demonstrations from Ope
 | MLX adapter | 4.85 MB compressed | Unzip alongside a local 4-bit MLX conversion of the pinned base. [Download adapter](https://github.com/shiv-eshwar/modeldistl/releases/download/pilot-v0.1.0/ModelDistl-4B-MLX-adapter.zip) |
 
 [Release and checksums](https://github.com/shiv-eshwar/modeldistl/releases/tag/pilot-v0.1.0)
+
+The private draft can also be rebuilt from the two compact weight updates. The on-demand GitHub workflow recreates the stock GGUFs from the original BF16 revision, applies the updates, checks the full model and part hashes, and attaches the verified files. [Release workflow](.github/workflows/rebuild-release.yml)
 
 ## Reproduce the pilot on Apple silicon
 

@@ -9,11 +9,18 @@ from unittest.mock import patch
 from pydantic_monty import Monty
 
 from modeldistl import teacher
+from modeldistl.benchmarks import matches_arc_option
 from modeldistl.tasks import curriculum, grade
 from scripts import model_file
 
 
 class PipelineTests(unittest.TestCase):
+    def test_arc_content_is_distinct_from_label_format(self):
+        task = {"prompt": "Choose one.\nA. Hills\nB. Lakes", "check": {"kind": "choice", "answer": "A"}}
+        self.assertFalse(grade(task, "A. Hills", None)[0])
+        self.assertTrue(matches_arc_option(task, "A. Hills"))
+        self.assertFalse(matches_arc_option(task, "B. Hills"))
+
     @unittest.skipUnless(os.environ.get("MODELDISTL_TEST_CPYTHON") == "1", "requires pinned Docker image")
     def test_cpython_generator_semantics(self):
         task = {"check": {"kind": "code", "cases": [{"args": [[3, 1]], "want": 2}, {"args": [[]], "want": 1}]}}

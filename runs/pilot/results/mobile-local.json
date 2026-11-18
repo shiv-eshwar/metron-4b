@@ -1,0 +1,277 @@
+{
+  "backend": "llama.cpp",
+  "source_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "model": "artifacts/export/ModelDistl-4B-Q3_K_S.gguf",
+  "adapter": null,
+  "temperature": 0,
+  "seed": 42,
+  "max_tokens": 320,
+  "complete": true,
+  "suite": "local",
+  "code_runtime": "cpython",
+  "jobs": 4,
+  "test_sha256": "d6954faf8668ff9f87c2b324e8e08b212c08700b3a3a06f4f246e2f974b17895",
+  "gguf_file_sha256": "17afefca5084cc0775b29220731a11d1b28c724987a7ea092aef8cff2f515e35",
+  "results": [
+    {
+      "id": "test-reverse-percentage",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "After a 12% pay cut, the salary is 2640 credits.  \nThis means the salary after the cut is 88% of the original salary (since 100% - 12% = 88%).\n\nLet the original salary be **S**.  \nThen:  \n0.88 × S = 2640  \n\nSolve for S:  \nS = 2640 ÷ 0.88  \nS = 3000  \n\nAnswer: 3000",
+      "seconds": 9.192,
+      "tokens": 116,
+      "finish": "stop"
+    },
+    {
+      "id": "test-unequal-averaging",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "To find the **average speed** over the entire trip, we must not simply take the arithmetic mean of the two speeds, because average speed is defined as **total distance divided by total time**.\n\n---\n\n**Given:**\n\n- First part: 60 km at 30 km/h  \n- Second part: 60 km at 60 km/h  \n\n---\n\n**Step 1: Calculate time for each part**\n\n- Time for first part:  \n  \\( t_1 = \\frac{60}{30} = 2 \\) hours\n\n- Time for second part:  \n  \\( t_2 = \\frac{60}{60} = 1 \\) hour\n\n---\n\n**Total distance:**  \n\\( 60 + 60 = 120 \\) km\n\n**Total time:**  \n\\( 2 + 1 = 3 \\) hours\n\n---\n\n**Average speed:**  \n\\( \\text{Average speed} = \\frac{\\text{Total distance}}{\\text{Total time}} = \\frac{120}{3} = 40 \\) km/h\n\n---\n\nAnswer: 40",
+      "seconds": 18.367,
+      "tokens": 240,
+      "finish": "stop"
+    },
+    {
+      "id": "test-complement-pairs",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "We want the probability that **at least one** of two fair six-sided dice shows a **six**.\n\n---\n\n**Step 1: Use complementary probability**\n\nIt's easier to compute the probability of the **complement** event (no sixes on either die), then subtract from 1.\n\n- Probability that a single die shows **not six** = 5/6\n- Both dice show not six = (5/6) × (5/6) = 25/36\n\nSo, probability that **at least one shows a six** is:\n\n$$\n1 - \\frac{25}{36} = \\frac{11}{36}\n$$\n\nAnswer: 11/36",
+      "seconds": 12.014,
+      "tokens": 151,
+      "finish": "stop"
+    },
+    {
+      "id": "test-cycle-remainder",
+      "domain": "math",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "We are starting at 1 and repeatedly multiplying by 3. We want to know the **last decimal digit** (i.e., the units digit) of the number **after 2026 multiplications**, and then give the answer as a number.\n\n---\n\n### Step 1: Understand the process\n\nWe start at:\n\n- $ a_0 = 1 $\n\nThen each multiplication by 3 gives:\n\n- $ a_1 = 1 \\times 3 = 3 $\n- $ a_2 = 3 \\times  3 = 9 $\n- $ a_3 = 9 \\times 3 = 27 $\n- $ a_4 = 27 \\times 3 = 81 $\n- etc.\n\nSo, after $ n $ multiplications, the value is:\n\n$$\na_n = 3^n\n$$\n\nWe are asked: **What is the last decimal digit after 2026 multiplications?**\n\nThat is, what is the **units digit** of $ 3^{2026} $?\n\n---\n\n### Step 2: Find the units digit of $ 3^{2026} $\n\nThe units digits of powers of 3 repeat in a cycle.\n\nLet’s compute the units digits of $ 3^n $ for small $ n $:\n\n- $ 3^1 = 3 $ → units digit: 3  \n- $ 3^2 = 9 $ → units digit: 9  \n- $ 3^3 = 27 $ →",
+      "seconds": 24.251,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-digit-construction",
+      "domain": "math",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "We are to find how many **three-digit even numbers with distinct digits** can be formed using only the digits **0, 1, 2, 3**.\n\n---\n\n### Step 1: Understand the constraints\n\n- **Three-digit number**: must not start with 0.\n- **Even**: last digit must be **0 or 2** (since only even digits available are 0 and 2).\n- **Digits are distinct**.\n- Digits available: 0,  1,  2,  3.\n\nWe will **construct** valid numbers by considering cases based on the **last digit** (units digit), since it must be even.\n\n---\n\n### Case 1: Last digit is **0**\n\n- Number is even → valid.\n- Digits: 0 is used in units place.\n- Hundreds digit (first digit) cannot be 0 → must be from {1, 2, 3}\n- Tens digit can be anything else, but all digits must be distinct.\n\nAvailable digits: 0,1,2,3\n\nWe fix units digit = 0.\n\nSo, digits used: 0 → remaining digits: 1, 2, 3\n\nWe need to form a 3-digit number with:\n- Hundreds digit ≠ 0\n- All digits distinct\n- Units digit = 0\n\nSo, choose hundreds digit (first digit): from {1,2,3} → 3 choices\n\nThen, tens digit: from remaining two digits (excluding hundreds digit and 0)\n\nSo",
+      "seconds": 23.472,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-piecewise-pricing",
+      "domain": "math",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "The meter charges:\n\n- 4 credits for the first 30 minutes or part thereof,\n- Then 3 credits for each additional 20-minute block.\n\nWe are to find the cost for **74 minutes**.\n\n---\n\n**Step 1: First 30 minutes**\n\nCharges 4 credits for the first 30 minutes, regardless of how much of that 30 minutes is used.\n\nSo, for the first 30 minutes: **4 credits**\n\n---\n\n**Step 2: Remaining time**\n\n74 minutes total  \nSubtract first 30 minutes:  \n74 – 30 = **44 minutes** remaining\n\nNow, we break this into **20-minute blocks**.\n\nEach additional 20-minute block costs 3 credits.\n\nHow many 20-minute blocks in 44 minutes?\n\n44 ÷ 20 = 2.2 → so we need **3 blocks**? Wait — no.\n\nActually, we **only** charge per **additional 20-minute block**, and we **don 10 minutes** in a block.\n\nSo we **round up** to full 20-minute blocks.\n\nBut the rule says: \"3 credits for each additional started 20-minute block\"\n\nSo if you go beyond 30 minutes, you pay 3 credits per **20-minute block** you exceed.\n\nSo:\n\n- 30 minutes → 4 credits\n- Any time beyond 30 minutes → charged in **20-minute increments**\n\nSo for 44 minutes after",
+      "seconds": 23.359,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-counterexample",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "We are given a claim:  \n**\"Every integer n with n² divisible by 4 is itself divisible by 4.\"**  \nWe are to find which of the values 4, 6, or 8 **disproves** this claim — that is, a counterexample where n² is divisible by 4, but n is **not** divisible by 4.\n\nLet’s test each value:\n\n---\n\n**n = 4**  \nn² = 16 → 16 is divisible by 4 → true  \nn = 4 → divisible by 4 → true  \nSo the claim holds here. Not a counterexample.\n\n---\n\n**n = 6**  \nn² =  36 → 36 ÷ 4 = 9 → divisible by 4 → true  \nn = 6 → is 6 divisible by 4? No → 6 mod 4 = 2 → not divisible by 4  \n\nSo: n² is divisible by 4, but n is **not** divisible by 4 → **this disproves** the claim.\n\nSo 6 is a counterexample.\n\n---\n\n**n = 8**  \nn² = 64 → divisible by 4 → yes  \nn = 8 → divisible by 4 → yes  \nSo claim holds here.\n\n---\n\nOnly 6 violates the claim.\n\nAnswer: 6",
+      "seconds": 20.938,
+      "tokens": 287,
+      "finish": "stop"
+    },
+    {
+      "id": "test-two-sided-cards",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "We are given a logical rule to test:  \n**\"If vowel then even\"**  \nThis means: *If the letter on one side is a vowel, then the number on the other side must be even.*\n\nWe are to determine which **visible** cards must be turned to verify this rule.\n\nThe visible sides are the ones we can see (i.e., the letters or numbers that are facing up).\n\nWe have cards showing: A, D, 4, and 7.\n\nWe are to determine which of these **must be turned** to verify the rule \"if vowel then even\".\n\n---\n\n### Step 1: Understand the rule\n\nThe rule is: **If the letter is a vowel, then the number must be even.**\n\nThis is a conditional statement.  \nWe are testing whether the rule holds: whenever a letter is a vowel, the number on the other side must be even.\n\nSo, to verify the rule, we must check:\n\n- Any card showing a **vowel** on the visible side: we must check that the number on the back is even.\n- Any card showing an **even number** on the visible side: we must check that the letter is a vowel (because if it were a consonant, then we’d have a violation of \"if vowel then even\" — but actually, the rule doesn't say anything about even numbers being vowels, so we must be careful).\n\nWait — the rule is **\"if vowel then even\"**.  \nThis is logically equivalent to:  \n**\"If the letter is a vowel, then the",
+      "seconds": 22.647,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-resource-bottleneck",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "We are given a token movement through stations X, Y, and Z, with processing times of:\n\n- Station X: 2 minutes  \n- Station Y: 5 minutes  \n- Station Z: 3 minutes  \n\nEach station handles one token at a time, and the pipeline is a sequence of stations where tokens move from one to the next.\n\nThe key concept here is **steady-state throughput** in a pipeline system. In such systems, the **bottleneck** (the slowest step) determines the overall throughput when the system is not overloaded.\n\nHowever, the question says: *\"Once the pipeline is full, which station determines the steady-state throughput?\"*\n\nThis implies we are considering a **pipeline** where tokens move sequentially through X → Y → Z, and each station processes one token at a time.\n\nThe **steady-state throughput** is limited by the **slowest station** in terms of processing time, because:\n\n- The system can only process one token at a time per station.\n- The throughput is constrained by the **longest processing time** (in minutes) because that station will take the most time to process a token.\n\nEven though the stations are in sequence, the **bottleneck** is the one with the **longest processing time** — because if a station takes longer, it limits how frequently tokens can pass through the entire pipeline.\n\nLet’s compare:\n\n- X: 2 minutes  \n- Y: 5 minutes  \n- Z: 3 minutes  \n\nThe slowest (longest) processing time is at **station Y** (5 minutes).\n\n",
+      "seconds": 21.989,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-mislabelled-baskets",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "Since all labels are wrong, we can use logic to deduce the correct contents by drawing a single fruit from the basket labeled \"mixed\".\n\nHere's why:\n\n- The basket labeled \"mixed\" is *not* mixed. It must contain either all apples or all pears.\n- Since all labels are wrong, we know:\n  - The \"apples\" basket is not all apples → it's either pears or mixed.\n  - The \"pears\" basket is not all pears → it's either apples or mixed.\n  - The \"mixed\" basket is not mixed → it's either all apples or all pears.\n\nNow, suppose we pick **one fruit from the basket labeled \"mixed\"**.\n\n- If we draw an **apple**, then the basket labeled \"mixed\" must contain **only apples** (since it's not mixed).\n- If we draw a **pear**, then it must contain **only pears**.\n\nBut we don't know which it is yet.\n\nNow, consider the other baskets:\n\n- The basket labeled \"apples\" is *not* all apples → it must be either pears or mixed.\n- The basket labeled \"pears\" is *not* all pears → it must be either apples or mixed.\n\nBut we know that the *mixed* basket is labeled wrong, so it's either all apples or all pears.\n\nSo, if we draw a fruit from the **\"mixed\"** basket:\n\n- If it's an apple → the \"mixed\" basket is all apples.\n- Then, the \"apples",
+      "seconds": 21.781,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-symmetry-scale",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "We are given:\n\n- A balance scale (which compares weight of two groups).\n- 9 identical-looking discs, exactly one of which is heavier.\n- We need to **find the heavier disc** using the **minimum number of weighings that guarantees** finding it.\n\nWe are to determine the **minimum number of weighings required to guarantee identifying the heavier disc**.\n\n---\n\n### Step-by-step reasoning:\n\nEach weighing on a balance scale has **3 possible outcomes**:\n\n- Left side heavier\n- Right side heavier\n- Balanced\n\nSo, each weighing gives **log₂(3) ≈ 1.58 bits** of information, but more importantly, we can think in terms of **distinguishing among possibilities**.\n\nThere are **9 discs**, one of which is heavier. So there are **9 possible candidates** for the heavy disc.\n\nWe need to **identify** which one is heavier.\n\nEach weighing gives us **one of 3 outcomes**, so after *n* weighings, we can distinguish up to **3ⁿ** different possibilities.\n\nWe need to distinguish among **9** possibilities.\n\nSo we ask: what is the smallest *n* such that:\n\n> 3ⁿ ≥ 9\n\n- 3¹ = 3 → 3 < 9 → not enough\n- 3² = 9 → 9 ≥  9 → sufficient\n\nSo, **2 weighings** are sufficient to distinguish among 9 possibilities.\n\nCan we do it in 1 weighing?\n\n- 3 outcomes → only 3 distinguishable cases\n- We",
+      "seconds": 21.981,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-rank-ambiguity",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "We are told:\n\n- Ira scores above Kai.\n- Lea scores above Kai.\n- All three scores are distinct.\n\nWe are asked: Is it possible to identify who scored highest?\n\nLet’s analyze:\n\n- Ira > Kai\n- Lea > Kai\n\nSo both Ira and Lea are above Kai.\n\nThat means Kai is the lowest scorer.\n\nThe highest scorer must be either Ira or Lea.\n\nBut we don’t know whether Ira > Lea or Lea > Ira.\n\nThere is no information comparing Ira and Lea directly.\n\nSo, it could be that Ira is highest, or Lea is highest — both are possible.\n\nFor example:\n\n- Ira = 80, Lea = 90, Kai = 70 → Ira > Kai, Lea > Kai → Lea is highest.\n- Ira = 90, Lea = 80, Kai = 70 → Ira > Kai, Lea > Kai → Ira is highest.\n\nBoth satisfy the conditions.\n\nSo, we cannot determine who is highest — it could be Ira or Lea.\n\nAnswer: no  \nAnswer: no",
+      "seconds": 17.028,
+      "tokens": 242,
+      "finish": "stop"
+    },
+    {
+      "id": "test-endpoints-sweep",
+      "domain": "coding",
+      "pass": false,
+      "check": "SyntaxError",
+      "answer": "```python\ndef solve(events):\n    if not events:\n        return 0\n    \n    # Sort events by start time\n    sorted_events = sorted(events, key=lambda x: x[0])\n    \n    # Use a list to track current active meetings\n    active_meetings = []\n    peak_concurrent = 0\n    \n    for start, end in sorted_events:\n        # Remove any meetings that have ended (end <= current start)\n        # Since we process in sorted order, we can simply maintain active meetings\n        # and remove those that end before current start\n        # But we need to be careful - we process events in order, so we can just\n        # maintain a list of active intervals and remove those that end before current start\n        \n        # Actually, we can use a simpler approach: we maintain a list of active meetings\n        # and when we see a new event, we add it, then remove any that ended before this start\n        \n        # But we don't need to explicitly remove - we can just track active meetings\n        # and update peak when we add or remove\n        \n        # Instead, we can use a different approach: we'll simulate all events in order\n        # and maintain a count of active meetings\n        \n        # We'll use a list to track active meetings by their end times\n        # and when a new meeting starts, we add it\n        # when a meeting ends, we remove it\n        \n        # Actually, we can do this more efficiently with a heap, but the problem asks for pure Python\n        # and we",
+      "seconds": 23.382,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-shortest-cover",
+      "domain": "coding",
+      "pass": false,
+      "check": "SyntaxError",
+      "answer": "```python\ndef solve(text, required):\n    if not required:\n        return 0\n    \n    # Convert required to set for character lookup\n    required_chars = set(required)\n    \n    # Check if all required characters exist in text\n    text_chars = set(text)\n    \n    if not required_chars.issubset(text_chars):\n        return -1\n    \n    # Use sliding window to find shortest substring containing all required chars\n    n = len(text)\n    if n == 0:\n        return 0\n    \n    # Create a frequency map for required characters\n    req_freq = {c: 1 for c in required_chars}\n    \n    # Sliding window approach\n    left = 0\n    right = 0\n    window_chars = {}\n    formed = 0\n    min_len = float('inf')\n    \n    while right < n:\n        # Add current character to window\n        char = text[right]\n        window_chars[char] = window_chars.get(char, 0) + 1\n        \n        # Check if current character is required and we have it\n        if char in required_chars:\n            if window_chars[char] == 1:\n                formed += 1\n        \n        # Try to shrink window from left\n        while left <= right and formed == len(required_chars):\n            # Check if current window contains all required characters\n            if all(window_chars.get(c, 0) > 0 for c in required_chars):\n                # Update minimum length if this is the first valid window\n                if min_len == float('inf'):\n                    min",
+      "seconds": 24.013,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-first-missing",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(nums):\n    return next(i for i in range(1, len(nums) + 2) if i not in nums)\n```",
+      "seconds": 2.532,
+      "tokens": 33,
+      "finish": "stop"
+    },
+    {
+      "id": "test-graph-distance",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\nfrom collections import deque\n\ndef solve(graph, start, end):\n    if start == end:\n        return 0\n    \n    queue = deque([(start, 0)])\n    visited = {start}\n    \n    while queue:\n        node, dist = queue.popleft()\n        \n        for neighbor in graph.get(node, []):\n            if neighbor == end:\n                return dist + 1\n            \n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append((neighbor, dist + 1))\n    \n    return -1\n```",
+      "seconds": 7.989,
+      "tokens": 113,
+      "finish": "stop"
+    },
+    {
+      "id": "test-natural-version",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(a, b):\n    components_a = [int(x) for x in a.split('.') if x]\n    components_b = [int(x) for x in b.split('.') if x]\n    \n    # Pad with zeros to make same length\n    max_len = max(len(components_a), len(components_b))\n    components_a.extend([0] * (max_len - len(components_a)))\n    components_b.extend([0] * (max_len - len(components_b)))\n    \n    # Compare lexicographically\n    for i in range(max_len):\n        if components_a[i] != components_b[i]:\n            return 1 if components_a[i] > components_b[i] else -1\n    return 0\n```",
+      "seconds": 10.607,
+      "tokens": 151,
+      "finish": "stop"
+    },
+    {
+      "id": "test-longest-distinct",
+      "domain": "coding",
+      "pass": false,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(items):\n    if not items:\n        return 0\n    \n    max_length = 0\n    current_length = 0\n    \n    # Use a set to track seen elements in current window\n    seen = set()\n    \n    for i in range(len(items)):\n        # If current element is already in current window, reset\n        if items[i] in seen:\n            # Reset the window starting from the next position\n            seen.clear()\n            current_length = 0\n        \n        # Add current element to seen set\n        seen.add(items[i])\n        current_length = max(current_length, len(seen))\n    \n    return max_length\n```",
+      "seconds": 11.283,
+      "tokens": 136,
+      "finish": "stop"
+    },
+    {
+      "id": "test-weather-eligibility",
+      "domain": "general",
+      "pass": false,
+      "check": "JSON equality",
+      "answer": "{\n  \"days\": [\"Tue\", \"Thu\", \"Fri\"]\n}",
+      "seconds": 1.299,
+      "tokens": 16,
+      "finish": "stop"
+    },
+    {
+      "id": "test-incremental-ledger",
+      "domain": "general",
+      "pass": false,
+      "check": "JSON equality",
+      "answer": "{\n  \"Pier\": 7,\n  \"Hill\": 4\n}",
+      "seconds": 1.544,
+      "tokens": 19,
+      "finish": "stop"
+    },
+    {
+      "id": "test-place-in-pronoun",
+      "domain": "general",
+      "pass": false,
+      "check": "JSON equality",
+      "answer": "{\n  \"artist\": \"Tej\",\n  \"signed\": \"canvas\",\n  \"person\": \"Sal\",\n  \"object\": \"book\"\n}",
+      "seconds": 3.061,
+      "tokens": 32,
+      "finish": "stop"
+    },
+    {
+      "id": "test-feedback-message",
+      "domain": "general",
+      "pass": true,
+      "check": "required content and word limit",
+      "answer": "Add units to axes. Use distinct markers or line styles for blue and green series to improve visual differentiation.",
+      "seconds": 1.93,
+      "tokens": 22,
+      "finish": "stop"
+    },
+    {
+      "id": "test-audience-translation",
+      "domain": "general",
+      "pass": true,
+      "check": "required content and word limit",
+      "answer": "Metal conducts heat faster, so it pulls heat from your hand quickly. Heat flows from your hand to the spoon. Wood doesn’t, so it feels warmer. The metal spoon feels colder because it steals heat fast—like a cold hug!",
+      "seconds": 3.953,
+      "tokens": 49,
+      "finish": "stop"
+    },
+    {
+      "id": "test-correction-email",
+      "domain": "general",
+      "pass": true,
+      "check": "required content and word limit",
+      "answer": "Correction: The library closes at 7 pm on Thursday. The date remains Thursday.",
+      "seconds": 1.573,
+      "tokens": 18,
+      "finish": "stop"
+    }
+  ],
+  "domains": {
+    "coding": {
+      "correct": 3,
+      "total": 6
+    },
+    "general": {
+      "correct": 3,
+      "total": 6
+    },
+    "math": {
+      "correct": 3,
+      "total": 6
+    },
+    "reasoning": {
+      "correct": 2,
+      "total": 6
+    }
+  },
+  "correct": 11,
+  "total": 24
+}

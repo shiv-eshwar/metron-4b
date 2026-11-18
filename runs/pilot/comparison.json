@@ -1,0 +1,211 @@
+{
+  "local": {
+    "base": {
+      "correct": 16,
+      "total": 24,
+      "domains": {
+        "coding": {
+          "correct": 6,
+          "total": 6
+        },
+        "general": {
+          "correct": 2,
+          "total": 6
+        },
+        "math": {
+          "correct": 3,
+          "total": 6
+        },
+        "reasoning": {
+          "correct": 5,
+          "total": 6
+        }
+      },
+      "truncated": 4,
+      "gains_vs_base": [],
+      "losses_vs_base": []
+    },
+    "student": {
+      "correct": 15,
+      "total": 24,
+      "domains": {
+        "coding": {
+          "correct": 6,
+          "total": 6
+        },
+        "general": {
+          "correct": 2,
+          "total": 6
+        },
+        "math": {
+          "correct": 3,
+          "total": 6
+        },
+        "reasoning": {
+          "correct": 4,
+          "total": 6
+        }
+      },
+      "truncated": 5,
+      "gains_vs_base": [],
+      "losses_vs_base": [
+        "test-symmetry-scale"
+      ]
+    },
+    "mobile": {
+      "correct": 11,
+      "total": 24,
+      "domains": {
+        "coding": {
+          "correct": 3,
+          "total": 6
+        },
+        "general": {
+          "correct": 3,
+          "total": 6
+        },
+        "math": {
+          "correct": 3,
+          "total": 6
+        },
+        "reasoning": {
+          "correct": 2,
+          "total": 6
+        }
+      },
+      "truncated": 9,
+      "gains_vs_base": [
+        "test-audience-translation"
+      ],
+      "losses_vs_base": [
+        "test-resource-bottleneck",
+        "test-mislabelled-baskets",
+        "test-symmetry-scale",
+        "test-endpoints-sweep",
+        "test-shortest-cover",
+        "test-longest-distinct"
+      ]
+    }
+  },
+  "public": {
+    "base": {
+      "correct": 20,
+      "total": 32,
+      "domains": {
+        "arc": {
+          "correct": 8,
+          "total": 16
+        },
+        "gsm8k": {
+          "correct": 12,
+          "total": 16
+        }
+      },
+      "truncated": 1,
+      "gains_vs_base": [],
+      "losses_vs_base": [],
+      "arc_choice_content": {
+        "correct": 14,
+        "total": 16
+      }
+    },
+    "student": {
+      "correct": 22,
+      "total": 32,
+      "domains": {
+        "arc": {
+          "correct": 8,
+          "total": 16
+        },
+        "gsm8k": {
+          "correct": 14,
+          "total": 16
+        }
+      },
+      "truncated": 0,
+      "gains_vs_base": [
+        "gsm8k-test-37",
+        "gsm8k-test-338"
+      ],
+      "losses_vs_base": [],
+      "arc_choice_content": {
+        "correct": 14,
+        "total": 16
+      }
+    },
+    "mobile": {
+      "correct": 16,
+      "total": 32,
+      "domains": {
+        "arc": {
+          "correct": 2,
+          "total": 16
+        },
+        "gsm8k": {
+          "correct": 14,
+          "total": 16
+        }
+      },
+      "truncated": 1,
+      "gains_vs_base": [
+        "gsm8k-test-338",
+        "gsm8k-test-702"
+      ],
+      "losses_vs_base": [
+        "arc-test-7",
+        "arc-test-37",
+        "arc-test-152",
+        "arc-test-417",
+        "arc-test-445",
+        "arc-test-780"
+      ],
+      "arc_choice_content": {
+        "correct": 15,
+        "total": 16
+      }
+    }
+  },
+  "mbpp": {
+    "base": {
+      "correct": 5,
+      "total": 8,
+      "domains": {
+        "coding": {
+          "correct": 5,
+          "total": 8
+        }
+      },
+      "truncated": 0,
+      "gains_vs_base": [],
+      "losses_vs_base": []
+    },
+    "student": {
+      "correct": 5,
+      "total": 8,
+      "domains": {
+        "coding": {
+          "correct": 5,
+          "total": 8
+        }
+      },
+      "truncated": 0,
+      "gains_vs_base": [],
+      "losses_vs_base": []
+    },
+    "mobile": {
+      "correct": 4,
+      "total": 8,
+      "domains": {
+        "coding": {
+          "correct": 4,
+          "total": 8
+        }
+      },
+      "truncated": 0,
+      "gains_vs_base": [],
+      "losses_vs_base": [
+        "mbpp-test-274"
+      ]
+    }
+  }
+}

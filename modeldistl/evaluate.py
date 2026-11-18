@@ -102,6 +102,10 @@ def run(infer, tasks, report, out):
             passed, detail = grade(t, answer, pool, cpython=report["code_runtime"] == "cpython")
             results.append({"id": t["id"], "domain": t["domain"], "pass": passed, "check": detail,
                             "answer": answer, "seconds": round(seconds, 3), **stats})
+            if t["domain"] == "arc":
+                from .benchmarks import matches_arc_option
+
+                results[-1]["choice_content_pass"] = matches_arc_option(t, answer)
             print(f"{len(results)}/{len(tasks)} {t['id']} {'pass' if passed else 'fail'}", flush=True)
             write_json(out, report)
     report["domains"] = {}
@@ -109,6 +113,9 @@ def run(infer, tasks, report, out):
         rows = [r for r in results if r["domain"] == domain]
         report["domains"][domain] = {"correct": sum(r["pass"] for r in rows), "total": len(rows)}
     report.update(complete=True, correct=sum(r["pass"] for r in results), total=len(results))
+    choices = [r["choice_content_pass"] for r in results if "choice_content_pass" in r]
+    if choices:
+        report["arc_choice_content"] = {"correct": sum(choices), "total": len(choices)}
     write_json(out, report)
     print(f"{report['correct']}/{report['total']} passed. {out}")
 

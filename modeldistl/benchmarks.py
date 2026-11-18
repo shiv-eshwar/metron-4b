@@ -10,6 +10,18 @@ SOURCES = {
 }
 
 
+def matches_arc_option(task, answer):
+    """Supplement the label-only score with unambiguous matches to the option text."""
+    label = task["check"]["answer"]
+    prefix = label + ". "
+    option = next(line[len(prefix):] for line in task["prompt"].splitlines() if line.startswith(prefix))
+
+    def normalized(text):
+        return " ".join(text.casefold().strip().strip("*").rstrip(".").split())
+
+    return normalized(answer) in {normalized(label), normalized(prefix + option), normalized(option)}
+
+
 def public_tasks():
     import pyarrow.parquet as pq
 

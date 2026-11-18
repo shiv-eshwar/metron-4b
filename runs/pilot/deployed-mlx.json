@@ -1,0 +1,6 @@
+{
+  "validation_loss": 2.8090858459472656,
+  "validation_completion_tokens": 393,
+  "sample_prompt": "Three groups each have 14 students. Two teachers join them. How many people are present? Give the calculation in one sentence.",
+  "sample_answer": "3 groups × 14 students = 42 students, plus 2 teachers, so 42 + 2 = 44 people are present."
+}

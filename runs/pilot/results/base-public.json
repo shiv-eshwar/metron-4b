@@ -1,0 +1,369 @@
+{
+  "backend": "llama.cpp",
+  "source_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "model": "artifacts/export/Qwen3-4B-base-Q4_K_M.gguf",
+  "adapter": null,
+  "temperature": 0,
+  "seed": 42,
+  "max_tokens": 320,
+  "complete": true,
+  "suite": "public",
+  "code_runtime": "cpython",
+  "jobs": 4,
+  "test_sha256": "bc08156c1417df252dae88ce89a4d05ebe2e6c9d0f979e7161f23d1251b2b973",
+  "gguf_file_sha256": "0f5a0161941cf15725c9f7401cdbda3dc43da66bed8e2e95b93507fb8f6b443a",
+  "results": [
+    {
+      "id": "gsm8k-test-7",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Carla is downloading a 200 GB file.\n\nNormally, she downloads at 2 GB/minute.\n\nFirst, calculate the time to download 200 GB without any interruptions:\n\n- Normal download time = 200 GB ÷ 2 GB/minute = 100 minutes.\n\nBut at 40% of the way through, a restart occurs.\n\n40% of 200 GB = 0.4 × 200 = 80 GB.\n\nTime to download first 80 GB = 80 ÷ 2 = 40 minutes.\n\nThen, a 20-minute update restart occurs.\n\nAfter that, she has to restart the download from the beginning — so she starts over.\n\nNow she downloads the full 200 GB again at 2 GB/minute.\n\nTime for second full download = 200 ÷ 2 = 100 minutes.\n\nTotal time = time for first 80 GB + update time + second full download  \n= 40 + 20 + 100 = 160 minutes.\n\nAnswer: 160",
+      "seconds": 22.867,
+      "tokens": 238,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-37",
+      "domain": "gsm8k",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "John sells 13 Lego sets at $15 each:  \n13 × 15 = $195  \n\nHe buys 8 video games at $20 each:  \n8 × 20 = $160  \n\nHe has $5 left, so total money spent = 160 + 5 = $165  \n\nBut he earned $195 from selling Legos, so the money left after buying games is $195 - $165 = $30 — this doesn't match the $5 left. Wait — contradiction.\n\nWait: He has $5 left after buying games. So total money spent = total money earned - $5.\n\nTotal money earned = 13 × 15 = $195  \nTotal money spent = 8 × 20 + 5 = $160 + $5 = $165  \n\nSo 195 - 165 = $30 — but that would mean he has $30 left, not $5. Contradiction.\n\nSo the problem says he ends up buying 8 video games and has $5 left — so total money = money from selling Legos = 13 × 15 = $195  \nMoney spent on games = 8 × 20 = $160  \nLeftover = $195 - $160 = $35 — but problem says he has $5 left.\n\nSo inconsistency.\n\nTherefore, the only way this makes sense is if the",
+      "seconds": 29.905,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "gsm8k-test-93",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "We are told:\n\n- Lee used to run the 400-meter hurdles **2 seconds faster** than Gerald used to.\n- Now, Gerald improved his speed by **10%**, meaning he runs 10% faster.\n- Lee currently runs the 400-meter hurdles in **38 seconds**.\n\nWe are to find how fast Gerald can now run the 400-meter hurdles.\n\n---\n\nStep 1: Use Lee's time to find Gerald's original time.\n\nSince Lee runs 2 seconds faster than Gerald used to, then:\n\nGerald's original time = Lee's time + 2 = 38 + 2 = **40 seconds**\n\nStep 2: Gerald improved his speed by 10%. That means he now runs 10% faster, so his time is reduced by 10%.\n\nA 10% improvement in speed means the time is multiplied by (1 - 0.10) = 0.90.\n\nSo, new time = 40 × 0.90 = 36 seconds\n\nAnswer: 36",
+      "seconds": 21.748,
+      "tokens": 229,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-109",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Original price per gallon: $3.00  \nCashback per gallon: $0.20  \nTotal gas purchased: 10 gallons  \n\nTotal cost before cashback: 10 × $3.00 = $30.00  \nTotal cashback received: 10 × $0.20 = $2.00  \n\nFinal amount paid: $30.00 - $2.00 = $28.00  \n\nAnswer: 28",
+      "seconds": 10.544,
+      "tokens": 105,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-152",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Each pack has 6 cookies, so 10 packs have:  \n10 × 6 = 60 cookies.\n\nEach cookie costs $0.10, so total cost:  \n60 × $0.10 = $6.00.\n\nCarl pays with a $10 bill, so change is:  \n$10.00 - $6.00 = $4.00.\n\nAnswer: 4",
+      "seconds": 8.338,
+      "tokens": 93,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-338",
+      "domain": "gsm8k",
+      "pass": false,
+      "check": "exact numerical value",
+      "answer": "Let the number of students in each of the two equal groups be $ x $.\n\nThen the smallest group has $ x - 10 $ students.\n\nTotal students = 200.\n\nSo:\n\n$$\nx + x + (x - 10) = 200\n$$\n\n$$\n3x - 10 = 200\n$$\n\n$$\n3x = 210\n$$\n\n$$\nx = 50\n$$\n\nThen the smallest group has:\n\n$$\nx - 10 = 50 - 10 = 40\n$$\n\nAnswer: 40",
+      "seconds": 12.334,
+      "tokens": 134,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-417",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "First 4 days:  \n200 km/day × 4 days = 800 km\n\nNext 2 days:  \n30% of 80s = 0.30 × 800 = 240 km\n\nNext day:  \n0 km (not traveling)\n\nSo first week total:  \n800 + 240 + 0 = 1040 km\n\nSecond week:  \n300 km/day × 7 days = 2100 km\n\nTotal trip:  \n1040 + 2100 = 3140 km\n\nAnswer: 3140",
+      "seconds": 12.753,
+      "tokens": 140,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-445",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "First, find how many miles the horse runs in 30 minutes at 32 MPH:\n\n30 minutes = 0.5 hours  \nDistance = speed × time = 32 MPH × 0.5 = 16 miles\n\nFor every mile, the horse eats 1/2 a bail of hay.  \nSo for 16 miles:  \nHay needed = 16 × (1/2) = 8 bails\n\nEach bail costs $3, so total cost = 8 × 3 = $24\n\nMichael has six $5 bills: 6 × 5 = $30\n\nChange = $30 - $24 = $6\n\nAnswer: 6",
+      "seconds": 13.417,
+      "tokens": 149,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-461",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Frederick has 10 plants.  \nToni has 60% more than Frederick:  \n60% of 10 = 0.6 × 10 = 6  \nSo Toni has 10 + 6 = 16 plants.  \n\nShondra has 7 fewer than Toni:  \n16 - 7 = 9  \n\nAnswer: 9",
+      "seconds": 8.693,
+      "tokens": 83,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-469",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Mary has 6 jars of sprinkles.  \nEach jar can decorate 8 cupcakes, so total cupcakes she can decorate = 6 × 8 = 48 cupcakes.\n\nEach pan holds 12 cupcakes.  \nNumber of pans needed = 48 ÷ 12 = 4.\n\nAnswer: 4",
+      "seconds": 6.487,
+      "tokens": 67,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-647",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Bill digs soil at 4 feet/hour and clay at half that speed:  \nClay speed = 4 ÷ 2 = 2 feet/hour.\n\nTime through soil = 24 feet ÷ 4 feet/hour = 6 hours.  \nTime through clay = 8 feet ÷ 2 feet/hour = 4 hours.\n\nTotal time = 6 + 4 = 10 hours.\n\nAnswer: 10",
+      "seconds": 9.48,
+      "tokens": 94,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-702",
+      "domain": "gsm8k",
+      "pass": false,
+      "check": "exact numerical value",
+      "answer": "Gissela's truck: 4,000 pounds  \nGordy's truck: 4,000 + 800 = 4,800 pounds  \nLet Gary's truck capacity be G.\n\nTotal capacity of all three trucks:  \n4,000 + 4,800 + G = 11,600  \n9,800 + G = 11,600  \nG = 11,600 - 9,800 = 1,800\n\nAnswer: 1800",
+      "seconds": 12.557,
+      "tokens": 127,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-780",
+      "domain": "gsm8k",
+      "pass": false,
+      "check": "exact numerical value",
+      "answer": "Let’s define variables:\n\nLet:\n- Emma’s enemies jumped = E\n- Emma’s berries collected = B\n- Emma’s time left = T seconds\n\nThen:\n- Ava jumps on 8 more enemies: E + 8\n- Ava collects 3 more berries: B + 3\n- Ava finishes 4 seconds slower: T + 4\n\nPoints:\n- Enemies: 10 points each → 10 × (enemies)\n- Berries: 5 points each → 5 × (berries)\n- Time: 30 points per second → 30 × (time)\n\nSo Emma’s score:\n= 10E + 5B + 30T\n\nAva’s score:\n= 10(E + 8) + 5(B + 3) + 30(T + 4)\n= 10E + 80 + 5B + 15 + 30T + 120\n= (10E + 5B + 30T) + (80 + 15 + 120)\n= Emma’s score + 215\n\nSo the difference in scores = 215\n\nAnswer: 215",
+      "seconds": 26.468,
+      "tokens": 261,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-867",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Potatoes: 5 pounds  \nSweet potatoes: 2 times as much as potatoes = 2 × 5 = 10 pounds  \nCarrots: 3 pounds fewer than sweet potatoes = 10 - 3 = 7 pounds  \n\nAnswer: 7",
+      "seconds": 4.805,
+      "tokens": 56,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-1013",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Janet earns $10/hour from wages and $15/hour from tips, so her total hourly income is:\n\n$10 + $15 = $25 per hour.\n\nShe works 40 hours per week, so her weekly earnings are:\n\n$25 × 40 = $1000 per week.\n\nShe wants to save 20% of a $10,000 car, which is:\n\n20% of $10,000 = 0.20 × 10,000 = $2000.\n\nNow, divide the total savings goal by weekly earnings:\n\n$2000 ÷ $1000 = 2 weeks.\n\nAnswer: 2",
+      "seconds": 18.661,
+      "tokens": 158,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-test-1113",
+      "domain": "gsm8k",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Start with initial temperature: 2°C  \nDrop by 8°C: 2 - 8 = -6°C  \nIncrease by 3°C: -6 + 3 = -3°C  \n\nAnswer: -3",
+      "seconds": 3.944,
+      "tokens": 46,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-test-7",
+      "domain": "arc",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.507,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-37",
+      "domain": "arc",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.521,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-93",
+      "domain": "arc",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 0.822,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-109",
+      "domain": "arc",
+      "pass": false,
+      "check": "choice label",
+      "answer": "A. Hills",
+      "seconds": 1.155,
+      "tokens": 4,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-152",
+      "domain": "arc",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.52,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-338",
+      "domain": "arc",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 0.744,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-417",
+      "domain": "arc",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.671,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-445",
+      "domain": "arc",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.796,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-461",
+      "domain": "arc",
+      "pass": false,
+      "check": "choice label",
+      "answer": "D. reverse osmosis",
+      "seconds": 1.416,
+      "tokens": 7,
+      "finish": "stop",
+      "choice_content_pass": false
+    },
+    {
+      "id": "arc-test-469",
+      "domain": "arc",
+      "pass": false,
+      "check": "choice label",
+      "answer": "C. have accurate notes describing the location.",
+      "seconds": 1.387,
+      "tokens": 10,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-647",
+      "domain": "arc",
+      "pass": false,
+      "check": "choice label",
+      "answer": "B. 28",
+      "seconds": 0.844,
+      "tokens": 6,
+      "finish": "stop",
+      "choice_content_pass": false
+    },
+    {
+      "id": "arc-test-702",
+      "domain": "arc",
+      "pass": false,
+      "check": "choice label",
+      "answer": "C. throwing away aluminum cans",
+      "seconds": 1.494,
+      "tokens": 7,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-780",
+      "domain": "arc",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.729,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-867",
+      "domain": "arc",
+      "pass": false,
+      "check": "choice label",
+      "answer": "C. embryo",
+      "seconds": 0.688,
+      "tokens": 4,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-1013",
+      "domain": "arc",
+      "pass": false,
+      "check": "choice label",
+      "answer": "A. lightning.",
+      "seconds": 0.992,
+      "tokens": 5,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-test-1113",
+      "domain": "arc",
+      "pass": false,
+      "check": "choice label",
+      "answer": "2. 47",
+      "seconds": 1.096,
+      "tokens": 6,
+      "finish": "stop",
+      "choice_content_pass": true
+    }
+  ],
+  "domains": {
+    "arc": {
+      "correct": 8,
+      "total": 16
+    },
+    "gsm8k": {
+      "correct": 12,
+      "total": 16
+    }
+  },
+  "correct": 20,
+  "total": 32,
+  "arc_choice_content": {
+    "correct": 14,
+    "total": 16
+  }
+}

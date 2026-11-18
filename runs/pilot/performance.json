@@ -1,0 +1,109 @@
+{
+  "hardware": "MacBook Air, Apple M5, 8-core GPU, 16 GB unified memory",
+  "llama_cpp": "401563f10ec60754e688cd3165c1343cf4be9642",
+  "repetitions": 3,
+  "benchmarks": {
+    "Q4_K_M-metal": [
+      {
+        "model_size": 2491323904,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 99,
+        "n_prompt": 128,
+        "n_gen": 0,
+        "avg_ts": 690.852856,
+        "stddev_ts": 129.675071,
+        "samples_ts": [
+          823.457,
+          684.782,
+          564.32
+        ]
+      },
+      {
+        "model_size": 2491323904,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 99,
+        "n_prompt": 0,
+        "n_gen": 64,
+        "avg_ts": 20.033972,
+        "stddev_ts": 2.266106,
+        "samples_ts": [
+          17.4297,
+          21.116,
+          21.5562
+        ]
+      }
+    ],
+    "Q3_K_S-metal": [
+      {
+        "model_size": 1881040384,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 99,
+        "n_prompt": 128,
+        "n_gen": 0,
+        "avg_ts": 626.553594,
+        "stddev_ts": 16.707871,
+        "samples_ts": [
+          632.525,
+          639.455,
+          607.681
+        ]
+      },
+      {
+        "model_size": 1881040384,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 99,
+        "n_prompt": 0,
+        "n_gen": 64,
+        "avg_ts": 18.401224,
+        "stddev_ts": 0.347264,
+        "samples_ts": [
+          18.0238,
+          18.4728,
+          18.7071
+        ]
+      }
+    ],
+    "Q4_K_M-cpu": [
+      {
+        "model_size": 2491323904,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 0,
+        "n_prompt": 128,
+        "n_gen": 0,
+        "avg_ts": 45.567696,
+        "stddev_ts": 0.797314,
+        "samples_ts": [
+          46.464,
+          45.3016,
+          44.9374
+        ]
+      },
+      {
+        "model_size": 2491323904,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 0,
+        "n_prompt": 0,
+        "n_gen": 64,
+        "avg_ts": 14.328198,
+        "stddev_ts": 0.539714,
+        "samples_ts": [
+          14.9512,
+          14.0021,
+          14.0313
+        ]
+      }
+    ]
+  },
+  "q4_chat": {
+    "context_tokens": 2048,
+    "max_resident_bytes": 2941911040,
+    "prompt": "Three groups each have 14 students. Two teachers join them. How many people are present? Give the calculation in one sentence.",
+    "answer": "3 groups × 14 students = 42 students, plus 2 teachers, so 42 + 2 = 44 people are present."
+  }
+}
