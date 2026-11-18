@@ -24,20 +24,27 @@ def digest(path):
         return hashlib.file_digest(f, "sha256").hexdigest()
 
 
-def export(adapter, output):
+def export(adapter, targets):
     revision = subprocess.check_output(["git", "-C", SOURCE, "rev-parse", "HEAD"], text=True).strip()
     if revision != COMMIT:
         raise SystemExit("Run bash scripts/setup-llama.sh to install the pinned converter.")
-    metadata = {"base": REPO, "revision": REVISION, "llama_cpp": COMMIT, "quantization": "Q4_K_M",
+    metadata = {"base": REPO, "revision": REVISION, "llama_cpp": COMMIT,
                 "adapter_sha256": digest(adapter / "adapters.safetensors") if adapter else None}
-    receipt = output.with_suffix(".json")
-    if output.exists() and receipt.exists():
-        previous = json.loads(receipt.read_text())
-        if all(previous.get(k) == v for k, v in metadata.items()) and digest(output) == previous.get("sha256"):
-            print(f"Verified existing export {output}")
-            return
-        raise SystemExit(f"{output} belongs to a different run. Select another --out path.")
-    with tempfile.TemporaryDirectory(dir=output.parent, prefix=".convert-") as scratch:
+    pending = {}
+    for quantization, output in targets.items():
+        receipt = output.with_suffix(".json")
+        spec = metadata | {"quantization": quantization}
+        if output.exists() and receipt.exists():
+            previous = json.loads(receipt.read_text())
+            if all(previous.get(k) == v for k, v in spec.items()) and digest(output) == previous.get("sha256"):
+                print(f"Verified existing export {output}")
+                continue
+            raise SystemExit(f"{output} belongs to a different run. Select another --out path.")
+        pending[quantization] = output
+    if not pending:
+        return
+    destination = next(iter(pending.values())).parent
+    with tempfile.TemporaryDirectory(dir=destination, prefix=".convert-") as scratch:
         scratch = Path(scratch)
         source = BASE
         if adapter:
@@ -58,12 +65,13 @@ def export(adapter, output):
         subprocess.run([sys.executable, SOURCE / "convert_hf_to_gguf.py", source, "--outfile", bf16,
                         "--outtype", "bf16", "--model-name", "ModelDistl-4B-Pilot" if adapter else "Qwen3-4B-Instruct-2507"],
                        check=True)
-        subprocess.run([".tools/llama-bin/llama-quantize", bf16, quantized, "Q4_K_M"], check=True)
-        metadata.update(bytes=quantized.stat().st_size, sha256=digest(quantized))
-        quantized.replace(output)
-        write_json(receipt, metadata)
-        shutil.copy2(BASE / "LICENSE", output.parent / "Qwen-LICENSE.txt")
-        print(f"{output} ({metadata['bytes']:,} bytes, SHA-256 {metadata['sha256']})", flush=True)
+        for quantization, output in pending.items():
+            subprocess.run([".tools/llama-bin/llama-quantize", bf16, quantized, quantization], check=True)
+            spec = metadata | {"quantization": quantization, "bytes": quantized.stat().st_size, "sha256": digest(quantized)}
+            quantized.replace(output)
+            write_json(output.with_suffix(".json"), spec)
+            print(f"{output} ({spec['bytes']:,} bytes, SHA-256 {spec['sha256']})", flush=True)
+        shutil.copy2(BASE / "LICENSE", destination / "Qwen-LICENSE.txt")
 
 
 def main():
@@ -71,13 +79,17 @@ def main():
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--adapter", type=Path, default=DEFAULT_ADAPTER)
     group.add_argument("--base-only", action="store_true", help="Export the matching baseline")
+    parser.add_argument("--quantization", nargs="+", choices=["Q4_K_M", "Q3_K_S"], default=["Q4_K_M"])
     parser.add_argument("--out", type=Path)
     args = parser.parse_args()
-    name = "Qwen3-4B-base-Q4_K_M.gguf" if args.base_only else "ModelDistl-4B-Q4_K_M.gguf"
-    out = args.out or Path("artifacts/export") / name
-    out.parent.mkdir(parents=True, exist_ok=True)
-    with FileLock(str(out) + ".lock", timeout=0):
-        export(None if args.base_only else args.adapter, out)
+    stem = "Qwen3-4B-base" if args.base_only else "ModelDistl-4B"
+    if args.out and len(args.quantization) != 1:
+        parser.error("--out specifies a single file; choose one quantization")
+    parent = args.out.parent if args.out else Path("artifacts/export")
+    targets = {q: args.out or parent / f"{stem}-{q}.gguf" for q in args.quantization}
+    parent.mkdir(parents=True, exist_ok=True)
+    with FileLock(parent / ".export.lock", timeout=0):
+        export(None if args.base_only else args.adapter, targets)
 
 
 if __name__ == "__main__":

@@ -7,15 +7,19 @@ import shutil
 from pathlib import Path
 from types import SimpleNamespace
 
+import mlx.core as mx
+import mlx.optimizers as optim
 import numpy as np
 import yaml
 from filelock import FileLock
 from mlx.utils import tree_flatten
 from mlx_lm import load
-from mlx_lm.lora import CONFIG_DEFAULTS, train_model
+from mlx_lm.lora import CONFIG_DEFAULTS
 from mlx_lm.tuner.callbacks import TrainingCallback
 from mlx_lm.tuner.datasets import CacheDataset, create_dataset
-from mlx_lm.tuner.trainer import evaluate
+from mlx_lm.tuner.trainer import TrainingArgs, default_loss, evaluate
+from mlx_lm.tuner.trainer import train as train_steps
+from mlx_lm.tuner.utils import build_schedule, linear_to_lora_layers
 
 from .files import write_json
 
@@ -34,13 +38,22 @@ class Metrics(TrainingCallback):
         write_json(self.path, self.data)
 
 
+def completion_loss(model, batch, bounds):
+    # MLX-LM 0.32.2 pads the batch by at least one position and returns
+    # (first target index, sequence length). Its loss takes an inclusive end.
+    return default_loss(model, batch, bounds - mx.array([0, 1], dtype=bounds.dtype))
+
+
 def train(config, output):
     # Only the two supervised splits are opened by this process.
     args = SimpleNamespace(**(CONFIG_DEFAULTS | config | {"adapter_path": str(output)}))
     if not args.mask_prompt or args.iters % args.grad_accumulation_steps:
         raise ValueError("Use prompt masking and complete gradient accumulation cycles.")
+    if args.fine_tune_type != "lora" or args.optimizer != "adamw":
+        raise ValueError("This recipe uses LoRA and AdamW.")
     np.random.seed(args.seed)
     model, tokenizer = load(args.model)
+    mx.random.seed(args.seed)
     datasets = {}
     counts = {}
     for split in ("train", "valid"):
@@ -60,7 +73,25 @@ def train(config, output):
                          "longest_chat": max(lengths), "sha256": hashlib.sha256(source.read_bytes()).hexdigest()}
     output.mkdir(parents=True)
     metrics = Metrics(output / "metrics.json", counts)
-    train_model(args, model, datasets["train"], datasets["valid"], training_callback=metrics)
+    model.freeze()
+    if not 1 <= args.num_layers <= len(model.layers):
+        raise ValueError(f"num_layers must be in [1, {len(model.layers)}]")
+    linear_to_lora_layers(model, args.num_layers, args.lora_parameters)
+    if args.resume_adapter_file:
+        model.load_weights(args.resume_adapter_file, strict=False)
+    write_json(output / "adapter_config.json", vars(args))
+    schedule = build_schedule(args.lr_schedule) if args.lr_schedule else args.learning_rate
+    optimizer = optim.AdamW(learning_rate=schedule, **args.optimizer_config.get("adamw", {}))
+    training = TrainingArgs(
+        batch_size=args.batch_size, iters=args.iters, val_batches=args.val_batches,
+        steps_per_report=args.steps_per_report, steps_per_eval=args.steps_per_eval,
+        steps_per_save=args.save_every, max_seq_length=args.max_seq_length,
+        adapter_file=output / "adapters.safetensors", grad_checkpoint=args.grad_checkpoint,
+        grad_accumulation_steps=args.grad_accumulation_steps,
+    )
+    train_steps(model=model, optimizer=optimizer, args=training, loss=completion_loss,
+                train_dataset=CacheDataset(datasets["train"]), val_dataset=CacheDataset(datasets["valid"]),
+                training_callback=metrics)
     metrics.data["trainable_parameters"] = sum(p.size for _, p in tree_flatten(model.trainable_parameters()))
 
     # The trainer logs validation before the update at a reporting step. Score
@@ -71,7 +102,8 @@ def train(config, output):
     validation = CacheDataset(datasets["valid"])
     for step, path in sorted(candidates.items()):
         model.load_weights(str(path), strict=False)
-        loss = evaluate(model, validation, batch_size=1, num_batches=-1, max_seq_length=args.max_seq_length)
+        loss = evaluate(model, validation, batch_size=1, num_batches=-1, max_seq_length=args.max_seq_length,
+                        loss=completion_loss)
         scores.append({"iteration": step, "loss": float(loss), "file": path.name})
     best = min(scores, key=lambda r: r["loss"])
     selected = output / "selected"

@@ -1,6 +1,7 @@
 import json
 import tempfile
 import unittest
+from importlib.util import find_spec
 from pathlib import Path
 from unittest.mock import patch
 
@@ -12,6 +13,23 @@ from scripts import model_file
 
 
 class PipelineTests(unittest.TestCase):
+    @unittest.skipUnless(find_spec("mlx") is not None, "MLX training extra")
+    def test_completion_loss_excludes_prompt_and_all_padding(self):
+        import mlx.core as mx
+        from modeldistl.train import completion_loss
+
+        # Real token positions are [0, 4) and [0, 3). Position 2 is the first
+        # supervised token in both rows, so three predictions contribute.
+        tokens = mx.array([[1, 2, 3, 4, 0, 0], [2, 1, 4, 0, 0, 0]])
+        bounds = mx.array([[2, 4], [2, 3]])
+        def logits(inputs):
+            return mx.broadcast_to(mx.arange(5, dtype=mx.float32), (*inputs.shape, 5))
+        loss, count = completion_loss(logits, tokens, bounds)
+        changed = mx.array([[4, 0, 3, 4, 2, 1], [1, 2, 4, 2, 3, 4]])
+        second, _ = completion_loss(logits, changed, bounds)
+        self.assertEqual(count.item(), 3)
+        self.assertAlmostEqual(loss.item(), second.item())
+
     def test_pilot_snapshot_matches_verified_prompts(self):
         splits = curriculum()
         provenance = json.loads(Path("runs/pilot/data/provenance.json").read_text())
