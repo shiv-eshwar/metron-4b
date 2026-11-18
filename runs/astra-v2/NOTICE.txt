@@ -1,0 +1,12 @@
+ModelDistl 4B Astra v2, November 2026
+
+ModelDistl derives from Qwen3-4B-Instruct-2507 by the Qwen Team.
+The original model is distributed under the Apache License 2.0.
+The release includes that license as Qwen-LICENSE.txt.
+https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/tree/cdbee75f17c01a7cc42f958dc650907174af0554
+
+ModelDistl trained a rank-16 linear adapter on verified responses from
+OpenAI GPT-6.2 Astra. It fuses the adapter with the original BF16
+weights and quantizes the result for local llama.cpp inference.
+Source data, attribution and the evaluation protocol are in the repository.
+https://github.com/shiv-eshwar/modeldistl/blob/astra-v0.2.0/runs/astra-v2/PROTOCOL.md
