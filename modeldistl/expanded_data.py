@@ -23,6 +23,9 @@ SOURCES = {
     "arc": ("allenai/ai2_arc", "210d026faf9955653af8916fad021475a3f00453", "CC BY-SA 4.0"),
     "squad": ("rajpurkar/squad_v2", "3ffb306f725f7d2ce8394bc1873b24868140c412", "CC BY-SA 4.0"),
     "contests": ("deepmind/code_contests", "802411c3010cb00d1b05bad57ca77365a3c699d6", "CC BY 4.0"),
+    "competition_math": ("EleutherAI/hendrycks_math", "21a5633873b6a120296cce3e2df9d5550074f4a3", "MIT"),
+    "quartz": ("allenai/quartz", "28c1dbb56caf81799296cb17892fa73402e23464", "CC BY 4.0"),
+    "quac": ("allenai/quac", "768addbf2099da8efabd67d3a669f6483b813c1b", "MIT dataset card; Wikipedia context attribution"),
 }
 # Keep teacher requests focused on ordinary language, arithmetic and benign programs.
 EXCLUDE = re.compile(r"\b(?:explosiv\w*|weapon\w*|missile\w*|firearm\w*|gunpowder|bomb\w*|"
@@ -122,8 +125,7 @@ def choose_reading(grouped, n, namespace, titles):
     return order(result, namespace)
 
 
-def contests():
-    filename = "data/train-00000-of-00039-e991a271dbfa9925.parquet"
+def contests(filename="data/train-00000-of-00039-e991a271dbfa9925.parquet"):
     rows = records("contests", filename, ("name", "description", "public_tests", "private_tests", "cf_rating", "difficulty"))
     tasks = []
     for row in rows:
@@ -277,6 +279,8 @@ def build_test():
 
 
 def question_key(t):
+    if t.get("section") == "extension":
+        return " ".join(re.findall(r"[a-z0-9]+", t.get("dedup_text", t["prompt"]).lower()))
     text = t["prompt"].split("\n", 1)[0]
     if t["source"] == "squad":
         text = t["prompt"].split("\n\nQuestion: ", 1)[1].split("\n", 1)[0]

@@ -1,0 +1,48 @@
+name: Rebuild Astra student from the adapter
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  rebuild:
+    if: github.ref == 'refs/heads/main'
+    runs-on: macos-15
+    timeout-minutes: 35
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+        with:
+          version: "0.12.19"
+      - name: Install the locked CPU exporter
+        run: |
+          uv sync --locked --extra export
+          bash scripts/setup-llama.sh
+          uv run --no-sync python -m modeldistl.weights --fetch-only
+      - name: Fetch and verify the trained adapter
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test "$(gh release view astra-v0.2.0 --json isDraft --jq .isDraft)" = true
+          mkdir -p artifacts/astra-v2/adapter
+          gh release download astra-v0.2.0 --pattern 'ModelDistl-4B-Astra-v2-MLX.zip' --dir artifacts/astra-v2
+          cd artifacts/astra-v2
+          shasum -a 256 -c ../../runs/astra-v2/adapter.SHA256
+          unzip -q ModelDistl-4B-Astra-v2-MLX.zip -d adapter
+      - name: Fuse and quantize both builds
+        run: |
+          uv run --no-sync python -m modeldistl.export --adapter artifacts/astra-v2/adapter --directory artifacts/astra-v2/export --name ModelDistl-4B-Astra-v2 --portable-fusion --quantization Q4_K_M Q3_K_S
+          cd artifacts/astra-v2/export
+          shasum -a 256 -c ../../../runs/astra-v2/models.SHA256
+      - name: Split Q4 and verify the manifest
+        run: |
+          uv run --no-sync python scripts/model_file.py pack --out artifacts/astra-v2/export/ModelDistl-4B-Q4_K_M.gguf --parts artifacts/astra-v2/release --manifest "$RUNNER_TEMP/parts.json" --tag astra-v0.2.0
+          cmp "$RUNNER_TEMP/parts.json" runs/astra-v2/release.json
+      - name: Attach verified builds to the private draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test "$(gh release view astra-v0.2.0 --json isDraft --jq .isDraft)" = true
+          gh release upload astra-v0.2.0 --clobber artifacts/astra-v2/release/*.part-* artifacts/astra-v2/export/ModelDistl-4B-Q3_K_S.gguf

@@ -24,7 +24,7 @@ def digest(path):
         return hashlib.file_digest(f, "sha256").hexdigest()
 
 
-def export(adapter, targets, model_name=None):
+def export(adapter, targets, model_name=None, portable_fusion=False):
     revision = subprocess.check_output(["git", "-C", SOURCE, "rev-parse", "HEAD"], text=True).strip()
     if revision != COMMIT:
         raise SystemExit("Run bash scripts/setup-llama.sh to install the pinned converter.")
@@ -32,6 +32,8 @@ def export(adapter, targets, model_name=None):
                 "adapter_sha256": digest(adapter / "adapters.safetensors") if adapter else None}
     if model_name:
         metadata["name"] = model_name
+    if portable_fusion:
+        metadata["fusion"] = "fixed-rank-fp32-bf16-v1"
     pending = {}
     for quantization, output in targets.items():
         receipt = output.with_suffix(".json")
@@ -49,7 +51,11 @@ def export(adapter, targets, model_name=None):
     with tempfile.TemporaryDirectory(dir=destination, prefix=".convert-") as scratch:
         scratch = Path(scratch)
         source = BASE
-        if adapter:
+        if adapter and portable_fusion:
+            from .fusion import fuse_shards
+
+            source = fuse_shards(BASE, adapter, scratch / "hf")
+        elif adapter:
             fused = scratch / "fused"
             subprocess.run([sys.executable, "-m", "mlx_lm", "fuse", "--model", BASE, "--adapter-path", adapter,
                             "--save-path", fused], check=True)
@@ -86,6 +92,7 @@ def main():
     output.add_argument("--out", type=Path)
     output.add_argument("--directory", type=Path, default=Path("artifacts/export"))
     parser.add_argument("--name", help="Display name embedded in GGUF metadata")
+    parser.add_argument("--portable-fusion", action="store_true", help="Reproduce adapter fusion on CPU")
     args = parser.parse_args()
     stem = "Qwen3-4B-base" if args.base_only else "ModelDistl-4B"
     if args.out and len(args.quantization) != 1:
@@ -94,7 +101,7 @@ def main():
     targets = {q: args.out or parent / f"{stem}-{q}.gguf" for q in args.quantization}
     parent.mkdir(parents=True, exist_ok=True)
     with FileLock(parent / ".export.lock", timeout=0):
-        export(None if args.base_only else args.adapter, targets, args.name)
+        export(None if args.base_only else args.adapter, targets, args.name, args.portable_fusion)
 
 
 if __name__ == "__main__":

@@ -70,6 +70,13 @@ def grade(task, answer, pool, *, cpython=False):
     kind = spec["kind"]
     if kind == "span":
         return span_score(answer, spec["answers"])[0], "normalized answer span"
+    if kind == "grounded_span":
+        exact, f1 = span_score(answer, spec["answers"])
+        if "UNANSWERABLE" in spec["answers"]:
+            return exact, "annotated abstention"
+        normalized = " ".join(answer.casefold().strip().strip('"').split()).rstrip(".,;:")
+        context = " ".join(spec["context"].casefold().split())
+        return exact or (bool(normalized) and normalized in context and f1 >= 0.85), "grounded span and token F1"
     if kind == "code":
         fence = re.fullmatch(r"\x60{3}(?:python|py)?\s*\n(.*?)\n\x60{3}", answer, re.DOTALL | re.IGNORECASE)
         code = fence[1] if fence else answer
@@ -100,6 +107,7 @@ def grade(task, answer, pool, *, cpython=False):
         okay = len(answer.split()) <= spec["max_words"] and all(
             re.search(pattern, answer, re.IGNORECASE) for pattern in spec["all"]
         )
+        okay = okay and all(not re.search(pattern, answer, re.IGNORECASE) for pattern in spec.get("none", []))
         return okay, "required content and word limit"
     if kind == "choice":
         return answer.strip(" .()").casefold() == spec["answer"].casefold(), "choice label"

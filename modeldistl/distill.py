@@ -28,12 +28,14 @@ def load_lines(path):
 
 
 def request(task, attempt):
-    hard = task["source"] == "contests" or (task["source"] in ("mbpp", "gsm8k", "logic")
+    hard = task["source"] in ("contests", "competition_math") or (task["source"] in ("mbpp", "gsm8k", "logic", "spec", "rules")
             and int(hashlib.sha256(task["id"].encode()).hexdigest()[:4], 16) % 4 == 0)
     extra = (" Review the constraints and check the answer and required format before replying."
              if attempt > 1 else "")
-    return {"model": MODEL, "instructions": INSTRUCTIONS + extra, "input": task["prompt"],
-            "max_output_tokens": 1408 if task["source"] == "contests" else (1024 if hard else 640),
+    user = {"role": "user", "content": task["prompt"]}
+    inputs = [*task["history"], user] if "history" in task else task["prompt"]
+    return {"model": MODEL, "instructions": INSTRUCTIONS + extra, "input": inputs,
+            "max_output_tokens": 1408 if task["source"] in ("contests", "competition_math") else (1024 if hard else 640),
             "reasoning": {"effort": "medium" if hard else "low"}, "service_tier": "default", "store": False}
 
 
@@ -43,7 +45,8 @@ def fingerprint(value):
 
 def reservation(body):
     # UTF-8 byte count upper-bounds text tokens; 128 covers message framing.
-    return PRICE_INPUT * (len(body["instructions"].encode()) + len(body["input"].encode()) + 128) + PRICE_OUTPUT * body["max_output_tokens"]
+    inputs = body["input"] if isinstance(body["input"], str) else json.dumps(body["input"], ensure_ascii=False)
+    return PRICE_INPUT * (len(body["instructions"].encode()) + len(inputs.encode()) + 128) + PRICE_OUTPUT * body["max_output_tokens"]
 
 
 def attempt_file(t, ordinal):
@@ -188,7 +191,7 @@ def prepare(attempts):
                 reason = (records[-1].get("check") or records[-1]["status"]) if records else "unsent"
                 excluded[reason] += 1
                 continue
-            chats[name].append({"messages": [{"role": "user", "content": t["prompt"]},
+            chats[name].append({"messages": [*t.get("history", []), {"role": "user", "content": t["prompt"]},
                                               {"role": "assistant", "content": best["answer"]}]})
             counts[t["domain"]] += 1
             manifests.append({"id": t["id"], "source": t["source"], "domain": t["domain"], "split": name,

@@ -23,7 +23,7 @@ def sha256(file):
     return h.hexdigest()
 
 
-def pack(model, directory, manifest):
+def pack(model, directory, manifest, tag="pilot-v0.1.0"):
     directory.mkdir(parents=True, exist_ok=True)
     parts = []
     full = hashlib.sha256()
@@ -48,7 +48,7 @@ def pack(model, directory, manifest):
             parts.append({"file": part.name, "bytes": part.stat().st_size, "sha256": h.hexdigest()})
         for part in parts:
             (Path(tmp) / part["file"]).replace(directory / part["file"])
-    info = {"repo": "shiv-eshwar/modeldistl", "tag": "pilot-v0.1.0", "file": model.name,
+    info = {"repo": "shiv-eshwar/modeldistl", "tag": tag, "file": model.name,
             "bytes": size, "sha256": full.hexdigest(), "parts": parts}
     manifest.parent.mkdir(parents=True, exist_ok=True)
     manifest.write_text(json.dumps(info, indent=2) + "\n")
@@ -92,9 +92,10 @@ def main():
     parser.add_argument("--out", type=Path, default=ROOT / "artifacts/export" / MODEL)
     parser.add_argument("--parts", type=Path, default=ROOT / "artifacts/release")
     parser.add_argument("--manifest", type=Path, default=MANIFEST)
+    parser.add_argument("--tag", default="pilot-v0.1.0", help="Release tag written into a new manifest")
     args = parser.parse_args()
     if args.action == "pack":
-        pack(args.out, args.parts, args.manifest)
+        pack(args.out, args.parts, args.manifest, args.tag)
     else:
         assemble(json.loads(args.manifest.read_text()), args.parts, args.out, args.action == "download")
 

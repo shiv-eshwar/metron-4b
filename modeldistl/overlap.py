@@ -35,7 +35,7 @@ def audit(directory):
             parts = shingles(question_key(row))
             # Ignore shared template wording within the same synthetic task family; the source split already keeps families together.
             neighbors = set()
-            if row["source"] not in ("logic", "service", "trace"):
+            if row["source"] not in ("logic", "service", "trace", "spec", "rules", "revision"):
                 for s in parts:
                     neighbors.update(by_shingle[s])
             fn = function_name(row)
