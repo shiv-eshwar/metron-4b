@@ -89,15 +89,21 @@ def assemble(info, directory, target, download):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=["pack", "download", "join"])
-    parser.add_argument("--out", type=Path, default=ROOT / "artifacts/export" / MODEL)
-    parser.add_argument("--parts", type=Path, default=ROOT / "artifacts/release")
-    parser.add_argument("--manifest", type=Path, default=MANIFEST)
-    parser.add_argument("--tag", default="pilot-v0.1.0", help="Release tag written into a new manifest")
+    parser.add_argument("--run", choices=["pilot", "astra-v2"], default="pilot")
+    parser.add_argument("--out", type=Path)
+    parser.add_argument("--parts", type=Path)
+    parser.add_argument("--manifest", type=Path)
+    parser.add_argument("--tag", help="Release tag written into a new manifest")
     args = parser.parse_args()
+    artifacts = ROOT / ("artifacts/astra-v2" if args.run == "astra-v2" else "artifacts")
+    model = args.out or artifacts / "export" / MODEL
+    parts = args.parts or artifacts / "release"
+    manifest = args.manifest or (MANIFEST if args.run == "pilot" else ROOT / "runs/astra-v2/release.json")
     if args.action == "pack":
-        pack(args.out, args.parts, args.manifest, args.tag)
+        tag = args.tag or ("astra-v0.2.0" if args.run == "astra-v2" else "pilot-v0.1.0")
+        pack(model, parts, manifest, tag)
     else:
-        assemble(json.loads(args.manifest.read_text()), args.parts, args.out, args.action == "download")
+        assemble(json.loads(manifest.read_text()), parts, model, args.action == "download")
 
 
 if __name__ == "__main__":
