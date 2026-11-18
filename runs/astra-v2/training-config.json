@@ -1,0 +1,57 @@
+{
+  "model": "artifacts/base-mlx-4bit",
+  "train": true,
+  "fine_tune_type": "lora",
+  "optimizer": "adamw",
+  "optimizer_config": {
+    "adamw": {
+      "weight_decay": 0.01
+    }
+  },
+  "data": "runs/astra-v2/data",
+  "seed": 621907,
+  "num_layers": 16,
+  "batch_size": 2,
+  "iters": 2600,
+  "val_batches": -1,
+  "learning_rate": 2.5e-05,
+  "steps_per_report": 32,
+  "steps_per_eval": 648,
+  "resume_adapter_file": null,
+  "adapter_path": "artifacts/adapters/astra-v2",
+  "save_every": 648,
+  "test": false,
+  "test_batches": 500,
+  "max_seq_length": 2048,
+  "config": null,
+  "grad_checkpoint": true,
+  "grad_accumulation_steps": 4,
+  "clear_cache_threshold": 0,
+  "lr_schedule": {
+    "name": "cosine_decay",
+    "arguments": [
+      2.5e-05,
+      624,
+      2.5e-06
+    ],
+    "warmup": 26,
+    "warmup_init": 1.25e-06
+  },
+  "lora_parameters": {
+    "keys": [
+      "self_attn.q_proj",
+      "self_attn.k_proj",
+      "self_attn.v_proj",
+      "self_attn.o_proj"
+    ],
+    "rank": 16,
+    "scale": 2.0,
+    "dropout": 0.0
+  },
+  "mask_prompt": true,
+  "report_to": null,
+  "project_name": null,
+  "trust_remote_code": false,
+  "epochs": 1,
+  "cosine_warmup_fraction": 0.04
+}
