@@ -18,10 +18,17 @@ from .tasks import DOMAINS, curriculum, grade
 from .weights import QUANT
 
 MULTIPLIERS = (0.0, 0.0625, 0.125, 0.25, 0.5, 1.0)
+REFINEMENT = (0.03125, 0.1875, 0.3125, 0.375, 0.015625, 0.0078125)
 
 
 def scaled(weights, factor):
     return {k: v * factor if k.endswith(".lora_b") else v for k, v in weights.items()}
+
+
+def qualified(candidates):
+    baseline = candidates[0]
+    return [c for c in candidates[1:] if c["scores"]["coding"] >= baseline["scores"]["coding"]
+            and c["scores"]["reasoning"] >= baseline["scores"]["reasoning"] and c["macro"] >= baseline["macro"]]
 
 
 def calibrate(source, dest):
@@ -33,8 +40,18 @@ def calibrate(source, dest):
                                        tokenize=True, return_dict=False) for t in tasks]
     report = {"source_sha256": hashlib.sha256(weights_path.read_bytes()).hexdigest(),
               "validation_sha256": hashlib.sha256(json.dumps(tasks, sort_keys=True).encode()).hexdigest(),
-              "multipliers": MULTIPLIERS, "candidates": []}
-    for factor in MULTIPLIERS:
+              "multipliers": MULTIPLIERS + REFINEMENT, "candidates": []}
+    path = dest.parent / "calibration.json"
+    if path.exists():
+        cache = json.loads(path.read_text())
+        if all(cache.get(k) == report[k] for k in ("source_sha256", "validation_sha256")):
+            report["candidates"] = cache["candidates"]
+    done = {c["factor"] for c in report["candidates"]}
+    for factor in MULTIPLIERS + REFINEMENT:
+        if factor in REFINEMENT and qualified([c for c in report["candidates"] if c["factor"] in MULTIPLIERS]):
+            break
+        if factor in done:
+            continue
         model.load_weights(list(scaled(weights, factor).items()), strict=False)
         mx.random.seed(42)
         output = batch_generate(model, tok, prompts, max_tokens=MAX_TOKENS, sampler=make_sampler(temp=0),
@@ -51,11 +68,9 @@ def calibrate(source, dest):
         candidate = {"factor": factor, "scores": scores, "macro": sum(scores.values()) / len(scores),
                      "results": results}
         report["candidates"].append(candidate)
-        write_json(dest.parent / "calibration.json", report)
+        write_json(path, report)
         print(f"Validation factor {factor}: {scores}", flush=True)
-    baseline = report["candidates"][0]
-    eligible = [c for c in report["candidates"][1:] if c["scores"]["coding"] >= baseline["scores"]["coding"]
-                and c["scores"]["reasoning"] >= baseline["scores"]["reasoning"] and c["macro"] >= baseline["macro"]]
+    eligible = qualified(report["candidates"])
     if not eligible:
         raise SystemExit("No tested adapter retained base coding, reasoning, and macro accuracy on validation.")
     # For ties keep the smallest nonzero update, closest to the pretrained weights.
@@ -65,7 +80,7 @@ def calibrate(source, dest):
     shutil.copy2(source / "adapter_config.json", dest / "adapter_config.json")
     report["selected_multiplier"] = winner["factor"]
     report["adapter_sha256"] = hashlib.sha256((dest / "adapters.safetensors").read_bytes()).hexdigest()
-    write_json(dest.parent / "calibration.json", report)
+    write_json(path, report)
     print(f"Deployment multiplier: {winner['factor']}", flush=True)
 
 

@@ -8,7 +8,7 @@ ModelDistl fine-tunes Qwen3-4B-Instruct-2507 on verified demonstrations from Ope
 | --- | ---: | --- |
 | Q4_K_M | 2.50 GB | Run `python3 scripts/model_file.py download` from this checkout with GitHub CLI signed in. The script downloads two release parts, verifies their SHA-256 hashes, and assembles the single GGUF in `artifacts/export/`. |
 | Q3_K_S | 1.89 GB | Download the single GGUF from the private release while signed in. [Download Q3_K_S](https://github.com/shiv-eshwar/modeldistl/releases/download/pilot-v0.1.0/ModelDistl-4B-Q3_K_S.gguf) |
-| MLX adapter | 4.86 MB compressed | Unzip alongside a local 4-bit MLX conversion of the pinned base. [Download adapter](https://github.com/shiv-eshwar/modeldistl/releases/download/pilot-v0.1.0/ModelDistl-4B-MLX-adapter.zip) |
+| MLX adapter | 4.85 MB compressed | Unzip alongside a local 4-bit MLX conversion of the pinned base. [Download adapter](https://github.com/shiv-eshwar/modeldistl/releases/download/pilot-v0.1.0/ModelDistl-4B-MLX-adapter.zip) |
 
 [Release and checksums](https://github.com/shiv-eshwar/modeldistl/releases/tag/pilot-v0.1.0)
 
@@ -29,7 +29,7 @@ python -m modeldistl.export --quantization Q4_K_M Q3_K_S
 
 The training command masks user tokens and padding, rejects truncated conversations, fixes both random seeds, and saves an adapter every 32 microbatches. It scores the saved checkpoints on all 12 validation demonstrations and puts the lowest-loss adapter in `artifacts/adapters/pilot/selected`.
 
-Calibration tests six strengths of that trained adapter on the 12 validation prompts and eight MBPP validation problems. It requires the candidate to match or exceed base coding accuracy, reasoning accuracy, and the average of the four domain accuracies. It selects the eligible candidate with the highest average and breaks ties in favor of the smallest update. The exporter uses `artifacts/adapters/pilot/deploy`. Docker supplies isolated CPython execution for these checks. For another training run, use `--output` with the trainer, `--source` and `--out` with calibration, and `--adapter` with the exporter.
+Calibration scores an unadapted control and five adapter strengths on the 12 validation prompts and eight MBPP validation problems. If that grid misses the retention criterion, it tests six additional strengths. A candidate qualifies by matching or exceeding base coding accuracy, reasoning accuracy, and the average of the four domain accuracies. The highest average wins, with ties going to the smallest update. This run selected 1/128 strength. The exporter uses `artifacts/adapters/pilot/deploy`. Docker supplies isolated CPython execution for these checks. For another training run, use `--output` with the trainer, `--source` and `--out` with calibration, and `--adapter` with the exporter.
 
 Training uses a 4-bit, group-size-64 MLX base. The rank-8 adapter updates the query and value projections in the final 16 of 36 layers. Export applies the learned delta to the pinned original BF16 weights, preserves the original tokenizer and chat template, and quantizes each deployment build directly from the merged BF16 weights.
 
@@ -70,8 +70,8 @@ python -m unittest discover -s tests -v
 
 The local evaluation has six tasks per domain. For a second comparison, add `--suite public` and use a new output filename. That suite selects 16 GSM8K and 16 ARC-Challenge test rows at fixed dataset revisions and seed 20261118. It uses zero-shot prompts and a 320-token generation cap. These are sampled scores under this project’s prompting and formatting rules. Each report includes per-item answers, verdicts, and generation lengths. The GGUF evaluator starts and stops its own loopback server. [GSM8K](https://huggingface.co/datasets/openai/gsm8k/tree/740312add88f781978c0658806c59bc2815b9866) · [ARC](https://huggingface.co/datasets/allenai/ai2_arc/tree/210d026faf9955653af8916fad021475a3f00453)
 
-## Sources
-
 For independent Python tests use `--suite mbpp`. This samples eight sanitized MBPP test problems at a pinned revision. Each prompt includes one worked assertion, and scoring uses the complete assertion set in network-isolated CPython with resource limits. [MBPP, Google Research, CC BY 4.0](https://huggingface.co/datasets/google-research-datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c)
+
+## Sources
 
 The weights derive from Qwen3-4B-Instruct-2507 under Apache 2.0. ModelDistl adds a task-specific adapter and changes the weight representation for deployment. The original model license accompanies the export. [Pinned Qwen source](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/tree/cdbee75f17c01a7cc42f958dc650907174af0554) · [License](licenses/Qwen-Apache-2.0.txt) · [MLX-LM](https://github.com/ml-explore/mlx-lm/tree/v0.32.2) · [Pinned llama.cpp](https://github.com/ggml-org/llama.cpp/tree/401563f10ec60754e688cd3165c1343cf4be9642)

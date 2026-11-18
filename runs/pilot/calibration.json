@@ -1,0 +1,1846 @@
+{
+  "source_sha256": "0b48e62342cef90e5b3adf8a3c83fb3003459b9f334a81a2a33ff1ff2f614675",
+  "validation_sha256": "c77252239edb947d5651beb56159e8c54a9c2ed1391c2247b069191bcc963411",
+  "multipliers": [
+    0.0,
+    0.0625,
+    0.125,
+    0.25,
+    0.5,
+    1.0,
+    0.03125,
+    0.1875,
+    0.3125,
+    0.375,
+    0.015625,
+    0.0078125
+  ],
+  "candidates": [
+    {
+      "factor": 0.0,
+      "scores": {
+        "coding": 1.0,
+        "general": 0.6666666666666666,
+        "math": 0.6666666666666666,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.75,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are given a bench with 9 distinct seats, and we want to place **two identical cushions** such that **there is at least one empty seat between them**.\n\n### Step 1: Total ways to place two identical cushions (without restriction)\n\nWe choose 2 distinct seats out of 9 for the cushions. Since the cushions are **identical**, the order doesn't matter.\n\nTotal ways = $ \\binom{9}{2} =  36 $\n\n### Step 2: Subtract the number of placements where the two cushions are **adjacent** (i.e., no empty seat between them)\n\nAdjacent pairs: (1,2), (2,3), ..., (8,9) → 8 such pairs\n\nSo, number of placements with **at least one empty seat between** them =  \nTotal - adjacent = $ 36 - 8 = 28 $\n\n### Final Answer:\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each room needs 65 tiles, and there are 3 rooms, so total tiles needed = 3 × 65 = 195 tiles.\n\nEach trip can carry 14 tiles.\n\nNumber of trips needed = total tiles ÷ tiles per trip = 195 ÷ 14 ≈ 13.93\n\nSince we can't make a fraction of a trip, we round up to the next whole number: 14 trips.\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Original edge length = 4  \nNew edge length = 6  \n\nVolume of a cube = edge³  \n\nOriginal volume = 4³ = 64  \nNew volume = 6³ = 216  \n\nGrowth factor = 216 / 64 = 27/16  \n\nAnswer: 27/16",
+          "pass": false,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are given a circle of four people: Ivo, Lia, Mo, and one other person (not named). The people are sitting in a circle, and we are to determine who is immediately counterclockwise of Mo.\n\nLet’s break down the information:\n\n1. \"Ivo is opposite Lia.\"  \n   In a circle of four people, \"opposite\" means directly across the circle. So if Lia is at one position, Ivo is directly opposite, two seats away.\n\n2. \"Mo is immediately clockwise of Lia.\"  \n   This means Mo sits right after Lia when going clockwise. So, if we go clockwise: Lia → Mo.\n\n3. We are to find: Who is immediately counterclockwise of Mo?\n\nLet’s assign positions around the circle (clockwise order):\n\nLet’s label the four positions as:  \nPosition 1 → Position 2 → Position 3 → Position 4 → back to 1.\n\nWe can assign positions in clockwise order.\n\nLet’s suppose the clockwise order is:  \nLia → Mo → ? → ? → back to Lia.\n\nSo, clockwise: Lia → Mo → X → Y → Lia.\n\nNow, since there are only four people, and we have: Lia, Mo, Ivo, and one other (say, X).\n\nWe know Ivo is opposite Lia.\n\nIn a circle of four, opposite means two positions apart.\n\nSo, if we fix Lia at position 1, then opposite is position 3.\n\nSo, Ivo is at position  (opposite of Lia) → position ",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is not a leap year. In the Gregorian calendar, a year is a leap year if it is divisible by 4, but if it is divisible by 100, it is not a leap year unless it is also divisible by 400. Since 2100 is divisible by 4 and by 100 but not by 400, it is not a leap year. Therefore, February 29, 2100 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No. The observation that both bike racks and cold drink sales rise in June does not establish causation. Correlation does not imply causation—other factors, such as warmer weather, holidays, or increased outdoor activity, could explain both trends simultaneously. Without controlling for these variables or conducting a controlled study, we cannot conclude that bike racks caused the increase in cold drink sales.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    result = []\n    for i in range(0, len(items), n):\n        result.append(items[i:i+n])\n    return result\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    cleaned = ''.join(char.lower() for char in text if char.isalnum())\n    return cleaned == cleaned[::-1]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\n  \"B\"\n]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely with pencils. No flash photography. Respect the rules to preserve exhibits and ensure a peaceful experience for all.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "Could you please specify the exact amount of oats in grams or cups? This will help another cook accurately reproduce the recipe.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    sum_of_numbers = sum(i for i in range(1, n+1))\n    return sum_of_cubes - sum_of_numbers\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(N):\n    return [{}] * N\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    product = 1\n    for num in unique_nums:\n        product *= num\n    return product\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst[:]\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    \n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    \n    if first_even is not None and first_odd is not None:\n        return first_even - first_odd\n    else:\n        return None\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    # Ensure arr1 is the smaller array to optimize\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    \n    # Base cases\n    if len(arr1) == 0:\n        return arr2[k-1]\n    \n    # If k is 1, return the minimum of first elements\n    if k == 1:\n        return min(arr1[0], arr2[0])\n    \n    # Find the median indices\n    mid1 = min(len(arr1), k // 2)\n    mid2 = min(len(arr2), k // 2)\n    \n    # Compare elements at mid positions\n    if arr1[mid1-1] > arr2[mid2-1]:\n        # kth element is in the right half of arr2\n        return find_kth(arr1, arr2[mid2:], k - mid2)\n    else:\n        # kth element is in the right half of arr1\n        return find_kth(arr1[:mid1], arr2, k - mid1)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        }
+      ]
+    },
+    {
+      "factor": 0.0625,
+      "scores": {
+        "coding": 0.9090909090909091,
+        "general": 0.6666666666666666,
+        "math": 0.6666666666666666,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.7272727272727273,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are given a bench with 9 distinct seats, and we want to place **two identical cushions** such that **there is at least one empty seat between them**.\n\n### Step 1: Total ways to place two identical cushions (without restriction)\n\nWe choose 2 distinct seats out of 9 for the cushions. Since the cushions are **identical**, the order doesn't matter.\n\nSo total ways without restriction:  \n$$\n\\binom{9}{2} =  36\n$$\n\n### Step 2: Subtract the number of placements where the two cushions are **adjacent** (i.e., no empty seat between them)\n\nAdjacent pairs: (1,2), (2,3), ..., (8,9) → 8 such pairs.\n\nSo, number of placements with **at least one empty seat between** them =  \n$$\n\\binom{9}{2} - 8 = 36 - 8 = 28\n$$\n\n### Final Answer:\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each room needs 65 tiles, and there are 3 rooms, so total tiles needed = 3 × 65 = 195 tiles.\n\nEach trip can carry 14 tiles.\n\nNumber of trips needed = ceil(195 / 14) = ceil(13.928...) = 14.\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Original edge length = 4  \nNew edge length = 6  \n\nVolume of a cube = edge³  \n\nOriginal volume = 4³ = 64  \nNew volume = 6³ = 216  \n\nGrowth factor = 216 / 64 = 27/16  \n\nAnswer: 27/16",
+          "pass": false,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are given a circle with four people: Ivo, Lia, Mo, and one other person (we'll call them X for now, though we don't need to name them all).\n\nThey sit in a circle. Let's assign positions around the circle: positions 1, 2, 3, 4 (in clockwise order).\n\nWe are told:\n\n1. Ivo is opposite Lia.\n2. Mo is immediately clockwise of Lia.\n\nWe need to find who is immediately counterclockwise of Mo.\n\nStep-by-step:\n\n- In a circle of 4 people, \"opposite\" means directly across, so two people are opposite if they are two positions apart (i.e., separated by one person on each side).\n\nSo, if Lia is at position 1, then Ivo is at position 3 (opposite).\n\nNow, Mo is immediately clockwise of Lia. So if Lia is at position 1, then Mo is at position  2 (clockwise next to her).\n\nSo far:\n\n- Position 1: Lia  \n- Position 2: Mo  \n- Position 3: Ivo (opposite Lia)  \n- Position 4: ??? (must be the remaining person)\n\nNow, who is immediately counterclockwise of Mo?\n\nMo is at position 2. Counterclockwise from position 2 would be position 1 (since clockwise is 1→2→3→4→1).\n\nSo, counterclockwise of Mo (at 2) is position 1 → Lia.\n\nWait — is that correct?\n\n",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is not a leap year. In the Gregorian calendar, a year is a leap year if it is divisible by 4, but if it is divisible by 100, it is not a leap year unless it is also divisible by 400. Since 2100 is divisible by 4 and by 100 but not by 400, it is not a leap year. Therefore, February 29, 2100 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No. The observation that both bike racks and cold drink sales rise in June does not establish causation. The increase in cold drink sales could be due to other factors, such as warmer weather, holidays, or increased outdoor activity, which may be influencing both events independently. Correlation does not imply causation.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    result = []\n    for i in range(0, len(items), n):\n        result.append(items[i:i+n])\n    return result\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    cleaned = ''.join(char.lower() for char in text if char.isalnum())\n    return cleaned == cleaned[::-1]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\n  \"B\"\n]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely with pencils. No flash photography. Respect the rules to preserve the exhibits and ensure a peaceful experience for all.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "Could you clarify what \"two scoops\" means—by volume, weight, or size? I’d like to know the exact measurement to ensure accuracy.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    sum_of_numbers = sum(i for i in range(1, n+1))\n    return sum_of_cubes - sum_of_numbers\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(N):\n    return [{}] * N\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    product = 1\n    for num in unique_nums:\n        product *= num\n    return product\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    \n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    \n    if first_even is None or first_odd is None:\n        return 0\n    \n    return first_even - first_odd\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    # Ensure arr1 is the smaller array to optimize\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    \n    # Base cases\n    if len(arr1) == 0:\n        return arr2[k-1]\n    \n    # If k is 1, return the minimum of first elements\n    if k == 1:\n        return min(arr1[0], arr2[0])\n    \n    # Find the median indices\n    mid1 = min(len(arr1), k//2)\n    mid2 = min(len(arr2), k//2)\n    \n    # Compare elements at mid positions\n    if arr1[mid1-1] > arr2[mid2-1]:\n        # kth element is in the right half of arr1\n        return find_kth(arr1[mid1:], arr2, k - mid1)\n    else:\n        # kth element is in the right half of arr2\n        return find_kth(arr1, arr2[mid2:], k - mid2)\n```",
+          "pass": false,
+          "check": "AssertionError"
+        }
+      ]
+    },
+    {
+      "factor": 0.125,
+      "scores": {
+        "coding": 0.8181818181818182,
+        "general": 0.6666666666666666,
+        "math": 1.0,
+        "reasoning": 0.3333333333333333
+      },
+      "macro": 0.7045454545454546,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are given a bench with 9 distinct seats, and we want to place **two identical cushions** such that there is **at least one empty seat between them**.\n\n### Step 1: Total ways to place two identical cushions\nFirst, count the total number of ways to place two identical cushions in 9 seats, without any restrictions.\n\n- Number of ways to choose 2 distinct seats from 9:  \n  $$\n  \\binom{9}{2} = 36\n  $$\n\n### Step 2: Subtract the number of placements where the two cushions are adjacent (i.e., no empty seat between them)\n\nAdjacent pairs:  \nSeats (1,2), (2,3), ..., (8,9) → 8 such pairs.\n\nSo, number of placements with **at least one empty seat between them** is:\n$$\n36 - 8 = 28\n$$\n\n### Final Answer:\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each room needs 65 tiles, and there are 3 rooms, so total tiles needed = 3 × 65 = 195 tiles.\n\nEach trip can carry 14 tiles, so number of trips needed = 195 ÷ 14 = 13.928... → round up to 14 trips (since partial trips count as full trips).\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Original edge length = 4  \nNew edge length = 6  \n\nVolume of a cube = edge³  \n\nOriginal volume = 4³ = 64  \nNew volume = 6³ = 216  \n\nGrowth factor = 216 / 64 = 27/8  \n\nAnswer: 27/8",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are given a circle with four people: Ivo, Lia, Mo, and one other person (we assume the fourth person is not named, but we can deduce the positions).\n\nLet’s denote the positions around the circle as clockwise:  \nWe know:\n\n1. Ivo is opposite Lia.  \n2. Mo is immediately clockwise of Lia.  \n3. We are to find who is immediately counterclockwise of Mo.\n\nSince there are four people in a circle, opposite means directly across, so if Ivo is opposite Lia, they are two seats apart (i.e., separated by one person on each side).\n\nLet’s assign positions around the circle:  \nLet’s label the positions clockwise as:  \nPosition 1 — Position 2 — Position 3 — Position 4 — back to 1.\n\nWe can assume the circle is:  \n[Person A] — [Person B] — [Person C] — [Person D] — back to A.\n\nLet’s place Lia at position 1.  \nThen, since Mo is immediately clockwise of Lia, Mo is at position 2.\n\nNow, Ivo is opposite Lia. In a circle of 4, opposite means two positions away.  \nSo, if Lia is at position 1, then opposite is position 3 (since 1 → 2 → 3 is two steps clockwise, or 1 → 4 → 3 is two steps counterclockwise).  \nSo Ivo is at position 3.\n\nNow, the four people are:  \n- Position 1: Lia  \n",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is not a leap year. In the Gregorian calendar, a year is a leap year if it is divisible by 4, but if it is divisible by 100, it is not a leap year unless it is also divisible by 400. Since 2100 is divisible by 4 and by 100 but not by 400, it is not a leap year. Therefore, February 29, 2100 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No. The rise in cold drink sales in June could be due to other factors, such as warmer weather, holidays, or increased outdoor activity, not necessarily the addition of bike racks. Correlation does not imply causation. Answer: no",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    result = []\n    for i in range(0, len(items), n):\n        result.append(items[i:i+n])\n    return result\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    return text.lower().replace(' ', '').replace('-', '').replace('_', '').replace('.', '').replace(',', '').replace('!', '').replace('?', '').replace(';', '').replace(':', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace('{', '').replace('}', '').replace('\"', '').replace(\"'\", '').replace('/', '').replace('\\\\', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('^', '').replace('&', '').replace('*', '').replace('+', '').replace('=', '').replace('<', '').replace('>', '').replace(',', '').replace('`', '').replace('~', '').replace('`', '').replace('1', '').replace('2', '').replace('3', '').replace('4', '').replace('5', '').replace('6', '').replace('7', '').replace('8', '').replace('9', '').replace('0', '').replace('0', '').replace('1', '').replace('2', '').replace('3', '').replace('4', '').replace('5', '').replace('6', '').replace('7', '').replace('8', '').replace('9', '').replace('0', '') == text.lower().replace(' ', '').replace('-', '').replace('_', '').replace('.', '').replace(',', '').replace('!', '').replace('?', '').replace(';', '').replace(':', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace('{', '').replace('}', '').replace('\"', '').replace(\"'\", '').replace('/', '').replace('\\\\', '').replace",
+          "pass": false,
+          "check": "SyntaxError"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\"B\"]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely with pencils. No flash photography. Respect the rules to preserve artifacts and ensure a peaceful experience for all.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "\"Could you clarify what 'two scoops' means—by weight or volume? I'd like to know the exact amount for accuracy.\"",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    sum_of_numbers = sum(i for i in range(1, n+1))\n    return sum_of_cubes - sum_of_numbers\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(N):\n    return [{}] * N\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    result = 1\n    for num in unique_nums:\n        result *= num\n    return result\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    \n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    \n    if first_even is None or first_odd is None:\n        return 0\n    \n    return first_even - first_odd\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    # Ensure arr1 is the smaller array to optimize\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    \n    # Base case: if first array is empty, return kth element from second\n    if len(arr1) == 0:\n        return arr2[k-1]\n    \n    # If k is 1, return the smaller first element\n    if k == 1:\n        return min(arr1[0], arr2[0])\n    \n    # Find the middle elements\n    mid1 = min(k//2, len(arr1))\n    mid2 = k - mid1\n    \n    # Get the middle elements\n    if arr1[mid1-1] > arr2[mid2-1]:\n        # kth element is in the left part of arr2\n        return find_kth(arr1, arr2[mid2:], k - mid2)\n    else:\n        # kth element is in the left part of arr1\n        return find_kth(arr1[:mid1], arr2, k - mid1)\n```",
+          "pass": false,
+          "check": "AssertionError"
+        }
+      ]
+    },
+    {
+      "factor": 0.25,
+      "scores": {
+        "coding": 0.9090909090909091,
+        "general": 0.6666666666666666,
+        "math": 1.0,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.8106060606060606,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are given a bench with 9 distinct seats, and we want to place **two identical cushions** such that there is **at least one empty seat between them**.\n\n### Step 1: Total ways to place two identical cushions\nFirst, count the total number of ways to place two identical cushions in 9 seats, without any restrictions.\n\nThis is equivalent to choosing 2 distinct seats from 9, and since the cushions are identical, the order doesn't matter.\n\n$$\n\\binom{9}{2} = 36\n$$\n\n### Step 2: Subtract the number of placements where the two cushions are adjacent (i.e., no empty seat between them)\n\nAdjacent pairs: (1,2), (2,3), ..., (8,9) → 8 such pairs.\n\nSo, number of placements with **at least one empty seat between them** is:\n\n$$\n36 - 8 = 28\n$$\n\n### Final Answer:\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each room needs 65 tiles, and there are 3 rooms, so total tiles needed:  \n3 × 65 = 195 tiles.\n\nA cart can carry 14 tiles per trip, so number of trips needed:  \n195 ÷ 14 = 13.928... → round up to 14 trips (since partial trips count as full trips).\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Volume of a cube is given by \\( V = s^3 \\), where \\( s \\) is the edge length.\n\nInitial volume: \\( 4^3 = 64 \\)  \nFinal volume: \\( 6^3 = 216 \\)\n\nFactor of growth: \\( \\frac{216}{64} = \\frac{27}{8} \\)\n\nAnswer: 27/8",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are told that four people sit in a circle: Ivo, Lia, Mo, and one other person (we'll call them X for now).\n\nWe know:\n\n- Ivo is opposite Lia.\n- Mo is immediately clockwise of Lia.\n\nIn a circle of four people, each person has one person immediately clockwise and one immediately counterclockwise.\n\nLet’s assign positions around the circle: positions 1, 2, 3, 4, going clockwise.\n\nLet’s suppose the seating order (clockwise) is:  \nPerson A, Person B, Person C, Person D, back to A.\n\nSince Mo is immediately clockwise of Lia, that means Mo sits directly after Lia when going clockwise.\n\nSo, if we go clockwise: Lia → Mo.\n\nAlso, Ivo is opposite Lia. In a circle of four, opposite means two positions apart.\n\nSo, if Lia is at position 1, then Ivo is at position 3 (opposite).\n\nMo is immediately clockwise of Lia, so Mo is at position 2.\n\nSo the order clockwise is: Lia, Mo, ?, ?\n\nWe have four people: Ivo, Lia, Mo, and one other (say, X).\n\nSo far:  \nPosition 1: Lia  \nPosition 2: Mo  \nPosition 3: ?  \nPosition 4: ?\n\nIvo is opposite Lia. Since Lia is at position 1, opposite is position 3 (since 1 → 3 is opposite in a 4-person circle).\n\nSo Ivo is at position 3.\n\nSo far:  \n1:",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is divisible by 100 but not by 400, so it is not a leap year. In the Gregorian calendar, a year is a leap year only if it is divisible by 4, but if it is divisible by 100, it must also be divisible by 400 to be a leap year. Since 2100 is divisible by 100 but not by 400, it is not a leap year, and February 29 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No, the observation alone does not establish that the bike racks caused the increase in cold drink sales. The rise in cold drink sales could be due to other factors, such as warmer weather, holidays, or increased outdoor activity unrelated to the bike racks. Without a controlled study or evidence of a causal link, correlation does not imply causation.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    return [items[i:i+n] for i in range(0, len(items), n)]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    return text.lower().replace(' ', '').replace('-', '').replace('.', '').replace(',', '').replace('!', '').replace('?', '').replace(';', '').replace(':', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace('{', '').replace('}', '').replace('/', '').replace('\\\\', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('^', '').replace('&', '').replace('*', '').replace('+', '').replace('=', '').replace('`', '').replace('~', '').replace('<', '').replace('>', '').replace('|', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`",
+          "pass": false,
+          "check": "SyntaxError"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\"B\"]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely with pencils. Avoid flash photography. Respect the exhibits and other visitors.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "\"Could you clarify what 'two scoops' means—by volume, weight, or size? I'd like to know the exact amount for accuracy.\"",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    sum_of_numbers = sum(range(1, n+1))\n    return sum_of_cubes - sum_of_numbers\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(n):\n    return [{},] * n\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    result = 1\n    for num in unique_nums:\n        result *= num\n    return result\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    return first_even - first_odd\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    i = j = 0\n    while i < len(arr1) and j < len(arr2):\n        if arr1[i] <= arr2[j]:\n            if i + j + 1 == k:\n                return arr1[i]\n            i += 1\n        else:\n            if i + j + 1 == k:\n                return arr2[j]\n            j += 1\n    if i + j + 1 == k:\n        return arr1[i] if i < len(arr1) else arr2[j]\n    return arr1[i] if i < len(arr1) else arr2[j]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        }
+      ]
+    },
+    {
+      "factor": 0.5,
+      "scores": {
+        "coding": 0.7272727272727273,
+        "general": 0.3333333333333333,
+        "math": 1.0,
+        "reasoning": 1.0
+      },
+      "macro": 0.7651515151515151,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are placing two identical cushions on a bench with 9 distinct seats, such that there is at least one empty seat between them.\n\nWe can think of this as choosing two distinct positions for the cushions, with at least one seat between them.\n\nLet’s count the number of ways to choose two distinct positions \\(i\\) and \\(j\\) such that \\(|i - j| \\geq 2\\), and since the cushions are identical, we don't count order.\n\nTotal number of ways to choose two distinct seats: \\(\\binom{9}{2} = 36\\)\n\nNow subtract the number of pairs with cushions adjacent (i.e., only one seat between them).\n\nAdjacent pairs: (1,2), (2,3), ..., (8,9) → 8 such pairs.\n\nSo, number of pairs with at least one empty seat between them: \\(36 - 8 = 28\\)\n\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each trip can carry 14 tiles, and each room needs 65 tiles, so three rooms need \\(3 \\times 65 = 195\\) tiles.\n\nEach trip can carry 14 tiles, so the number of trips needed is \\( \\frac{195}{14} = 13.9286 \\ldots \\), which rounds up to 14 trips.\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Volume of a cube is \\( V = s^3 \\), so when the edge length increases from 4 to 6, the volume grows by a factor of \\( \\left(\\frac{6}{4}\\right)^3 = \\left(\\frac{3}{2}\\right)^3 = \\frac{27}{8} \\).\n\nAnswer: 27/8",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are told that four people sit in a circle: Ivo, Lia, Mo, and one other person, which we can assume is one of the remaining names, but since only Ivo, Lia, and Mo are mentioned, the fourth person is implied to be one of them or a different person. But since only three are named, we assume the fourth person is not named, so we can just work with the relative positions.\n\nLet’s assign positions around a circle: positions 1, 2, 3, 4, going clockwise.\n\nWe know:\n\n- Ivo is opposite Lia.\n\n- Mo is immediately clockwise of Lia.\n\nSo, if we place Lia at position 1, then Mo is at position 2.\n\nSince Ivo is opposite Lia, Ivo is at position 3 (opposite position 1 in a circle of 4).\n\nThat leaves position 4, which must be the fourth person, say, \"Nina\" or just the remaining person.\n\nNow, who is immediately counterclockwise of Mo?\n\nMo is at position 2, so counterclockwise of Mo is position 1.\n\nPosition 1 is Lia.\n\nSo, the person immediately counterclockwise of Mo is Lia.\n\nAnswer: Lia",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is divisible by 100 but not by 400, so it is not a leap year. In the Gregorian calendar, a year is a leap year only if it is divisible by 4, but not by 100 unless it is also divisible by 400. Since 2100 is divisible by 100 but not by 400, it is not a leap year, and February 29 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No, the increase in cold drink sales could be due to other factors, such as a heat wave, a local festival, or a promotion, and there is no evidence of a causal relationship. Correlation does not imply causation.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    return [items[i:i+n] for i in range(0, len(items), n)]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    return text.lower().replace(' ', '').replace('-', '').replace('.', '').replace(',', '').replace('!', '').replace('?', '').replace(';', '').replace(':', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace('{', '').replace('}', '').replace('/', '').replace('\\\\', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('^', '').replace('&', '').replace('*', '').replace('+', '').replace('=', '').replace('`', '').replace('~', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').",
+          "pass": false,
+          "check": "SyntaxError"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\"A\",\"B\"]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely, but avoid flash photography.",
+          "pass": false,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "\"Could you clarify what 'two scoops' means? I'd like to know the exact volume or weight so I can use it in the recipe.\"",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    return sum(i**3 for i in range(1, n+1)) - sum(i for i in range(1, n+1))\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(n):\n    return [{}, {}, {}, {}, {}]\n```",
+          "pass": false,
+          "check": "AssertionError"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    result = 1\n    for num in unique_nums:\n        result *= num\n    return result\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    return first_even - first_odd\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    if k == 0:\n        return arr1[0]\n    if k == 1:\n        return arr1[0]\n    if k == 2:\n        return arr1[1]\n    if k == 3:\n        return arr1[2]\n    if k == 4:\n        return arr1[3]\n    if k == 5:\n        return arr1[4]\n    if k == 6:\n        return arr1[5]\n    if k == 7:\n        return arr1[6]\n    if k == 8:\n        return arr1[7]\n    if k == 9:\n        return arr1[8]\n    if k == 10:\n        return arr1[9]\n    if k == 11:\n        return arr1[10]\n    if k == 12:\n        return arr1[11]\n    if k == 13:\n        return arr1[12]\n    if k == 14:\n        return arr1[13]\n    if k == 15:\n        return arr1[14]\n    if k == 16:\n        return arr1[15]\n    if k == 17:\n        return arr1[16]\n    if k == 18:\n        return arr1[1",
+          "pass": false,
+          "check": "SyntaxError"
+        }
+      ]
+    },
+    {
+      "factor": 1.0,
+      "scores": {
+        "coding": 0.8181818181818182,
+        "general": 0.3333333333333333,
+        "math": 1.0,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.7045454545454546,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are placing two identical cushions on a bench with 9 seats, so there are 7 empty seats between them.\n\nWe can think of the number of ways to place two identical cushions with at least one empty seat between them.\n\nFirst, the total number of ways to place two identical cushions is \\(\\binom{9}{2} = 36\\). Then subtract the number of ways where the cushions are adjacent.\n\nThere are 8 adjacent pairs: (1,2), (2,3), ..., (8,9). So there are 8 such pairs.\n\nSo the number of ways to place two cushions with at least one empty seat between them is \\(36 - 8 = 28\\).\n\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "3 rooms × 65 tiles = 195 tiles needed.\n\n195 ÷ 14 = 13.928... so 14 trips are needed.\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Volume of a cube is \\( V = s^3 \\), so the volume grows by a factor of \\( \\left(\\frac{6}{4}\\right)^3 = \\left(\\frac{3}{2}\\right)^3 = \\frac{27}{8} \\).\n\nAnswer: 27/8",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "Ivo is opposite Lia, so Ivo is directly across from Lia.\n\nMo is immediately clockwise of Lia, so Mo is just clockwise of Lia.\n\nTherefore, Mo is immediately counterclockwise of Ivo.\n\nAnswer: Ivo",
+          "pass": false,
+          "check": "final label"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "2100 is not a leap year, so February 29, 2100 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No, the increase in cold drink sales may be due to other factors, such as a heat wave, a local festival, or a different trend. Without a causal link, the increase in sales may be coincidental.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    return [items[i:i+n] for i in range(0, len(items), n)]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    return text.lower() == text.lower()[::-1]\n```",
+          "pass": false,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\"A\",\"B\"]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely, but avoid flash photography.",
+          "pass": false,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "\"Could you please specify the size of a scoop?\"",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    return sum(i**3 for i in range(1, n+1)) - sum(i for i in range(1, n+1))\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(n):\n    return [{}]*n\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    return 1 if not nums else 1\n```",
+          "pass": false,
+          "check": "AssertionError"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr,n):\n    return arr[n:]+arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    for n in lst:\n        if n % 2 == 0:\n            first_even = n\n            break\n    for n in lst:\n        if n % 2 == 1:\n            first_odd = n\n            break\n    return first_even - first_odd\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    return sorted(arr1 + arr2)[k-1]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        }
+      ]
+    },
+    {
+      "factor": 0.03125,
+      "scores": {
+        "coding": 0.9090909090909091,
+        "general": 0.6666666666666666,
+        "math": 1.0,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.8106060606060606,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are given a bench with 9 distinct seats, and we want to place **two identical cushions** such that **there is at least one empty seat between them**.\n\n### Step 1: Total ways to place two identical cushions (without restriction)\n\nWe choose 2 distinct seats out of 9 for the cushions. Since the cushions are **identical**, the order doesn't matter.\n\nTotal ways = $ \\binom{9}{2} =  36 $\n\n### Step 2: Subtract the number of placements where the two cushions are **adjacent** (i.e., no empty seat between them)\n\nAdjacent pairs: (1,2), (2,3), ..., (8,9) → 8 such pairs\n\nSo, number of placements with **at least one empty seat between** them =  \nTotal - adjacent = $ 36 - 8 = 28 $\n\n### Final Answer:\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each room needs 65 tiles, and there are 3 rooms, so total tiles needed = 3 × 65 = 195 tiles.\n\nEach trip can carry 14 tiles.\n\nNumber of trips needed = total tiles ÷ tiles per trip = 195 ÷ 14 ≈ 13.93\n\nSince we can't make a fraction of a trip, we round up to the next whole number: 14 trips.\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Original edge length = 4  \nNew edge length = 6  \n\nVolume of a cube = edge³  \n\nOriginal volume = 4³ = 64  \nNew volume = 6³ = 216  \n\nGrowth factor = 216 / 64 = 27/8  \n\nAnswer: 27/8",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are given a circle with four people: Ivo, Lia, Mo, and one other person (not named). They are sitting in a circle, and we are to determine who is immediately counterclockwise of Mo.\n\nLet’s break down the information:\n\n1. \"Ivo is opposite Lia.\"  \n   In a circle of four people, opposite means directly across. So if Lia is at one position, Ivo is directly opposite, two seats away.\n\n2. \"Mo is immediately clockwise of Lia.\"  \n   This means if we go clockwise from Lia, the next person is Mo.\n\nSo, let's assign positions around the circle:  \nLet’s label the positions as positions 1, 2, 3, 4 in clockwise order.\n\nSuppose we place Lia at position 1.  \nThen, Mo is immediately clockwise of Lia → Mo is at position  2.\n\nNow, Ivo is opposite Lia.  \nSince there are four people, opposite means two positions away.  \nSo, if Lia is at position 1, opposite is position 3 (since 1 → 3 is opposite in a circle of 4).  \nSo Ivo is at position 3.\n\nNow, the four people are:  \n- Position 1: Lia  \n- Position 2: Mo  \n- Position 3: Ivo  \n- Position 4: must be the remaining person — let's call them (say) \"X\".\n\nNow, we are asked: Who is immediately counterclockwise of Mo?\n\nMo is at position 2.  \n",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is not a leap year. In the Gregorian calendar, a year is a leap year if it is divisible by 4, but if it is divisible by 100, it is not a leap year unless it is also divisible by 400. Since 2100 is divisible by 4 and by 100 but not by 400, it is not a leap year. Therefore, February 29, 2100 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No. The observation that both bike racks and cold drink sales rise in June does not establish causation. Correlation does not imply causation—other factors, such as warmer weather or holidays, could be responsible for both increased bike usage and increased cold drink sales. Without controlling for these variables or conducting a controlled study, we cannot conclude that bike racks caused the increase in cold drink sales.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    result = []\n    for i in range(0, len(items), n):\n        result.append(items[i:i+n])\n    return result\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    cleaned = ''.join(char.lower() for char in text if char.isalnum())\n    return cleaned == cleaned[::-1]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\n  \"B\"\n]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely with pencils. No flash photography. Respect the rules to preserve exhibits and ensure a peaceful experience for all.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "Could you please specify the exact amount of oats in grams or cups? This will help another cook accurately reproduce the recipe.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    sum_of_numbers = sum(i for i in range(1, n+1))\n    return sum_of_cubes - sum_of_numbers\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(N):\n    return [{}] * N\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    product = 1\n    for num in unique_nums:\n        product *= num\n    return product\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    \n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    \n    if first_even is not None and first_odd is not None:\n        return first_even - first_odd\n    else:\n        return None\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    # Ensure arr1 is the smaller array to optimize\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    \n    # Base cases\n    if len(arr1) == 0:\n        return arr2[k-1]\n    \n    # If k is 1, return the minimum of first elements\n    if k == 1:\n        return min(arr1[0], arr2[0])\n    \n    # Find the median indices\n    mid1 = min(len(arr1), k//2)\n    mid2 = min(len(arr2), k//2)\n    \n    # Compare elements at mid positions\n    if arr1[mid1-1] > arr2[mid2-1]:\n        # kth element is in the right half of arr1\n        return find_kth(arr1[mid1:], arr2, k - mid1)\n    else:\n        # kth element is in the right half of arr2\n        return find_kth(arr1, arr2[mid2:], k - mid2)\n```",
+          "pass": false,
+          "check": "AssertionError"
+        }
+      ]
+    },
+    {
+      "factor": 0.1875,
+      "scores": {
+        "coding": 0.9090909090909091,
+        "general": 0.6666666666666666,
+        "math": 0.6666666666666666,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.7272727272727273,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are given a bench with 9 distinct seats, and we want to place **two identical cushions** such that there is **at least one empty seat between them**.\n\n### Step 1: Total ways to place two identical cushions\nFirst, count the total number of ways to place two identical cushions in 9 seats, without any restrictions.\n\n- Number of ways to choose 2 distinct seats from 9:  \n  $$\n  \\binom{9}{2} = 36\n  $$\n\n### Step 2: Subtract the number of placements where the two cushions are adjacent (i.e., no empty seat between them)\n\nAdjacent pairs: (1,2), (2,3), ..., (8,9) → 8 such pairs.\n\nSo, number of placements with **at least one empty seat between them** is:\n$$\n36 - 8 = 28\n$$\n\n### Final Answer:\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each room needs 65 tiles, and there are 3 rooms, so total tiles needed = 3 × 65 = 195 tiles.\n\nEach trip can carry 14 tiles, so number of trips needed = 195 ÷ 14 = 13.928... → round up to 14 trips (since partial trips count as full trips).\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Volume of a cube = edge length³.\n\nInitial volume = 4³ = 64  \nFinal volume = 6³ = 216\n\nGrowth factor = 216 / 64 = 27/16\n\nAnswer: 27/16",
+          "pass": false,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are told that four people sit in a circle: Ivo, Lia, Mo, and one other person (we'll call them X for now).\n\nWe are told:\n\n- Ivo is opposite Lia.\n- Mo is immediately clockwise of Lia.\n\nWe are to find who is immediately counterclockwise of Mo.\n\nLet’s label the positions around the circle as positions 1 to 4, going clockwise.\n\nSince there are four people, opposite means directly across the circle — so if one is at position 1, the opposite is at position 3 (since 1 → 3, 2 → 4, etc.).\n\nSo, Ivo is opposite Lia → they are directly across.\n\nMo is immediately clockwise of Lia → Mo sits right after Lia when going clockwise.\n\nSo, if we go clockwise: Lia → Mo.\n\nNow, since there are only four people, and they sit in a circle, we can assign positions.\n\nLet’s assign positions:\n\nLet’s suppose the people are seated in clockwise order: A, B, C, D.\n\nWe know:\n\n- Mo is immediately clockwise of Lia → so Mo comes right after Lia.\n\nSo, in clockwise order: Lia, Mo, ?, ?\n\nAlso, Ivo is opposite Lia.\n\nIn a circle of 4, opposite means two positions apart.\n\nSo, if Lia is at position 1, then Ivo is at position  3 (opposite).\n\nThen, clockwise: 1: Lia, 2: ?, 3: Ivo, 4: ?\n\nMo is immediately clockwise of Lia → so Mo is",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is not a leap year. In the Gregorian calendar, a year is a leap year if it is divisible by 4, but if it is divisible by 100, it is not a leap year unless it is also divisible by 400. Since 2100 is divisible by 100 but not by 400, it is not a leap year, and therefore February 29, 2100 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No, the observation alone does not establish that the bike racks caused the increase in cold drink sales. The rise in cold drink sales could be due to other factors, such as warmer weather, holidays, or increased outdoor activity unrelated to the bike racks. Correlation does not imply causation.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    result = []\n    for i in range(0, len(items), n):\n        result.append(items[i:i+n])\n    return result\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    return text.lower().replace(' ', '').replace('-', '').replace('.', '').replace(',', '').replace('!', '').replace('?', '').replace(';', '').replace(':', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace('{', '').replace('}', '').replace('/', '').replace('\\\\', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('^', '').replace('&', '').replace('*', '').replace('+', '').replace('=', '').replace('`', '').replace('~', '').replace('<', '').replace('>', '').replace('|', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`",
+          "pass": false,
+          "check": "SyntaxError"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\"B\"]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely with pencils. No flash photography. Respect the rules to preserve artifacts and ensure a peaceful experience for all.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "\"Could you clarify what 'two scoops' means—by weight, volume, or size? I'd like to know the exact amount to reproduce it accurately.\"",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    sum_of_numbers = sum(i for i in range(1, n+1))\n    return sum_of_cubes - sum_of_numbers\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(n):\n    return [{}] * n\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    result = 1\n    for num in unique_nums:\n        result *= num\n    return result\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    return first_even - first_odd\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    i = j = 0\n    while i < len(arr1) and j < len(arr2):\n        if arr1[i] <= arr2[j]:\n            if i + j + 1 == k:\n                return arr1[i]\n            i += 1\n        else:\n            if i + j + 1 == k:\n                return arr2[j]\n            j += 1\n    if i + j + 1 == k:\n        return arr1[i] if i < len(arr1) else arr2[j]\n    return arr1[i] if i < len(arr1) else arr2[j]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        }
+      ]
+    },
+    {
+      "factor": 0.3125,
+      "scores": {
+        "coding": 0.8181818181818182,
+        "general": 0.3333333333333333,
+        "math": 1.0,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.7045454545454546,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are placing two identical cushions on a bench with 9 distinct seats, such that there is at least one empty seat between them.\n\n### Step 1: Total ways to place two identical cushions\nWe first count the total number of ways to place two identical cushions on 9 seats, with at least one empty seat between them.\n\nWe can think of the total number of ways to choose two distinct positions for the cushions, and subtract the number of ways where the cushions are adjacent (i.e., no empty seat between them).\n\n- Total ways to choose two distinct positions for two identical cushions:  \n  $$\n  \\binom{9}{2} = 36\n  $$\n\n- Number of adjacent pairs:  \n  Positions (1,2), (2,3), ..., (8,9) → 8 such pairs.\n\nSo, number of ways with at least one empty seat between them:\n$$\n36 - 8 = 28\n$$\n\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each room needs 65 tiles, and there are 3 rooms, so total tiles needed:  \n3 × 65 = 195 tiles.\n\nA cart can carry 14 tiles per trip, so number of trips needed:  \n195 ÷ 14 = 13.928... → round up to 14 trips (since partial trips are not possible).\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Volume of a cube is given by \\( V = s^3 \\), where \\( s \\) is the edge length.\n\nInitial volume: \\( 4^3 = 64 \\)\n\nFinal volume: \\( 6^3 = 216 \\)\n\nFactor of growth: \\( \\frac{216}{64} = \\frac{27}{8} \\)\n\nAnswer: 27/8",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are told that four people sit in a circle: Ivo, Lia, Mo, and one other person (we assume the fourth person is not named, so we'll call them, say, \"X\" for now).\n\nWe know:\n\n- Ivo is opposite Lia.\n- Mo is immediately clockwise of Lia.\n\nIn a circle of four people, each person has one person immediately clockwise and one immediately counterclockwise.\n\nLet’s assign positions around the circle: positions 1, 2, 3, 4, in clockwise order.\n\nLet’s suppose the seating is clockwise: [A, B, C, D], so clockwise order is A → B → C → D → A.\n\nSince Ivo is opposite Lia, and there are four people, opposite means two positions apart. So if Lia is at position 1, Ivo is at position 3 (opposite), and the others are at 2 and 4.\n\nMo is immediately clockwise of Lia, so Mo is just after Lia in clockwise order.\n\nSo, if Lia is at position 1, then Mo is at position 2.\n\nNow, who is immediately counterclockwise of Mo?\n\nMo is at position 2, so counterclockwise from Mo would be position 1.\n\nBut position 1 is Lia.\n\nWait — if Mo is immediately clockwise of Lia, then Mo is just after Lia, so if Lia is at 1, Mo is at 2.\n\nThen, the person immediately counterclockwise of Mo (at 2) is the person at 1 —",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is divisible by 100 but not by 400, so it is not a leap year. In the Gregorian calendar, a year is a leap year only if it is divisible by 4, but if it is divisible by 100, it must also be divisible by 400 to be a leap year. Since 2100 is divisible by 100 but not by 400, it is not a leap year, and February 29 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No, the increase in cold drink sales in June could be due to other factors, such as warmer weather, holidays, or increased outdoor activity, and there is no evidence of a direct causal relationship. Correlation does not imply causation.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    return [items[i:i+n] for i in range(0, len(items), n)]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    return text.lower().replace(' ', '').replace('-', '').replace('.', '').replace(',', '').replace('!', '').replace('?', '').replace(';', '').replace(':', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace('{', '').replace('}', '').replace('/', '').replace('\\\\', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('^', '').replace('&', '').replace('*', '').replace('+', '').replace('=', '').replace('`', '').replace('~', '').replace('<', '').replace('>', '').replace('|', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`",
+          "pass": false,
+          "check": "SyntaxError"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\"B\"]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely, but avoid flash photography. No flash, no flash.",
+          "pass": false,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "\"Could you clarify what 'two scoops' means? I'd like to know the exact volume or weight so I can use the same amount.\"",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    return sum(i**3 for i in range(1, n+1)) - sum(i for i in range(1, n+1))\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(n):\n    return [{},] * n\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    result = 1\n    for num in unique_nums:\n        result *= num\n    return result\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    return first_even - first_odd\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    if k == 0:\n        return arr1[0]\n    if k == 1:\n        return max(arr1[0], arr2[0])\n    if k == 0:\n        return 0\n    if k == 1:\n        return max(arr1[0], arr2[0])\n    if k == 0:\n        return 0\n    if k == 1:\n        return max(arr1[0], arr2[0])\n    if k == 0:\n        return 0\n    if k == 1:\n        return max(arr1[0], arr2[0])\n    if k == 0:\n        return 0\n    if k == 1:\n        return max(arr1[0], arr2[0])\n    if k == 0:\n        return 0\n    if k == 1:\n        return max(arr1[0], arr2[0])\n    if k == 0:\n        return 0\n    if k == 1:\n        return max(arr1[0], arr2[0])\n    if k == 0:\n        return 0\n    if k == 1:\n        return max(arr1[0], arr2[0])\n    if k == 0:\n        return 0\n    if k == 1:\n        return max(arr",
+          "pass": false,
+          "check": "SyntaxError"
+        }
+      ]
+    },
+    {
+      "factor": 0.375,
+      "scores": {
+        "coding": 0.8181818181818182,
+        "general": 0.3333333333333333,
+        "math": 1.0,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.7045454545454546,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are placing two identical cushions on a bench with 9 distinct seats, such that there is at least one empty seat between them.\n\nWe can think of this as choosing two positions (out of 9) for the cushions, with at least one seat between them.\n\nSince the cushions are identical, we don\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each trip can carry 14 tiles, and each room needs 65 tiles, so for three rooms, total tiles needed = 3 × 65 = 195 tiles.\n\nNumber of trips needed = 195 ÷ 14 = 13.928... → 14 trips (since partial trips are not allowed).\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Volume of a cube is \\( V = s^3 \\), so when the edge length increases from 4 to 6, the volume grows by a factor of \\( \\left(\\frac{6}{4}\\right)^3 = \\left(\\frac{3}{2}\\right)^3 = \\frac{27}{8} \\).\n\nAnswer: 27/8",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are told that four people sit in a circle: Ivo, Lia, Mo, and one other person (we assume the fourth person is not named, so we'll call them, say, \"Nina\" for clarity).\n\nWe know:\n\n- Ivo is opposite Lia.\n- Mo is immediately clockwise of Lia.\n\nIn a circle of four people, each person has one person immediately clockwise and one immediately counterclockwise.\n\nLet’s assign positions around the circle: positions 1, 2, 3, 4, in clockwise order.\n\nLet’s suppose the seating is clockwise: [A, B, C, D], so clockwise order is A → B → C → D → A.\n\nSince Ivo is opposite Lia, and there are four people, opposite means two positions apart.\n\nSo, if Lia is at position 1, Ivo is at position 3 (opposite).\n\nMo is immediately clockwise of Lia, so Mo is at the next position clockwise from Lia.\n\nSo, if Lia is at position 1, Mo is at position 2.\n\nNow, the people are: Ivo, Lia, Mo, and one other (say, X).\n\nSo, the order clockwise is: Lia → Mo → X → Ivo → Lia.\n\nSo, the order is: Lia, Mo, X, Ivo.\n\nNow, who is immediately counterclockwise of Mo?\n\nCounterclockwise from Mo is the person just before Mo in the clockwise order.\n\nIn the sequence: Lia → Mo → X → Ivo → Lia\n\nSo, counterc",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is divisible by 100 but not by 400, so it is not a leap year. In the Gregorian calendar, a year is a leap year only if it is divisible by 4, but if it is divisible by 100, it must also be divisible by 400 to be a leap year. Since 2100 is divisible by 100 but not by 400, it is not a leap year, and February 29 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No, the increase in cold drink sales in June could be due to other factors, such as warmer weather, holidays, or a different trend, and there is no evidence of a causal relationship. Correlation does not imply causation.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    return [items[i:i+n] for i in range(0, len(items), n)]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    return text.lower().replace(' ', '').replace('-', '').replace('.', '').replace(',', '').replace('!', '').replace('?', '').replace(';', '').replace(':', '').replace('(', '').replace(')', '').replace('[', '').replace(']', '').replace('{', '').replace('}', '').replace('/', '').replace('\\\\', '').replace('@', '').replace('#', '').replace('$', '').replace('%', '').replace('^', '').replace('&', '').replace('*', '').replace('+', '').replace('=', '').replace('`', '').replace('~', '').replace('<', '').replace('>', '').replace('|', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`', '').replace('`",
+          "pass": false,
+          "check": "SyntaxError"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\"B\"]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely, but avoid flash photography. No flash, no flash.",
+          "pass": false,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "\"Could you clarify what 'two scoops' means? I'd like to know the exact volume or weight so I can use the same amount.\"",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    return sum(i**3 for i in range(1, n+1)) - sum(i for i in range(1, n+1))\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(n):\n    return [{},] * n\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    result = 1\n    for num in unique_nums:\n        result *= num\n    return result\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    return first_even - first_odd\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    if k == 0:\n        return arr1[0]\n    if k == 1:\n        return arr1[0] if arr1[0] < arr2[0] else arr2[0]\n    if k == 0:\n        return arr1[0]\n    if k == 1:\n        return arr1[0] if arr1[0] < arr2[0] else arr2[0]\n    if k == 0:\n        return arr1[0]\n    if k == 1:\n        return arr1[0] if arr1[0] < arr2[0] else arr2[0]\n    if k == 0:\n        return arr1[0]\n    if k == 1:\n        return arr1[0] if arr1[0] < arr2[0] else arr2[0]\n    if k == 0:\n        return arr1[0]\n    if k == 1:\n        return arr1[0] if arr1[0] < arr2[0] else arr2[0]\n    if k == 0:\n        return arr1[0]\n    if k == 1:\n        return arr1[0] if arr1[0] < arr2[0] else arr2[0]\n    if k == ",
+          "pass": false,
+          "check": "SyntaxError"
+        }
+      ]
+    },
+    {
+      "factor": 0.015625,
+      "scores": {
+        "coding": 1.0,
+        "general": 0.6666666666666666,
+        "math": 1.0,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.8333333333333333,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are given a bench with 9 distinct seats, and we want to place **two identical cushions** such that **there is at least one empty seat between them**.\n\n### Step 1: Total ways to place two identical cushions (without restriction)\n\nWe choose 2 distinct seats out of 9 for the cushions. Since the cushions are **identical**, the order doesn't matter.\n\nTotal ways = $ \\binom{9}{2} =  36 $\n\n### Step 2: Subtract the number of placements where the two cushions are **adjacent** (i.e., no empty seat between them)\n\nAdjacent pairs: (1,2), (2,3), ..., (8,9) → 8 such pairs\n\nSo, number of placements with **at least one empty seat between** them =  \nTotal - adjacent = $ 36 - 8 = 28 $\n\n### Final Answer:\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each room needs 65 tiles, and there are 3 rooms, so total tiles needed = 3 × 65 = 195 tiles.\n\nEach trip can carry 14 tiles.\n\nNumber of trips needed = total tiles ÷ tiles per trip = 195 ÷ 14 ≈ 13.93\n\nSince we can't make a fraction of a trip, we round up to the next whole number: 14 trips.\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Original edge length = 4  \nNew edge length = 6  \n\nVolume of a cube = edge³  \n\nOriginal volume = 4³ = 64  \nNew volume = 6³ = 216  \n\nGrowth factor = 216 / 64 = 27/8  \n\nAnswer: 27/8",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are given a circle of four people: Ivo, Lia, Mo, and one other person (we'll call them X for now, though we don't need to name them yet).\n\nKey information:\n\n1. Ivo is opposite Lia.\n2. Mo is immediately clockwise of Lia.\n3. We are to find who is immediately counterclockwise of Mo.\n\nLet’s assign positions around a circle (clockwise order): positions 1, 2, 3, 4.\n\nSince there are four people, each person has one person immediately clockwise and one immediately counterclockwise.\n\nLet’s fix the positions.\n\nStep 1: Ivo is opposite Lia.\n\nIn a circle of 4, opposite means two positions apart. So if we place Lia at position 1, then Ivo is at position 3 (opposite).\n\nSo:\n- Position 1: Lia\n- Position 3: Ivo\n\nStep 2: Mo is immediately clockwise of Lia.\n\n\"Immediately clockwise\" means the next person clockwise from Lia.\n\nSo if Lia is at position 1, then immediately clockwise is position 2.\n\nSo:\n- Position 2: Mo\n\nNow we have:\n- 1: Lia\n- 2: Mo\n- 3: Ivo\n- 4: ??? (must be the remaining person)\n\nSo the fourth person is at position 4.\n\nNow, who is immediately counterclockwise of Mo?\n\nMo is at position 2.\n\nCounterclockwise from position 2 would be position 1 (since going counterc",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is not a leap year. In the Gregorian calendar, a year is a leap year if it is divisible by 4, but if it is divisible by 100, it is not a leap year unless it is also divisible by 400. Since 2100 is divisible by 4 and by 100 but not by 400, it is not a leap year. Therefore, February 29, 2100 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No. The observation that both bike racks and cold drink sales rise in June does not establish causation. Correlation does not imply causation—other factors, such as warmer weather, holidays, or increased outdoor activity, could explain both trends simultaneously. Without controlling for these variables or conducting a controlled study, we cannot conclude that bike racks caused the increase in cold drink sales.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    result = []\n    for i in range(0, len(items), n):\n        result.append(items[i:i+n])\n    return result\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    cleaned = ''.join(char.lower() for char in text if char.isalnum())\n    return cleaned == cleaned[::-1]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\n  \"B\"\n]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely with pencils. No flash photography. Respect the rules to preserve exhibits and ensure a peaceful experience for all.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "Could you please specify the exact amount of oats in grams or cups? This will help another cook accurately reproduce the recipe.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    sum_of_numbers = sum(i for i in range(1, n+1))\n    return sum_of_cubes - sum_of_numbers\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(N):\n    return [{}] * N\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    product = 1\n    for num in unique_nums:\n        product *= num\n    return product\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst[:]\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    \n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    \n    if first_even is not None and first_odd is not None:\n        return first_even - first_odd\n    else:\n        return None\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    # Ensure arr1 is the smaller array to optimize\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    \n    # Base cases\n    if len(arr1) == 0:\n        return arr2[k-1]\n    \n    # If k is 1, return the minimum of first elements\n    if k == 1:\n        return min(arr1[0], arr2[0])\n    \n    # Find the median indices\n    mid1 = min(len(arr1), k // 2)\n    mid2 = min(len(arr2), k // 2)\n    \n    # Compare elements at mid positions\n    if arr1[mid1-1] > arr2[mid2-1]:\n        # kth element is in the right half of arr2\n        return find_kth(arr1, arr2[mid2:], k - mid2)\n    else:\n        # kth element is in the right half of arr1\n        return find_kth(arr1[:mid1], arr2, k - mid1)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        }
+      ]
+    },
+    {
+      "factor": 0.0078125,
+      "scores": {
+        "coding": 1.0,
+        "general": 0.6666666666666666,
+        "math": 1.0,
+        "reasoning": 0.6666666666666666
+      },
+      "macro": 0.8333333333333333,
+      "results": [
+        {
+          "id": "valid-seating-gaps",
+          "domain": "math",
+          "answer": "We are given a bench with 9 distinct seats, and we want to place **two identical cushions** such that **there is at least one empty seat between them**.\n\n### Step 1: Total ways to place two identical cushions (without restriction)\n\nWe choose 2 distinct seats out of 9 for the cushions. Since the cushions are **identical**, the order doesn't matter.\n\nTotal ways = $ \\binom{9}{2} =  36 $\n\n### Step 2: Subtract the number of placements where the two cushions are **adjacent** (i.e., no empty seat between them)\n\nAdjacent pairs: (1,2), (2,3), ..., (8,9) → 8 such pairs\n\nSo, number of placements with **at least one empty seat between** them =  \nTotal - adjacent = $ 36 - 8 = 28 $\n\n### Final Answer:\nAnswer: 28",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-rounding-loads",
+          "domain": "math",
+          "answer": "Each room needs 65 tiles, and there are 3 rooms, so total tiles needed = 3 × 65 = 195 tiles.\n\nEach trip can carry 14 tiles.\n\nNumber of trips needed = total tiles ÷ tiles per trip = 195 ÷ 14 ≈ 13.93\n\nSince we can't make a fraction of a trip, we round up to the next whole number: 14 trips.\n\nAnswer: 14",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cubic-scaling",
+          "domain": "math",
+          "answer": "Original edge length = 4  \nNew edge length = 6  \n\nVolume of a cube = edge³  \n\nOriginal volume = 4³ = 64  \nNew volume = 6³ = 216  \n\nGrowth factor = 216 / 64 = 27/8  \n\nAnswer: 27/8",
+          "pass": true,
+          "check": "exact numerical value"
+        },
+        {
+          "id": "valid-cyclic-seating",
+          "domain": "reasoning",
+          "answer": "We are given a circle of four people: Ivo, Lia, Mo, and one other person (not named). The people are sitting in a circle, and we are to determine who is immediately counterclockwise of Mo.\n\nLet’s break down the information:\n\n1. \"Ivo is opposite Lia.\"  \n   In a circle of four people, \"opposite\" means directly across the circle. So if Lia is at one position, Ivo is directly opposite, two seats away.\n\n2. \"Mo is immediately clockwise of Lia.\"  \n   This means Mo sits right after Lia when going clockwise. So, if we go clockwise from Lia, the next person is Mo.\n\nNow, let’s assign positions around the circle (clockwise order):\n\nLet’s label the positions as:  \nPosition 1 → Position 2 → Position 3 → Position 4 → back to 1.\n\nWe can assume a clockwise order:  \nLet’s suppose the order is:  \nLia → Mo → ? → ? → back to Lia.\n\nSo, clockwise: Lia → Mo → (next) → (next) → back to Lia.\n\nNow, since there are only four people, and Ivo is opposite Lia, that means Ivo is two seats away from Lia in either direction.\n\nLet’s assign positions:\n\nLet’s fix Lia at position 1.  \nThen, clockwise:  \n1: Lia  \n2: Mo (since Mo is immediately clockwise of Lia)  \n3: ?  \n4: ?\n\nNow, Ivo is opposite Lia. In a circle of 4, opposite",
+          "pass": false,
+          "check": "missing final answer line"
+        },
+        {
+          "id": "valid-impossible-date",
+          "domain": "reasoning",
+          "answer": "No, February 29, 2100 is not a valid date because 2100 is not a leap year. In the Gregorian calendar, a year is a leap year if it is divisible by 4, but if it is divisible by 100, it is not a leap year unless it is also divisible by 400. Since 2100 is divisible by 4 and by 100 but not by 400, it is not a leap year. Therefore, February 29, 2100 does not occur.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-causal-claim",
+          "domain": "reasoning",
+          "answer": "No. The observation that both bike racks and cold drink sales rise in June does not establish causation. Correlation does not imply causation—other factors, such as warmer weather, holidays, or increased outdoor activity, could explain both trends simultaneously. Without controlling for these variables or conducting a controlled study, we cannot conclude that bike racks caused the increase in cold drink sales.\n\nAnswer: no",
+          "pass": true,
+          "check": "final label"
+        },
+        {
+          "id": "valid-chunking",
+          "domain": "coding",
+          "answer": "```python\ndef solve(items, n):\n    result = []\n    for i in range(0, len(items), n):\n        result.append(items[i:i+n])\n    return result\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-palindrome-filter",
+          "domain": "coding",
+          "answer": "```python\ndef solve(text):\n    cleaned = ''.join(char.lower() for char in text if char.isalnum())\n    return cleaned == cleaned[::-1]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-prefix-totals",
+          "domain": "coding",
+          "answer": "```python\ndef solve(nums):\n    return [sum(nums[:i+1]) for i in range(len(nums))]\n```",
+          "pass": true,
+          "check": "CPython execution cases"
+        },
+        {
+          "id": "valid-event-conflicts",
+          "domain": "general",
+          "answer": "[\n  \"B\"\n]",
+          "pass": false,
+          "check": "JSON equality"
+        },
+        {
+          "id": "valid-permission-note",
+          "domain": "general",
+          "answer": "Sketch freely with pencils. No flash photography. Respect the rules to preserve exhibits and ensure a peaceful experience for all.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "valid-ambiguous-unit",
+          "domain": "general",
+          "answer": "Could you please specify the exact amount of oats in grams or cups? This will help another cook accurately reproduce the recipe.",
+          "pass": true,
+          "check": "required content and word limit"
+        },
+        {
+          "id": "mbpp-validation-555",
+          "domain": "coding",
+          "answer": "```python\ndef difference(n):\n    sum_of_cubes = sum(i**3 for i in range(1, n+1))\n    sum_of_numbers = sum(i for i in range(1, n+1))\n    return sum_of_cubes - sum_of_numbers\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-568",
+          "domain": "coding",
+          "answer": "```python\ndef empty_list(n):\n    return [{}] * n\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-573",
+          "domain": "coding",
+          "answer": "```python\ndef unique_product(nums):\n    unique_nums = list(set(nums))\n    product = 1\n    for num in unique_nums:\n        product *= num\n    return product\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-586",
+          "domain": "coding",
+          "answer": "```python\ndef split_Arr(arr, n):\n    return arr[n:] + arr[:n]\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-588",
+          "domain": "coding",
+          "answer": "```python\ndef big_diff(lst):\n    return max(lst) - min(lst)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-591",
+          "domain": "coding",
+          "answer": "```python\ndef swap_List(lst):\n    if len(lst) <= 1:\n        return lst[:]\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-594",
+          "domain": "coding",
+          "answer": "```python\ndef diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    \n    for num in lst:\n        if num % 2 == 0:\n            if first_even is None:\n                first_even = num\n        else:\n            if first_odd is None:\n                first_odd = num\n    \n    if first_even is not None and first_odd is not None:\n        return first_even - first_odd\n    else:\n        return None\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        },
+        {
+          "id": "mbpp-validation-597",
+          "domain": "coding",
+          "answer": "```python\ndef find_kth(arr1, arr2, k):\n    # Ensure arr1 is the smaller array to optimize\n    if len(arr1) > len(arr2):\n        arr1, arr2 = arr2, arr1\n    \n    # Base cases\n    if len(arr1) == 0:\n        return arr2[k-1]\n    \n    # If k is 1, return the minimum of first elements\n    if k == 1:\n        return min(arr1[0], arr2[0])\n    \n    # Find the median indices\n    mid1 = min(len(arr1), k // 2)\n    mid2 = min(len(arr2), k // 2)\n    \n    # Compare elements at mid positions\n    if arr1[mid1-1] > arr2[mid2-1]:\n        # kth element is in the right half of arr2\n        return find_kth(arr1, arr2[mid2:], k - mid2)\n    else:\n        # kth element is in the right half of arr1\n        return find_kth(arr1[:mid1], arr2, k - mid1)\n```",
+          "pass": true,
+          "check": "CPython assertions"
+        }
+      ]
+    }
+  ],
+  "selected_multiplier": 0.0078125,
+  "adapter_sha256": "308f742219a942c1fb20f5ac479c9214b00b1e792ef1deedbd668545d19f0e35"
+}

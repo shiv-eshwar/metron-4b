@@ -1,4 +1,5 @@
 import json
+import os
 import tempfile
 import unittest
 from importlib.util import find_spec
@@ -13,6 +14,13 @@ from scripts import model_file
 
 
 class PipelineTests(unittest.TestCase):
+    @unittest.skipUnless(os.environ.get("MODELDISTL_TEST_CPYTHON") == "1", "requires pinned Docker image")
+    def test_cpython_generator_semantics(self):
+        task = {"check": {"kind": "code", "cases": [{"args": [[3, 1]], "want": 2}, {"args": [[]], "want": 1}]}}
+        code = "def solve(nums):\n    return next(i for i in range(1, len(nums)+2) if i not in nums)"
+        self.assertTrue(grade(task, code, None, cpython=True)[0])
+        self.assertFalse(grade(task, "def solve(nums):\n    return 0", None, cpython=True)[0])
+
     @unittest.skipUnless(find_spec("mlx") is not None, "MLX training extra")
     def test_completion_loss_excludes_prompt_and_all_padding(self):
         import mlx.core as mx

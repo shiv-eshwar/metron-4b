@@ -12,4 +12,7 @@ jobs:
         with:
           version: "0.12.19"
       - run: uv sync --locked
+      - run: docker pull python@sha256:c5ba3deef00c7758561a0f03c26f44f10589263d40e732b8748e0d1f38f6dd89
       - run: uv run --no-sync python -m unittest discover -s tests -v
+        env:
+          MODELDISTL_TEST_CPYTHON: "1"
