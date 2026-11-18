@@ -1,0 +1,278 @@
+{
+  "backend": "llama.cpp",
+  "source_revision": "bfc15c382204943c3a8fff0c750b94ae2364d7a3",
+  "model": "artifacts/comparators/gemma-4-E4B-it-Q4_K_M.gguf",
+  "adapter": null,
+  "temperature": 0,
+  "seed": 42,
+  "max_tokens": 512,
+  "reasoning": "off",
+  "complete": true,
+  "suite": "local",
+  "code_runtime": "cpython",
+  "jobs": 4,
+  "test_sha256": "d6954faf8668ff9f87c2b324e8e08b212c08700b3a3a06f4f246e2f974b17895",
+  "gguf_file_sha256": "85a896a047553e842f25297ee5b031d64ff30147d9c4af17b1e4b394cd1fab87",
+  "results": [
+    {
+      "id": "test-reverse-percentage",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Let $S$ be the original salary before the cut.\nA 12% pay cut means the new salary is $100\\% - 12\\% = 88\\%$ of the original salary.\nWe are given that the new salary is 2640 credits.\n\nSo, $0.88 \\times S = 2640$\n\nTo find $S$, we divide 2640 by 0.88:\n$$S = \\frac{2640}{0.88}$$\n$$S = \\frac{2640}{\\frac{88}{100}}$$\n$$S = 2640 \\times \\frac{100}{88}$$\n$$S = \\frac{264000}{88}$$\n\nWe can simplify the fraction:\n$$S = \\frac{264000}{88} = \\frac{33000}{11} \\quad (\\text{dividing numerator and denominator by 8})$$\n$$S = 3000$$\n\nAlternatively, using percentages:\nIf the new salary (2640) represents 88% of the original salary ($S$):\n$$S = \\frac{2640}{0.88} = 3000$$\n\nAnswer: 3000",
+      "seconds": 23.764,
+      "tokens": 300,
+      "finish": "stop"
+    },
+    {
+      "id": "test-unequal-averaging",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "The average speed is calculated as the total distance traveled divided by the total time taken.\n\n**Step 1: Calculate the time for the first part of the trip ($t_1$).**\nDistance ($d_1$) = 60 km\nSpeed ($s_1$) = 30 km/h\nTime ($t_1$) = $\\text{Distance} / \\text{Speed} = 60 \\text{ km} / 30 \\text{ km/h} = 2$ hours.\n\n**Step 2: Calculate the time for the second part of the trip ($t_2$).**\nDistance ($d_2$) = 60 km\nSpeed ($s_2$) = 60 km/h\nTime ($t_2$) = $\\text{Distance} / \\text{Speed} = 60 \\text{ km} / 60 \\text{ km/h} = 1$ hour.\n\n**Step 3: Calculate the total distance and total time.**\nTotal Distance ($D$) = $d_1 + d_2 = 60 \\text{ km} + 60 \\text{ km} = 120 \\text{ km}$.\nTotal Time ($T$) = $t_1 + t_2 = 2 \\text{ hours} + 1 \\text{ hour} = 3$ hours.\n\n**Step 4: Calculate the average speed ($\\bar{s}$).**\nAverage Speed ($\\bar{s}$) = Total Distance / Total Time = $120 \\text{ km} / 3 \\text{ hours} = 40 \\text{ km/h}$.\n\nAnswer: 40",
+      "seconds": 29.049,
+      "tokens": 363,
+      "finish": "stop"
+    },
+    {
+      "id": "test-complement-pairs",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Let $D_1$ be the result of the first die and $D_2$ be the result of the second die. The sample space consists of $6 \\times 6 = 36$ equally likely outcomes.\n\nWe are looking for the probability that at least one die shows a six, $P(D_1=6 \\text{ or } D_2=6)$.\n\nIt is easier to calculate the probability of the complementary event: that *neither* die shows a six.\nThe outcomes where neither die shows a six are those where $D_1 \\in \\{1, 2, 3, 4, 5\\}$ and $D_2 \\in \\{1, 2, 3, 4, 5\\}$.\nThe number of outcomes where neither die shows a six is $5 \\times 5 = 25$.\n\nThe probability that neither die shows a six is:\n$$P(\\text{no six}) = \\frac{\\text{Number of outcomes with no six}}{\\text{Total number of outcomes}} = \\frac{25}{36}$$\n\nThe probability that at least one die shows a six is:\n$$P(\\text{at least one six}) = 1 - P(\\text{no six}) = 1 - \\frac{25}{36} = \\frac{36 - 25}{36} = \\frac{11}{36}$$\n\nAlternatively, using the inclusion-exclusion principle:\nLet $A$ be the event $D_1=6$ and $B$ be the event $D_2=6$.\n$P(A) = 6/36$ (or $1/6$)\n$P(B) = 6/36$ (or $1/6$)\n$P(A \\cap B) = P(D_1=6 \\text{ and } D_2=6) = 1/36$\n$$P(A \\cup B) = P(A) + P(B) - P(A \\cap B) = \\frac{6}{36} + \\frac{6}{36} - \\frac{1}{36} = \\frac{12 - 1}{36} = \\frac{11}{36}$$\n\nAnswer: 11/36",
+      "seconds": 40.963,
+      "tokens": 505,
+      "finish": "stop"
+    },
+    {
+      "id": "test-cycle-remainder",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Let the sequence be denoted by $a_n$, where $a_0 = 1$ and $a_{n} = 3 \\cdot a_{n-1}$ for $n \\ge 1$.\nThe value after $n$ multiplications is $a_n = 1 \\cdot 3^n = 3^n$.\nWe are looking for the last decimal digit of $3^{2026}$, which is equivalent to finding $3^{2026} \\pmod{10}$.\n\nThe last digits of powers of 3 follow a cycle:\n$3^1 \\equiv 3 \\pmod{10}$\n$3^2 \\equiv 9 \\pmod{10}$\n$3^3 \\equiv 27 \\equiv 7 \\pmod{10}$\n$3^4 \\equiv 81 \\equiv 1 \\pmod{10}$\n$3^5 \\equiv 3 \\cdot 1 \\equiv 3 \\pmod{10}$\n\nThe cycle of the last digits is (3, 9, 7, 1), which has a length of 4.\nTo find the last digit of $3^{2026}$, we need to find the remainder of the exponent $2026$ when divided by the cycle length, 4.\n\n$$2026 \\div 4$$\nWe can check the divisibility by 4 by looking at the last two digits:\n$$26 \\div 4 = 6 \\text{ with a remainder of } 2$$\nSo, $2026 \\equiv 2 \\pmod{4}$.\n\nThis means that the last digit of $3^{2026}$ is the same as the last digit of $3^2$.\n$$3^{2026} \\equiv 3^2 \\pmod{10}$$\n$$3^2 = 9$$\n\nThe last decimal digit is 9.\n\nAnswer: 9",
+      "seconds": 34.442,
+      "tokens": 426,
+      "finish": "stop"
+    },
+    {
+      "id": "test-digit-construction",
+      "domain": "math",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "Let the three-digit number be represented by $d_1 d_2 d_3$.\nThe digits available are $\\{0, 1, 2, 3\\}$.\nThe number must be a three-digit number, so $d_1 \\neq 0$.\nThe number must be even, so $d_3 \\in \\{0, 2\\}$.\nThe digits must be distinct, so $d_1 \\neq d_2$, $d_1 \\neq d_3$, and $d_2 \\neq d_3$.\n\nWe consider two cases based on the last digit $d_3$:\n\nCase 1: $d_3 = 0$\nSince $d_3=0$, the remaining digits $\\{d_1, d_2\\}$ must be chosen from $\\{1, 2, 3\\}$ and must be distinct.\nFor $d_1$: There are 3 choices ($\\{1, 2, 3\\}$).\nFor $d_2$: Since $d_2$ must be different from $d_1$ and $d_3=0$, there are 2 remaining choices.\nNumber of possibilities in Case 1 = $3 \\times 2 = 6$.\n(The numbers are: 120, 130, 210, 230, 310, 320)\n\nCase 2: $d_3 = 2$\nSince $d_3=2$, the remaining digits $\\{d_1, d_2\\}$ must be chosen from $\\{0, 1, 3\\}$ and must be distinct, and $d_1 \\neq 0$.\nFor $d_1$: $d_1$ cannot be 0 and $d_1$ cannot be 2. So, $d_1 \\in \\{1, 3\\}$. There are 2 choices for $d_1$.\nFor $d_2$: $d_2$ must be different from $d_1$ and $d_3=2$. The available digits are $\\{0, 1, 3\\} \\setminus \\{d_1\\}$. There are 2 choices for $d_2$.\nNumber of possibilities in Case 2 = $2 \\times 2 = 4$.\n(If $d_1=1$, $d_2 \\in \\{0, ",
+      "seconds": 42.621,
+      "tokens": 512,
+      "finish": "length"
+    },
+    {
+      "id": "test-piecewise-pricing",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "The charge structure is:\n1. First 30 minutes (or part thereof): 4 credits.\n2. Each additional 20-minute block: 3 credits.\n\nTotal time is 74 minutes.\n\n**Step 1: Calculate the cost for the first 30 minutes.**\nCost for the first 30 minutes = 4 credits.\n\n**Step 2: Calculate the remaining time.**\nRemaining time = Total time - First block time\nRemaining time = $74 \\text{ minutes} - 30 \\text{ minutes} = 44 \\text{ minutes}$.\n\n**Step 3: Calculate the number of additional 20-minute blocks in the remaining time.**\nThe charge is for each *started* 20-minute block.\nNumber of blocks = $\\lceil \\frac{\\text{Remaining time}}{\\text{Block duration}} \\rceil$\nNumber of blocks = $\\lceil \\frac{44}{20} \\rceil = \\lceil 2.2 \\rceil = 3$ blocks.\n\n**Step 4: Calculate the cost for the additional blocks.**\nCost for additional blocks = Number of blocks $\\times$ Cost per block\nCost for additional blocks = $3 \\times 3 \\text{ credits} = 9 \\text{ credits}$.\n\n**Step 5: Calculate the total cost.**\nTotal cost = Cost for first 30 minutes + Cost for additional blocks\nTotal cost = $4 \\text{ credits} + 9 \\text{ credits} = 13 \\text{ credits}$.\n\nAnswer: 13",
+      "seconds": 28.247,
+      "tokens": 339,
+      "finish": "stop"
+    },
+    {
+      "id": "test-counterexample",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "The claim is: \"Every integer $n$ with $n^2$ divisible by 4 is itself divisible by 4.\"\n\nWe need to test the given values: 4, 6, and 8.\n\n1. **Test $n=4$:**\n   $n^2 = 4^2 = 16$. Since $16$ is divisible by 4 ($16 = 4 \\times 4$), the premise ($n^2$ is divisible by 4) is true.\n   Is $n=4$ divisible by 4? Yes ($4 = 4 \\times 1$). The claim holds for $n=4$.\n\n2. **Test $n=6$:**\n   $n^2 = 6^2 = 36$. Since $36$ is divisible by 4 ($36 = 4 \\times 9$), the premise ($n^2$ is divisible by 4) is true.\n   Is $n=6$ divisible by 4? No ($6 \\div 4 = 1$ with a remainder of 2).\n   Since we found an integer ($n=6$) where $n^2$ is divisible by 4, but $n$ is not divisible by 4, this value disproves the claim.\n\n3. **Test $n=8$:**\n   $n^2 = 8^2 = 64$. Since $64$ is divisible by 4 ($64 = 4 \\times 16$), the premise ($n^2$ is divisible by 4) is true.\n   Is $n=8$ divisible by 4? Yes ($8 = 4 \\times 2$). The claim holds for $n=8$.\n\nThe value that disproves the claim is 6.\n\nAnswer: 6",
+      "seconds": 33.253,
+      "tokens": 398,
+      "finish": "stop"
+    },
+    {
+      "id": "test-two-sided-cards",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "The condition to test is \"if vowel then even\". This is a conditional statement, $P \\implies Q$, where:\n$P$: The letter on the card is a vowel (A, E, I, O, U).\n$Q$: The number on the card is even (2, 4, 6, 8, 0).\n\nTo test a conditional statement, we must check the truth value of the premise ($P$) and the conclusion ($Q$) for all cases. The only case that can potentially falsify $P \\implies Q$ is when $P$ is true and $Q$ is false (i.e., a vowel card with an odd number).\n\nThe visible cards are A, D, 4, and 7.\n\n1. **Card A:** The visible side is 'A' (a letter). We need to know if 'A' is a vowel (it is). To test the implication, we must check the number on the other side. If the number is odd, the statement is false. Therefore, the card showing 'A' must be turned.\n2. **Card D:** The visible side is 'D' (a letter). 'D' is not a vowel. If the premise ($P$) is false, the implication ($P \\implies Q$) is automatically true, regardless of the number. Therefore, this card does not need to be turned to test the rule.\n3. **Card 4:** The visible side is '4' (a number). We need to know if the letter on the other side is a vowel. If the letter is a vowel, we must check if 4 is even (it is). If the letter is a consonant, the premise is false, and the rule holds. To be certain, we must check the letter. Therefore, the card showing '4' must be turned.\n4. **Card 7:** The visible side is '7' (a number). We need to know if the letter on the other side is a vowel. If the letter is a vowel, we must check if 7 is even (it is not). If the letter is a vowel, the statement is false. Therefore, the card showing '7' must be turned.\n\nThe visible symbols that must be turned are A, 4, and 7.\n\nJustification: To test \"if vowel then even\", we must check cases where the premise (vowel) is true, and",
+      "seconds": 43.154,
+      "tokens": 512,
+      "finish": "length"
+    },
+    {
+      "id": "test-resource-bottleneck",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "The station that determines the steady-state throughput in a pipeline is the one with the longest processing time, as this station becomes the bottleneck.\n\nThe processing times are:\n* Station X: 2 minutes\n* Station Y: 5 minutes\n* Station Z: 3 minutes\n\nComparing the times, Station Y has the longest processing time (5 minutes). Therefore, Station Y will limit the overall throughput of the system.\n\nAnswer: Y",
+      "seconds": 7.561,
+      "tokens": 92,
+      "finish": "stop"
+    },
+    {
+      "id": "test-mislabelled-baskets",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "You should draw one fruit from the basket labeled **Mixed**.\n\n**Justification:**\nSince all labels are wrong, the basket labeled \"Mixed\" cannot actually contain a mix. Therefore, it must contain either all apples or all pears.\n\n1. **If you draw an apple from the \"Mixed\" basket:** You now know this basket is the \"Apples\" basket.\n    * The basket labeled \"Apples\" cannot contain apples (because the label is wrong), and it cannot contain pears (because the \"Mixed\" basket is already the apples basket). Therefore, the basket labeled \"Apples\" must be the \"Mixed\" basket.\n    * By elimination, the remaining basket (labeled \"Pears\") must contain all pears.\n\n2. **If you draw a pear from the \"Mixed\" basket:** You now know this basket is the \"Pears\" basket.\n    * The basket labeled \"Pears\" cannot contain pears (label is wrong), and it cannot contain apples (because the \"Mixed\" basket is already the pears basket). Therefore, the basket labeled \"Pears\" must be the \"Mixed\" basket.\n    * By elimination, the remaining basket (labeled \"Apples\") must contain all apples.\n\nIn either scenario, drawing one fruit from the \"Mixed\" basket allows you to deduce the true contents of all three baskets.\n\nAnswer: Mixed",
+      "seconds": 24.811,
+      "tokens": 285,
+      "finish": "stop"
+    },
+    {
+      "id": "test-symmetry-scale",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "The problem asks for the minimum number of weighings required to identify the single heavier disc out of 9 identical-looking discs using a balance scale.\n\nWe can use a strategy based on dividing the discs into three equal groups for each weighing.\n\n**Weighing 1:**\nDivide the 9 discs into three groups of 3: Group A (3 discs), Group B (3 discs), and Group C (3 discs).\nWeigh Group A against Group B.\n1. If the scale balances (A = B), the heavier disc must be in Group C. (3 possibilities remain)\n2. If Group A is heavier than Group B (A > B), the heavier disc is in Group A. (3 possibilities remain)\n3. If Group B is heavier than Group A (B > A), the heavier disc is in Group B. (3 possibilities remain)\nIn the worst-case scenario, after the first weighing, we have narrowed down the possibilities to a group of 3 discs.\n\n**Weighing 2:**\nTake the group of 3 suspect discs (let's call them D1, D2, D3).\nWeigh D1 against D2.\n1. If the scale balances (D1 = D2), the heavier disc must be D3. (1 possibility remains)\n2. If D1 is heavier than D2 (D1 > D2), the heavier disc is D1. (1 possibility remains)\n3. If D2 is heavier than D1 (D2 > D1), the heavier disc is D2. (1 possibility remains)\nIn the worst-case scenario, after the second weighing, we have identified the heavier disc.\n\nSince the worst-case scenario requires 2 weighings, 2 is the minimum number required.\n\nMathematically, if $N$ is the number of items and $W$ is the number of weighings, the maximum number of items that can be solved in $W$ weighings is $3^W$. We need $3^W \\ge 9$.\nIf $W=1$, $3^1 = 3 < 9$.\nIf $W=2$, $3^2 = 9 \\ge 9$.\n\nAnswer: 2",
+      "seconds": 40.72,
+      "tokens": 477,
+      "finish": "stop"
+    },
+    {
+      "id": "test-rank-ambiguity",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "No. We know that Ira > Kai and Lea > Kai. However, we do not have any information comparing Ira's score to Lea's score. Therefore, either Ira or Lea could have scored the highest.\n\nAnswer: no",
+      "seconds": 4.292,
+      "tokens": 49,
+      "finish": "stop"
+    },
+    {
+      "id": "test-endpoints-sweep",
+      "domain": "coding",
+      "pass": false,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(events):\n    \"\"\"\n    Calculates the peak concurrent meetings given [start, end] pairs.\n\n    Args:\n        events: A list of tuples, where each tuple is [start, end].\n\n    Returns:\n        The maximum number of overlapping meetings at any point in time.\n    \"\"\"\n    timeline = []\n    for start, end in events:\n        # +1 for a meeting starting\n        timeline.append((start, 1))\n        # -1 for a meeting ending (since end is exclusive)\n        timeline.append((end, -1))\n\n    # Sort the timeline: first by time, then by change (process +1 before -1 at the same time\n    # to correctly count the peak if an event ends exactly when another starts, \n    # though for start-inclusive/end-exclusive, processing -1 before +1 at the same time \n    # is often safer if we want to count the overlap *during* the interval. \n    # However, for peak concurrency, processing +1 before -1 ensures we capture the \n    # moment of maximum overlap if an interval ends exactly when another begins.)\n    # Standard sweep line approach: process starts (+1) before ends (-1) at the same time point.\n    timeline.sort(key=lambda x: (x[0], -x[1]))\n\n    current_meetings = 0\n    peak_meetings = 0\n\n    for _, change in timeline:\n        current_meetings += change\n        if current_meetings > peak_meetings:\n            peak_meetings = current_meetings\n\n    return peak_meetings\n```",
+      "seconds": 30.237,
+      "tokens": 358,
+      "finish": "stop"
+    },
+    {
+      "id": "test-shortest-cover",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(text, required):\n    \"\"\"\n    Returns the length of the shortest substring containing every distinct character in required.\n    Returns 0 if required is empty and -1 if impossible.\n    \"\"\"\n    if not required:\n        return 0\n\n    required_chars = set(required)\n    if not required_chars:\n        return 0\n\n    n = len(text)\n    if n == 0:\n        return -1\n\n    # Sliding window approach\n    left = 0\n    min_len = float('inf')\n    formed = 0\n    window_counts = {}  # Stores count of required characters in the current window\n    required_counts = {char: 1 for char in required_chars}\n\n    for right in range(n):\n        char_r = text[right]\n\n        if char_r in required_chars:\n            window_counts[char_r] = window_counts.get(char_r, 0) + 1\n            if window_counts[char_r] == required_counts[char_r]:\n                formed += 1\n\n        # Try to contract the window from the left\n        while formed == len(required_chars):\n            current_len = right - left + 1\n            min_len = min(min_len, current_len)\n\n            char_l = text[left]\n\n            if char_l in required_chars:\n                window_counts[char_l] -= 1\n                if window_counts[char_l] < required_counts[char_l]:\n                    formed -= 1\n\n            left += 1\n\n    return min_len if min_len != float('inf') else -1\n```",
+      "seconds": 32.524,
+      "tokens": 386,
+      "finish": "stop"
+    },
+    {
+      "id": "test-first-missing",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(nums):\n    \"\"\"\n    Returns the smallest strictly positive integer absent from an unsorted list.\n    \"\"\"\n    present = set(nums)\n    i = 1\n    while True:\n        if i not in present:\n            return i\n        i += 1\n```",
+      "seconds": 5.857,
+      "tokens": 69,
+      "finish": "stop"
+    },
+    {
+      "id": "test-graph-distance",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\nfrom collections import deque\n\ndef solve(graph, start, end):\n    \"\"\"\n    Returns the fewest directed edges from start to end in an adjacency dictionary.\n    Missing keys have no outgoing edges. Returns -1 if unreachable.\n    \"\"\"\n    if start == end:\n        return 0\n\n    # Initialize distances: all nodes are infinity, start node is 0\n    distances = {node: float('inf') for node in graph}\n    for node in graph:\n        if node not in distances:\n            distances[node] = float('inf')\n    \n    # Ensure start and end nodes are in the distance map even if they have no outgoing edges\n    if start not in distances:\n        distances[start] = float('inf')\n    if end not in distances:\n        distances[end] = float('inf')\n\n    distances[start] = 0\n\n    # Queue for BFS: stores (node, distance)\n    queue = deque([(start, 0)])\n\n    while queue:\n        current_node, dist = queue.popleft()\n\n        if current_node == end:\n            return dist\n\n        # Check for outgoing edges from current_node\n        if current_node in graph:\n            for neighbor in graph[current_node]:\n                # If we found a shorter path (which BFS guarantees if we haven't visited)\n                if distances[neighbor] == float('inf'):\n                    distances[neighbor] = dist + 1\n                    queue.append((neighbor, dist + 1))\n\n    # If the queue is empty and we haven't reached the end\n    return -1\n```",
+      "seconds": 33.316,
+      "tokens": 359,
+      "finish": "stop"
+    },
+    {
+      "id": "test-natural-version",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(a, b):\n    \"\"\"\n    Compares strings of dot-separated nonnegative integer version components.\n    Treats missing trailing components as zeros. Returns -1, 0, or 1.\n    \"\"\"\n    a_parts = [int(x) for x in a.split('.')]\n    b_parts = [int(x) for x in b.split('.')]\n\n    len_a = len(a_parts)\n    len_b = len(b_parts)\n    max_len = max(len_a, len_b)\n\n    for i in range(max_len):\n        val_a = a_parts[i] if i < len_a else 0\n        val_b = b_parts[i] if i < len_b else 0\n\n        if val_a > val_b:\n            return 1\n        elif val_a < val_b:\n            return -1\n\n    return 0\n```",
+      "seconds": 20.203,
+      "tokens": 222,
+      "finish": "stop"
+    },
+    {
+      "id": "test-longest-distinct",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(items):\n    \"\"\"\n    Returns the length of the longest contiguous slice containing no repeated integer.\n    \"\"\"\n    if not items:\n        return 0\n\n    max_length = 0\n    start = 0\n    seen = set()\n\n    for end in range(len(items)):\n        # If the current element is already in the current window (seen set)\n        while items[end] in seen:\n            # Shrink the window from the left until the duplicate is removed\n            seen.remove(items[start])\n            start += 1\n\n        # Add the current element to the window\n        seen.add(items[end])\n\n        # Update the maximum length found so far\n        current_length = end - start + 1\n        if current_length > max_length:\n            max_length = current_length\n\n    return max_length\n```",
+      "seconds": 19.181,
+      "tokens": 200,
+      "finish": "stop"
+    },
+    {
+      "id": "test-weather-eligibility",
+      "domain": "general",
+      "pass": false,
+      "check": "JSON equality",
+      "answer": "```json\n[\n  \"Tue\",\n  \"Thu\",\n  \"Fri\"\n]\n```",
+      "seconds": 2.885,
+      "tokens": 24,
+      "finish": "stop"
+    },
+    {
+      "id": "test-incremental-ledger",
+      "domain": "general",
+      "pass": false,
+      "check": "JSON equality",
+      "answer": "```json\n{\n  \"Pier\": 7,\n  \"Hill\": 9\n}\n```",
+      "seconds": 2.489,
+      "tokens": 24,
+      "finish": "stop"
+    },
+    {
+      "id": "test-place-in-pronoun",
+      "domain": "general",
+      "pass": false,
+      "check": "JSON equality",
+      "answer": "```json\n{\n  \"artist\": \"The artist\",\n  \"signed\": \"canvas\"\n}\n```",
+      "seconds": 2.852,
+      "tokens": 26,
+      "finish": "stop"
+    },
+    {
+      "id": "test-feedback-message",
+      "domain": "general",
+      "pass": true,
+      "check": "required content and word limit",
+      "answer": "Add units to axes for clarity. The blue and green series are too similar; use different marker shapes or line styles to visually distinguish them.",
+      "seconds": 3.172,
+      "tokens": 29,
+      "finish": "stop"
+    },
+    {
+      "id": "test-audience-translation",
+      "domain": "general",
+      "pass": false,
+      "check": "required content and word limit",
+      "answer": "Metals are great at taking heat away! The metal spoon quickly pulls heat *from* your hand. Wood is slower, so it feels warmer because it doesn't take heat away as fast.",
+      "seconds": 5.348,
+      "tokens": 41,
+      "finish": "stop"
+    },
+    {
+      "id": "test-correction-email",
+      "domain": "general",
+      "pass": true,
+      "check": "required content and word limit",
+      "answer": "Correction: The library closes at 7 pm on Thursday, not 5 pm. Please note the updated closing time.",
+      "seconds": 3.433,
+      "tokens": 25,
+      "finish": "stop"
+    }
+  ],
+  "domains": {
+    "coding": {
+      "correct": 5,
+      "total": 6
+    },
+    "general": {
+      "correct": 2,
+      "total": 6
+    },
+    "math": {
+      "correct": 5,
+      "total": 6
+    },
+    "reasoning": {
+      "correct": 5,
+      "total": 6
+    }
+  },
+  "correct": 17,
+  "total": 24
+}
