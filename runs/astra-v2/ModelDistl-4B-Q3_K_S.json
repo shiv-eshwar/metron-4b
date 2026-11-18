@@ -1,0 +1,11 @@
+{
+  "base": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "llama_cpp": "401563f10ec60754e688cd3165c1343cf4be9642",
+  "adapter_sha256": "433d6ea4b542355b20b424d991ea9768aa23e5abf31761216514293c01af389c",
+  "name": "ModelDistl-4B-Astra-v2",
+  "fusion": "fixed-rank-fp32-bf16-v1",
+  "quantization": "Q3_K_S",
+  "bytes": 1886995616,
+  "sha256": "a549971046007f3136f694dfb513cb4e2e15266e113bb7a5bdc053240c9a127a"
+}

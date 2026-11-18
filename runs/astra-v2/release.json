@@ -1,0 +1,19 @@
+{
+  "repo": "shiv-eshwar/modeldistl",
+  "tag": "astra-v0.2.0",
+  "file": "ModelDistl-4B-Q4_K_M.gguf",
+  "bytes": 2497279136,
+  "sha256": "b858f46c998e0a13ef25d9bc7f357b443602e768ca3de51ba24a5f98747c6b47",
+  "parts": [
+    {
+      "file": "ModelDistl-4B-Q4_K_M.gguf.part-01",
+      "bytes": 1300000000,
+      "sha256": "c8aaa31b5cd321e04b64f5b799a4ac8bee85f95d3ffc06971dc8817bd8959b2d"
+    },
+    {
+      "file": "ModelDistl-4B-Q4_K_M.gguf.part-02",
+      "bytes": 1197279136,
+      "sha256": "067ebd9387ba2b508ae23c3767b3c32b9e1a4798b035769eacaa3b3e65c03c2e"
+    }
+  ]
+}
