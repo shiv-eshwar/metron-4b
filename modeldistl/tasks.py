@@ -74,6 +74,8 @@ def grade(task, answer, pool):
             re.search(pattern, answer, re.I) for pattern in spec["all"]
         )
         return okay, "required content and word limit"
+    if kind == "choice":
+        return answer.strip(" .()").casefold() == spec["answer"].casefold(), "choice label"
     # Commas, LaTeX and units have distinct meanings. Do not strip arbitrary text
     # from model answers to find a reference number somewhere in the explanation.
     last = answer.splitlines()[-1].replace("**", "").strip()
@@ -84,6 +86,8 @@ def grade(task, answer, pool):
     if kind == "label":
         return value.casefold() in {a.casefold() for a in spec["answers"]}, "final label"
     if kind == "number":
+        if re.fullmatch(r"[+-]?\d{1,3}(?:,\d{3})+(?:\.\d+)?", value):
+            value = value.replace(",", "")
         if not re.fullmatch(r"[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:/\d+)?", value):
             return False, "final number format"
         try:

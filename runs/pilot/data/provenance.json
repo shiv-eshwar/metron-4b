@@ -1,0 +1,772 @@
+{
+  "model": "gpt-6.2-astra",
+  "attempts": 76,
+  "unknown_usage": 0,
+  "usage": {
+    "input_tokens": 8212,
+    "output_tokens": 2938,
+    "cached_input_tokens": 0
+  },
+  "examples": [
+    {
+      "id": "train-stable-unique",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "ba3c99961e4c462a894c8b365c57f7503293e396fceed389b14a0e7416d0c99b",
+      "response_id": "resp_05b7fc7c9206957a016afd48429e2c87d09e5aa23166fa4629",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 98,
+      "output_tokens": 20
+    },
+    {
+      "id": "train-run-length",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "d5c28d3bc582e728fad4b9a00f3d255e937e3df9fda80a8a483f17cfb63758da",
+      "response_id": "resp_041a34cc71612eaa016afd4842aa1c87d0b47b1a580eadafac",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 99,
+      "output_tokens": 62
+    },
+    {
+      "id": "train-bracket-balance",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "ac785f8f0b5617839f121d85bb5306eaae158a481bda303ae3c6119f74bfd9d6",
+      "response_id": "resp_09f76e90810b3a4a016afd4854e41887d0856065e4b953b208",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 99,
+      "output_tokens": 79
+    },
+    {
+      "id": "train-merge-counts",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "0c10851033a5da405a25508976f7149a3985c21f1e3d639081ddc1899474dfcb",
+      "response_id": "resp_04c260c54491e527016afd4853a18c87d09ee9c83dfb317038",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 109,
+      "output_tokens": 48
+    },
+    {
+      "id": "train-ragged-transpose",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "37b5691f2653d44a9634a610d8409a092d897b040578f3b3846b452df82ff5c9",
+      "response_id": "resp_045ebeff48c481f3016afd4854bf7c87d0b6741eba4b7832fa",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 101,
+      "output_tokens": 53
+    },
+    {
+      "id": "train-rotate-right",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "39d8dc0e76d0411e880974e086c951233f85425b7c1febaf4f02f72509963a24",
+      "response_id": "resp_08a62a3043cd22b9016afd4855225887d089ecd96d5af19bb6",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 104,
+      "output_tokens": 39
+    },
+    {
+      "id": "train-binary-insert",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "f7de412070de2b878087610826135ace7698388a338e257c904dc57c4531bbf6",
+      "response_id": "resp_0157ce0705a11802016afd4857b9d487d0a2e2adb3b663fe1e",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 106,
+      "output_tokens": 71
+    },
+    {
+      "id": "train-word-frequency",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "c9744f51cc420df32bc4f07a488d49bcb6775405587fc3707c3eda237d20465e",
+      "response_id": "resp_0a916125aed146a3016afd4857d77887d09938218219390c35",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 102,
+      "output_tokens": 45
+    },
+    {
+      "id": "train-moving-sums",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "7c7a3f7c67ebdc18e2445f49ba496b2db9ec622c1b41fac3bf08c573442fca04",
+      "response_id": "resp_0ff92208bd1180f7016afd4859cf7087d0b6a6ee04b8368553",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 113,
+      "output_tokens": 76
+    },
+    {
+      "id": "train-merge-intervals",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "5fe371eb1a81ac35d80e9550a1766252d5625e2e7025a247b264175840b835b1",
+      "response_id": "resp_0705261e1727e6e4016afd485a0db087d093cb7c9beb43f929",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 106,
+      "output_tokens": 72
+    },
+    {
+      "id": "train-longest-prefix",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "3eb44805f406322a44a598e597f60bd8d597892e6d1315cdb356180754ea80cc",
+      "response_id": "resp_00bc3398ab1cad7a016afd485b964c87d09530b4fe45172280",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 105,
+      "output_tokens": 63
+    },
+    {
+      "id": "train-flatten-tree",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "2a651c10798ddf8fb79711fbf0a3af4b74a5abfc50cd942678bbdb2e5825609a",
+      "response_id": "resp_0df63f4e5719c16e016afd485cb10887d0a35e9441b28f9b03",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 105,
+      "output_tokens": 75
+    },
+    {
+      "id": "train-matrix-diagonal",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "3f57193c864d441059375532028a214770e06b3eb3cca3182c30423220f5c4df",
+      "response_id": "resp_0f2edd26b98eda65016afd485f259487d0b9c9123d1bf95b5b",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 101,
+      "output_tokens": 32
+    },
+    {
+      "id": "train-stable-parity",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "9b206ee022d2a4a6e10cb59b2cc6e2843f8a1d5b671b84f771bac1728b056eb5",
+      "response_id": "resp_082a7a5cd2568292016afd485fdd7087d0b8aa5aff0a7be81a",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 100,
+      "output_tokens": 26
+    },
+    {
+      "id": "train-invert-groups",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "92a4a1141d9d330149a69fcf219e1dd209734dbbcf6ac40c49d971216cd14bb9",
+      "response_id": "resp_0950494969ba0a22016afd48602d6887d0bd0104a5dfb34ecf",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 102,
+      "output_tokens": 49
+    },
+    {
+      "id": "train-hamming-distance",
+      "domain": "coding",
+      "split": "train",
+      "request_sha256": "d5d96fdba906e56ec81dcf5d191eb2b8a7ede929db0129ff119f4751f31f630d",
+      "response_id": "resp_0848ae1192d2d82b016afd486166a087d0bea7c950e1992da0",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 106,
+      "output_tokens": 44
+    },
+    {
+      "id": "train-fraction-capacity",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "f2d6bf50bb9bb51e5cb5fc8ed050609d56589a081bd5e88fd10ce2ecce002c6a",
+      "response_id": "resp_07ae2a775021116c016afd4862cf8887d0804d342289f95a0a",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 118,
+      "output_tokens": 55
+    },
+    {
+      "id": "train-weighted-average",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "c6e4fd7d289bfd1aa68ceebe2c6bcd5b681015d7d5210cebdf072f9487021522",
+      "response_id": "resp_0709895c856c385d016afd4863488887d08d3ce6e6ec04297d",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 115,
+      "output_tokens": 38
+    },
+    {
+      "id": "train-successive-discounts",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "15a6f938ec756af416e2f4c1dab383fce671eeb3f77f8ef9d0739af0f9987203",
+      "response_id": "resp_0e5b2b6200034a47016afd48640c2c87d0ae4c707d61a6c76f",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 118,
+      "output_tokens": 36
+    },
+    {
+      "id": "train-relative-speed",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "70442c5ff33a6902403ba1dd746a18a074ac28de7248a6b1dc666fd478896fc0",
+      "response_id": "resp_0923d5f7cbc29843016afd486578fc87d0852fec0996e7cd9d",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 115,
+      "output_tokens": 37
+    },
+    {
+      "id": "train-arithmetic-series",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "80488b81f838fc5ce6be6e9785e8c4fd8008169198a5208284dcf60723470a93",
+      "response_id": "resp_0412cf10a8bfcde6016afd4866b61487d09142e937d6c6201b",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 117,
+      "output_tokens": 44
+    },
+    {
+      "id": "train-work-rate",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "cbd2b3d7451a976797bd7cc61598ef04a907be6fbc7ac586603cb229e67ec70f",
+      "response_id": "resp_013005e9907a2c3a016afd4867175887d0938e32a4628953b8",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 114,
+      "output_tokens": 58
+    },
+    {
+      "id": "train-conditional-draw",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "04571177826e146a1556e9242d1e3e33852dd957de517ae20f0c2571596b5912",
+      "response_id": "resp_02b49e96b9aff250016afd4867a46c87d0af6939c9ed82c4c7",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 120,
+      "output_tokens": 44
+    },
+    {
+      "id": "train-linear-system",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "a458054469a20a67128447a10cc3aae73c327e589c417ed99edc0c802af587dd",
+      "response_id": "resp_0e83f6b679b0a19c016afd4867aa5887d083456b5eefcf3972",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 121,
+      "output_tokens": 87
+    },
+    {
+      "id": "train-least-common-period",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "c66725e90a34e8daf0a0e4c031249682e79772256815af4345c0456e43518801",
+      "response_id": "resp_0d3c926cc2c795fe016afd4869e33087d0a07c7ef3b7bad7df",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 114,
+      "output_tokens": 41
+    },
+    {
+      "id": "train-mixture",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "ea3f687b1e56cd673d12e4b51d16a6c41cfc83749369c83a0e96e429318d97ce",
+      "response_id": "resp_0aa2a198e4e685ad016afd4869fd8087d0bfb088fa547d8fcd",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 116,
+      "output_tokens": 75
+    },
+    {
+      "id": "train-unit-price",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "67f906c82ca51cd375b8e2096bc7957a7f2b2745a918826930205e734776abad",
+      "response_id": "resp_0de10f02381d9f03016afd486a44e887d0804e0b7db580e6e7",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 116,
+      "output_tokens": 51
+    },
+    {
+      "id": "train-geometric-area",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "bb78ed7413f75d48f301a265b3b3146d5eaf04c51139f08ce1db033de2f82702",
+      "response_id": "resp_044745fd810f5f5d016afd486b43a487d0929dd859e028642d",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 119,
+      "output_tokens": 42
+    },
+    {
+      "id": "train-exponent-law",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "e6b5b4d924ae6c35cf26c7cf37e8d056fa83b756763532e86e46ced13a805103",
+      "response_id": "resp_046e57c6c1207266016afd486cb19087d08715669478ce7835",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 108,
+      "output_tokens": 39
+    },
+    {
+      "id": "train-integer-count",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "738d1270e3edc44ed6564ae66b95bfb9b586f2ccd4e92b03b34b0396cd75ae3a",
+      "response_id": "resp_0dd8490e13cad9bb016afd486e907087d0abd4c71bff88c6d9",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 107,
+      "output_tokens": 56
+    },
+    {
+      "id": "train-median-recovery",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "ce7f6bc907927cd20a3f6888598bfaa3ffdb2ce5045c9f6e4d4523f6b1fbfde7",
+      "response_id": "resp_0047264dcd9d5653016afd486f7c9487d08d70f43e45876834",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 119,
+      "output_tokens": 45
+    },
+    {
+      "id": "train-compound-growth",
+      "domain": "math",
+      "split": "train",
+      "request_sha256": "bde0cd519463b4a73453f5c8301f211e8eb6492b92995d966645e770c3f77218",
+      "response_id": "resp_0b87dc3ea4c7a0f5016afd486fb51087d092c98bd577295797",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 111,
+      "output_tokens": 32
+    },
+    {
+      "id": "train-race-order",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "175417bfe4e1d9a829f0e55e5513803b522142a3450d230fc62061aa4dde31ca",
+      "response_id": "resp_00a1620a26129135016afd4871281c87d08fbbd036ecc5fee9",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 106,
+      "output_tokens": 25
+    },
+    {
+      "id": "train-conditional-direction",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "151ac3b8541284f44cdff7fb4bd469f248729b225b328c3aa13b6b75a003a140",
+      "response_id": "resp_0f034b71a31f7f75016afd4872c94087d0b77520c4d97f146a",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 106,
+      "output_tokens": 27
+    },
+    {
+      "id": "train-pigeonhole",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "e716e5b5f581d83545fa6cff38cc6c1ce026f365f0d2e752591f9cdc393084c7",
+      "response_id": "resp_04f6e09784dfa3bf016afd48737ea887d0b659263c1b6e4aa3",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 106,
+      "output_tokens": 30
+    },
+    {
+      "id": "train-parity-toggle",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "f5ba4717c39b28e94314d2c773dc0010f14b631774e0f5cfc5d00a5e30b21cea",
+      "response_id": "resp_0dadce3a277884e0016afd487468f487d098f1768bedfe9a07",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 110,
+      "output_tokens": 42
+    },
+    {
+      "id": "train-calendar-offset",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "eb426f3cc82ab260be291cb8fde747a7d3163b5de001bcb4b32a26f77edf9551",
+      "response_id": "resp_0f15eaab6ec2ed3f016afd4875cbf887d0876b913858f8eac4",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 99,
+      "output_tokens": 25
+    },
+    {
+      "id": "train-truth-label",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "c13552a8cf49c5c6a3ca8f6a99594990e87e10faf43994f68091809a1b36f499",
+      "response_id": "resp_06e4021e1ba74754016afd487689f487d0ae1445eedb060e53",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 131,
+      "output_tokens": 43
+    },
+    {
+      "id": "train-required-sequence",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "35ebcf123d66f40cebf22b9b6e6caad60711f97ee30c93a13695235e5c975019",
+      "response_id": "resp_0fa971a2eddab0fa016afd4876e7a487d080290682554f6afd",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 120,
+      "output_tokens": 36
+    },
+    {
+      "id": "train-queue-update",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "fd90fc58c4a958a8cf10426e8c055ac7ec5c5d389d389ea33cdd5c94c5072e61",
+      "response_id": "resp_096d061c471c9de2016afd487734e087d0a164e1576877031d",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 117,
+      "output_tokens": 34
+    },
+    {
+      "id": "train-inclusion-logic",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "4ce9def06e5a755ca6bfba706a58af9c55d151cadd4e797d3a2a7a4dca050c63",
+      "response_id": "resp_0627f80bc446e5b7016afd4879ce2487d0adf04ebcc76b75f7",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 111,
+      "output_tokens": 27
+    },
+    {
+      "id": "train-path-cost",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "938fc806c0764fa2f0a2c4eb601423a68cd2d4ee6550c6361a07b77005fea269",
+      "response_id": "resp_004200a0902eee3f016afd487a54d087d0a1f9dcfdd618d848",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 123,
+      "output_tokens": 44
+    },
+    {
+      "id": "train-minimax-choice",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "4eba06434315b7fce96eb546cf4c6a4ff971992a4c7310d7711cc335ebcc5e0a",
+      "response_id": "resp_0dc7623073e0a0ed016afd487ae34487d0a40f95f4cd8b6fa6",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 131,
+      "output_tokens": 35
+    },
+    {
+      "id": "train-switch-invariant",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "78e5a709217b75a301be8132e56ad876c03ce68778202423aa1c522df3ce17fe",
+      "response_id": "resp_0504dcf3a856590c016afd487afdc887d0a84e4841231a0cf5",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 108,
+      "output_tokens": 42
+    },
+    {
+      "id": "train-analogy-direction",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "1ebc0bbe8032b901a40e587ae248d6edee898b3108a25a77909d38c0371aaac8",
+      "response_id": "resp_05dfd36e61439f38016afd487c5a9087d0bee70f4c8bb39a67",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 106,
+      "output_tokens": 25
+    },
+    {
+      "id": "train-nested-boxes",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "4177a1f3e9070b58723584ac9a94b42369df8902ea11177466696cd18037feed",
+      "response_id": "resp_0dc68c4ce8be7d6f016afd487d408487d0a40ed5612d2ac5d2",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 122,
+      "output_tokens": 23
+    },
+    {
+      "id": "train-information-gap",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "960e9d6679eb3716cadc27a16936f2dd0c76c046a265203a25e89b97c68e97ab",
+      "response_id": "resp_0bfd20c49a7fb5b1016afd487e900c87d09f1ff25bbb9037e6",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 120,
+      "output_tokens": 38
+    },
+    {
+      "id": "train-exclusive-or",
+      "domain": "reasoning",
+      "split": "train",
+      "request_sha256": "7af8941a1d6bf0eb07b005c0fcab4ef72e04dbca3da344a4558fc64638c7c247",
+      "response_id": "resp_0e23a6a763eff8c6016afd487e937087d09ad060bb33588180",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 112,
+      "output_tokens": 32
+    },
+    {
+      "id": "train-notice-extraction",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "c836376c05e210bc026aee3dd1be1498cb04c30a417b29189197656896a4fcef",
+      "response_id": "resp_0ad4abfb4ef51d46016afd487ec08087d0a2cd73e61d10216e",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 109,
+      "output_tokens": 21
+    },
+    {
+      "id": "train-alphabetic-index",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "98cebe596914e77ee2fd068e36b06516875719204ac07bde01b7d6d329199594",
+      "response_id": "resp_0e23e077e62a02f0016afd487f5eac87d08ab03f3ff58b3865",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 95,
+      "output_tokens": 14
+    },
+    {
+      "id": "train-order-revision",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "4c790d335e1c8fc96e67ec7d6aad529454985637fcd95f421171510dae7340a2",
+      "response_id": "resp_0f42bd5e312ca080016afd4881277c87d0af47b552a8feb643",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 105,
+      "output_tokens": 17
+    },
+    {
+      "id": "train-diet-filter",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "71ec01d8f125e4595343f1803058c3e9178f8f519c2d06d83c6dd7d4e7896fc3",
+      "response_id": "resp_0487099b9c54d6b5016afd4881d5b487d0ad5bc45366fbc0cf",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 102,
+      "output_tokens": 12
+    },
+    {
+      "id": "train-reading-table",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "28ccb981e587abfd287a47fbbdbeede91337cab732e057f84ca59533c099bb93",
+      "response_id": "resp_03edc3f6f1b13e74016afd48828b9087d0b27bd5d9f9c2448b",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 106,
+      "output_tokens": 9
+    },
+    {
+      "id": "train-address-normalization",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "56c18535ca5a26fffa37a3040a579b7d02fa7eebdf25a982de22e6b8a8139849",
+      "response_id": "resp_0d197ba2c0b03f88016afd4883abb487d0a7a442cccadf6a90",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 98,
+      "output_tokens": 17
+    },
+    {
+      "id": "train-missing-field",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "b535d17267ad8952f02833eb0d37eca2436926eb9e180120e649f8fd6ac91b15",
+      "response_id": "resp_03d607fae4427384016afd4883ae2c87d0851a649faf378dec",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 101,
+      "output_tokens": 18
+    },
+    {
+      "id": "train-support-routing",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "7b545d19919fb96f1570e7c05ae840eafff9bf2f375a9e098997a0a4b543bb75",
+      "response_id": "resp_05f9aa3750f496f2016afd4883e41487d09c2e9aa9dd5b8bb4",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 110,
+      "output_tokens": 11
+    },
+    {
+      "id": "train-brief-announcement",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "42c8f15b15bef54f3b92ad936f7897d7d1c9c02e1af8eed11c8096d9a5e25c4e",
+      "response_id": "resp_0ae7a19120112a21016afd4885dd5c87d0b20b0ae76829ab5c",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 92,
+      "output_tokens": 20
+    },
+    {
+      "id": "train-plain-language",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "0e4bd25df4ff41ec561f956a54c48535470f7ae8fb814add57785d2354ba0b5a",
+      "response_id": "resp_05c33632c77ad635016afd4886890c87d0a2974f01238be32f",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 90,
+      "output_tokens": 40
+    },
+    {
+      "id": "train-polite-request",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "42cbc70838f55b47a3e4fa9f81f5ab1385ab67ed1550c2c79e8d4dc839b5317e",
+      "response_id": "resp_0408c04c2699e634016afd4887e4b887d0a7db6bd0e18a0631",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 87,
+      "output_tokens": 26
+    },
+    {
+      "id": "train-contrast-units",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "7d825423ac43a97a6059918b306b8b36772f06b9ea4c18526e6babf52e378097",
+      "response_id": "resp_0e00a8e351dbc259016afd4888b0e887d0aa04f5af4894d2d0",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 88,
+      "output_tokens": 50
+    },
+    {
+      "id": "train-lost-item",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "4c3b9e0c6d45625eca3777ea196d436a133a7b7e657623437b56084a3125ec42",
+      "response_id": "resp_011eb76302f17db0016afd4888cd3087d0a217a7cdaac631c4",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 90,
+      "output_tokens": 22
+    },
+    {
+      "id": "train-evidence-limit",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "81a92e851f9a1763241692a74728b8592ecd0a69ff750ffc39fed83183b27a21",
+      "response_id": "resp_0644700d5ff7b5ac016afd488b418887d08fea5fcaced51d81",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 92,
+      "output_tokens": 43
+    },
+    {
+      "id": "train-source-summary",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "d132c3ffb79d7653f31e455a3e50d508845319c8a93cf935ed5ff7d1641c5e9a",
+      "response_id": "resp_0a1aab3c8ba24e7c016afd488be55487d0a902746170a708f5",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 102,
+      "output_tokens": 31
+    },
+    {
+      "id": "train-clarifying-detail",
+      "domain": "general",
+      "split": "train",
+      "request_sha256": "cd091a52684763c89942c0b0c26fd31d15d26302fef7a89e2cf5ce63b96e04b5",
+      "response_id": "resp_0873a12f35228b29016afd488beca087d0961305eb3f2bdcf3",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 102,
+      "output_tokens": 26
+    },
+    {
+      "id": "valid-seating-gaps",
+      "domain": "math",
+      "split": "valid",
+      "request_sha256": "6d80577423dadef4ef14051d51ae863b0ba533c16707f8c82ee7311201591952",
+      "response_id": "resp_0ce7b9cd398c6428016afd488d2cf087d0bbe62f12133e1639",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 116,
+      "output_tokens": 44
+    },
+    {
+      "id": "valid-rounding-loads",
+      "domain": "math",
+      "split": "valid",
+      "request_sha256": "67d85c914415f1a433fd878c69599aa4dfb90e8eed9f7e67c410f94f526358ec",
+      "response_id": "resp_023a5b8e6bed2d21016afd488eff4087d081eb5342344f490f",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 120,
+      "output_tokens": 49
+    },
+    {
+      "id": "valid-cubic-scaling",
+      "domain": "math",
+      "split": "valid",
+      "request_sha256": "20fa26a32b06335e981caae912b88280e9dfdf1ccc76cd8e5481bea18c6a1af7",
+      "response_id": "resp_040c1ba88906da91016afd489063a887d0bc45f195bf5ad188",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 109,
+      "output_tokens": 46
+    },
+    {
+      "id": "valid-cyclic-seating",
+      "domain": "reasoning",
+      "split": "valid",
+      "request_sha256": "3fe4251f3f713d5bcae1a84f298c0abb2c733c5743c01607c72b6f7a69c7f6cd",
+      "response_id": "resp_0a1d88b5e34c1be0016afd4890d72c87d0ae39637a78c22886",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 113,
+      "output_tokens": 24
+    },
+    {
+      "id": "valid-impossible-date",
+      "domain": "reasoning",
+      "split": "valid",
+      "request_sha256": "4179b4e15546a141f8374ab1ea02a733571168c44b847b7f5d3dc61e2bbd16a3",
+      "response_id": "resp_07352aea17ffc358016afd4893021887d098ccd616f24aa7eb",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 109,
+      "output_tokens": 44
+    },
+    {
+      "id": "valid-causal-claim",
+      "domain": "reasoning",
+      "split": "valid",
+      "request_sha256": "981b7bb5982b23527979a3429b994ccc344c86d0eddc3a2b5cac9024a4c5fcf4",
+      "response_id": "resp_000a679758c30c57016afd4893ba1487d08824d23d052048a6",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 114,
+      "output_tokens": 30
+    },
+    {
+      "id": "valid-chunking",
+      "domain": "coding",
+      "split": "valid",
+      "request_sha256": "f1c448f7e566321436def6ea73bfcb703c353cd26d47e90f65ec6b5f953b6929",
+      "response_id": "resp_0e2080283605e043016afd48948f3487d0a4452ead29564730",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 106,
+      "output_tokens": 35
+    },
+    {
+      "id": "valid-palindrome-filter",
+      "domain": "coding",
+      "split": "valid",
+      "request_sha256": "0abbfa6bc426e7683c3d0d222feb8c0ae7a0e34a6d7f3c184da84fd28df786e9",
+      "response_id": "resp_0299feb7da5aec52016afd489568fc87d0a9fe60a80e28363b",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 103,
+      "output_tokens": 39
+    },
+    {
+      "id": "valid-prefix-totals",
+      "domain": "coding",
+      "split": "valid",
+      "request_sha256": "f80eb43e887e20a5e084f16cdd2b5bebf5b6655e81f76cb9a447cedd1a827f45",
+      "response_id": "resp_04a2828a40413d86016afd4897933887d08dee1fc6d6a710ab",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 96,
+      "output_tokens": 42
+    },
+    {
+      "id": "valid-event-conflicts",
+      "domain": "general",
+      "split": "valid",
+      "request_sha256": "7370324052696e9146e39f24ef915f3bd7759576604c18ec6c2fa9b3ac702575",
+      "response_id": "resp_0ce9338fcf84f388016afd4898ed5087d0845c3afad950c3d1",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 139,
+      "output_tokens": 9
+    },
+    {
+      "id": "valid-permission-note",
+      "domain": "general",
+      "split": "valid",
+      "request_sha256": "c924dac8b847144a2c2ccbd85f76b8e9a65bdf7a7dabc6d7551df13bb597b090",
+      "response_id": "resp_09d5c7b1de3a134d016afd489958ec87d0b18be01373a7ffb8",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 91,
+      "output_tokens": 19
+    },
+    {
+      "id": "valid-ambiguous-unit",
+      "domain": "general",
+      "split": "valid",
+      "request_sha256": "5601bb3edce74480bc23b481a5fa59f644088f553c4197590462618aa51468da",
+      "response_id": "resp_0bf9b111c876d3c2016afd489a569487d0b55e279eb433f47a",
+      "model": "gpt-6.2-astra",
+      "input_tokens": 95,
+      "output_tokens": 18
+    }
+  ]
+}
