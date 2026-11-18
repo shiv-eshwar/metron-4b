@@ -1,0 +1,19 @@
+{
+  "repo": "shiv-eshwar/modeldistl",
+  "tag": "pilot-v0.1.0",
+  "file": "ModelDistl-4B-Q4_K_M.gguf",
+  "bytes": 2497279136,
+  "sha256": "3afffc55801810e007fd508473253d4b9b25d8cd5ceb6dff92996262bfb308d9",
+  "parts": [
+    {
+      "file": "ModelDistl-4B-Q4_K_M.gguf.part-01",
+      "bytes": 1300000000,
+      "sha256": "5a260fc8e5e4108e3be7ddd15f328c9383e253a0eba002eedc3209d9d880e4e2"
+    },
+    {
+      "file": "ModelDistl-4B-Q4_K_M.gguf.part-02",
+      "bytes": 1197279136,
+      "sha256": "09245352c68777c08768e5df2203e515177200b3b724c639bde1926713b6bfe8"
+    }
+  ]
+}

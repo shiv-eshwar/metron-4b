@@ -16,6 +16,7 @@ class PipelineTests(unittest.TestCase):
     @unittest.skipUnless(find_spec("mlx") is not None, "MLX training extra")
     def test_completion_loss_excludes_prompt_and_all_padding(self):
         import mlx.core as mx
+
         from modeldistl.train import completion_loss
 
         # Real token positions are [0, 4) and [0, 3). Position 2 is the first

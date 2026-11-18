@@ -2,9 +2,19 @@
 
 ModelDistl fine-tunes Qwen3-4B-Instruct-2507 on verified demonstrations from OpenAI’s GPT-6.2 Astra. The 4,022,468,096-parameter student runs locally. The teacher is needed only when generating new demonstrations.
 
+## Download the trained model
+
+| Build | File size | How to get it |
+| --- | ---: | --- |
+| Q4_K_M | 2.50 GB | Run `python3 scripts/model_file.py download` from this checkout with GitHub CLI signed in. The script downloads two release parts, verifies their SHA-256 hashes, and assembles the single GGUF in `artifacts/export/`. |
+| Q3_K_S | 1.89 GB | Download the single GGUF from the private release while signed in. [Download Q3_K_S](https://github.com/shiv-eshwar/modeldistl/releases/download/pilot-v0.1.0/ModelDistl-4B-Q3_K_S.gguf) |
+| MLX adapter | 4.86 MB compressed | Unzip alongside a local 4-bit MLX conversion of the pinned base. [Download adapter](https://github.com/shiv-eshwar/modeldistl/releases/download/pilot-v0.1.0/ModelDistl-4B-MLX-adapter.zip) |
+
+[Release and checksums](https://github.com/shiv-eshwar/modeldistl/releases/tag/pilot-v0.1.0)
+
 ## Reproduce the pilot on Apple silicon
 
-The pinned environment uses Python 3.12, uv, MLX-LM, and llama.cpp. The training host has 16 GB of unified memory. Allow about 35 GB of working disk space for the source weights, temporary BF16 conversion, and both quantized models.
+The pinned environment uses Python 3.12, uv, MLX-LM, and llama.cpp. The training host has 16 GB of unified memory. Allow about 40 GB of working disk space for the source weights, temporary BF16 conversion, and quantized models.
 
 ```sh
 uv sync --locked --all-extras
@@ -12,12 +22,12 @@ source .venv/bin/activate
 bash scripts/setup-llama.sh
 python -m modeldistl.weights
 python -m modeldistl.train --data runs/pilot/data
-python -m modeldistl.export
+python -m modeldistl.export --quantization Q4_K_M Q3_K_S
 ```
 
 The training command masks user tokens, rejects truncated conversations, fixes both random seeds, and saves an adapter every 32 microbatches. It scores the saved checkpoints on all 12 validation demonstrations and puts the lowest-loss adapter in `artifacts/adapters/pilot/selected`. Use `--output` for an additional training run and pass that run’s selected adapter to the exporter with `--adapter`.
 
-Training uses a 4-bit, group-size-64 MLX base. The rank-8 adapter updates the query and value projections in the final 16 of 36 layers. Export applies the learned delta to the pinned original BF16 weights, preserves the original tokenizer and chat template, then quantizes once to Q4_K_M.
+Training uses a 4-bit, group-size-64 MLX base. The rank-8 adapter updates the query and value projections in the final 16 of 36 layers. Export applies the learned delta to the pinned original BF16 weights, preserves the original tokenizer and chat template, and quantizes each deployment build directly from the merged BF16 weights.
 
 ## Run the model
 

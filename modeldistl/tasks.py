@@ -48,7 +48,7 @@ def grade(task, answer, pool):
         return False, "empty or excessive answer"
     kind = spec["kind"]
     if kind == "code":
-        fence = re.fullmatch(r"\x60{3}(?:python|py)?\s*\n(.*?)\n\x60{3}", answer, re.S | re.I)
+        fence = re.fullmatch(r"\x60{3}(?:python|py)?\s*\n(.*?)\n\x60{3}", answer, re.DOTALL | re.IGNORECASE)
         code = fence[1] if fence else answer
         limits = {"max_feed_duration_secs": 0.5, "max_memory": 8_000_000,
                   "max_recursion_depth": 128, "max_total_sleep_secs": 0}
@@ -71,7 +71,7 @@ def grade(task, answer, pool):
         return result, "JSON equality"
     if kind == "rubric":
         okay = len(answer.split()) <= spec["max_words"] and all(
-            re.search(pattern, answer, re.I) for pattern in spec["all"]
+            re.search(pattern, answer, re.IGNORECASE) for pattern in spec["all"]
         )
         return okay, "required content and word limit"
     if kind == "choice":
@@ -79,7 +79,7 @@ def grade(task, answer, pool):
     # Commas, LaTeX and units have distinct meanings. Do not strip arbitrary text
     # from model answers to find a reference number somewhere in the explanation.
     last = answer.splitlines()[-1].replace("**", "").strip()
-    match = re.fullmatch(r"Answer\s*:\s*(.+)", last, re.I)
+    match = re.fullmatch(r"Answer\s*:\s*(.+)", last, re.IGNORECASE)
     if not match:
         return False, "missing final answer line"
     value = match[1].strip().rstrip(".").strip()

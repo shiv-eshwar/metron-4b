@@ -25,8 +25,10 @@ INSTRUCTIONS = (
 
 
 def request_for(task):
-    return dict(model=MODEL, instructions=INSTRUCTIONS, input=task["prompt"],
-                reasoning={"effort": "low"}, service_tier="default", max_output_tokens=1024, store=False)
+    return {
+        "model": MODEL, "instructions": INSTRUCTIONS, "input": task["prompt"],
+        "reasoning": {"effort": "low"}, "service_tier": "default", "max_output_tokens": 1024, "store": False,
+    }
 
 
 def cache_dir(task):
