@@ -1,0 +1,109 @@
+{
+  "hardware": "Apple M5 MacBook Air, 8-core GPU, 16 GB unified memory",
+  "repetitions": 3,
+  "benchmarks": {
+    "Q4_K_M-Metal": [
+      {
+        "model_size": 2491323904,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 99,
+        "n_prompt": 128,
+        "n_gen": 0,
+        "avg_ts": 717.145289,
+        "stddev_ts": 73.428512,
+        "samples_ts": [
+          793.173,
+          711.637,
+          646.626
+        ]
+      },
+      {
+        "model_size": 2491323904,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 99,
+        "n_prompt": 0,
+        "n_gen": 64,
+        "avg_ts": 22.979272,
+        "stddev_ts": 2.133962,
+        "samples_ts": [
+          20.5705,
+          24.6332,
+          23.7341
+        ]
+      }
+    ],
+    "Q3_K_S-Metal": [
+      {
+        "model_size": 1881040384,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 99,
+        "n_prompt": 128,
+        "n_gen": 0,
+        "avg_ts": 660.696292,
+        "stddev_ts": 9.647174,
+        "samples_ts": [
+          661.256,
+          670.051,
+          650.781
+        ]
+      },
+      {
+        "model_size": 1881040384,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 99,
+        "n_prompt": 0,
+        "n_gen": 64,
+        "avg_ts": 22.838662,
+        "stddev_ts": 0.33761,
+        "samples_ts": [
+          22.7148,
+          22.5805,
+          23.2207
+        ]
+      }
+    ],
+    "Q4_K_M-CPU": [
+      {
+        "model_size": 2491323904,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 0,
+        "n_prompt": 128,
+        "n_gen": 0,
+        "avg_ts": 54.860357,
+        "stddev_ts": 1.926033,
+        "samples_ts": [
+          52.6599,
+          55.6809,
+          56.2402
+        ]
+      },
+      {
+        "model_size": 2491323904,
+        "model_n_params": 4022468096,
+        "n_threads": 4,
+        "n_gpu_layers": 0,
+        "n_prompt": 0,
+        "n_gen": 64,
+        "avg_ts": 17.792087,
+        "stddev_ts": 1.267085,
+        "samples_ts": [
+          18.737,
+          18.287,
+          16.3522
+        ]
+      }
+    ]
+  },
+  "chat": {
+    "prompt": "Three teams have fourteen people each. Two more people arrive. How many people are there? Reply with just the number.",
+    "output": "\n\nLoading model... \n\n▄▄ ▄▄\n██ ██\n██ ██  ▀▀█▄ ███▄███▄  ▀▀█▄    ▄████ ████▄ ████▄\n██ ██ ▄█▀██ ██ ██ ██ ▄█▀██    ██    ██ ██ ██ ██\n██ ██ ▀█▄██ ██ ██ ██ ▀█▄██ ██ ▀████ ████▀ ████▀\n                                    ██    ██\n                                    ▀▀    ▀▀\n\nbuild      : b12499-401563f10\nmodel      : artifacts/astra-v2/export/ModelDistl-4B-Q4_K_M.gguf\nftype      : Q4_K - Medium\nmodalities : text\n\navailable commands:\n  /exit or Ctrl+C     stop or exit\n  /regen              regenerate the last response\n  /clear              clear the chat history\n  /read <file>        add a text file\n  /glob <pattern>     add text files using globbing pattern\n\n\n\n> Three teams have fourteen people each. Two more people arrive. How many people are there? Reply with just the number.\n14 × 3 + 2 = 44\n\n[ Prompt: 81.0 t/s | Generation: 42.7 t/s ]\n\n\nExiting...\n",
+    "passed": true,
+    "context": 2048,
+    "peak_rss_bytes": 2941485056
+  }
+}
