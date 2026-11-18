@@ -67,9 +67,11 @@ def gguf_inference(model, binary, log, jobs=1, max_tokens=MAX_TOKENS, reasoning=
             else:
                 raise TimeoutError(f"llama-server startup timed out; see {log}")
 
-            def infer(prompt):
+            def infer(prompt, choices=None):
                 body = {"model": "modeldistl", "messages": [{"role": "user", "content": prompt}],
                         "temperature": 0, "seed": 42, "max_tokens": max_tokens}
+                if choices:
+                    body["grammar"] = "root ::= " + " | ".join(json.dumps(c) for c in choices)
                 req = Request(base + "/v1/chat/completions", data=json.dumps(body).encode(),
                               headers={"Content-Type": "application/json"})
                 with urlopen(req, timeout=300) as r:
@@ -92,7 +94,14 @@ def run(infer, tasks, report, out):
     pending = [t for t in tasks if t["id"] not in done]
     def predict(task):
         start = time.monotonic()
-        answer, stats = infer(task["prompt"])
+        if report.get("constrained_choices"):
+            labels = [line.partition(". ")[0] for line in task["prompt"].splitlines()
+                      if line.partition(". ")[0] in {"A", "B", "C", "D", "E", "1", "2", "3", "4", "5"}]
+            if task["check"]["answer"] not in labels or len(labels) < 2:
+                raise ValueError(f"Missing option labels for {task['id']}")
+            answer, stats = infer(task["prompt"], labels)
+        else:
+            answer, stats = infer(task["prompt"])
         return task, answer, stats, time.monotonic() - start
 
     with ExitStack() as stack:
@@ -134,7 +143,7 @@ def main():
     parser.add_argument("--server-bin", type=Path, default=Path(".tools/llama-bin/llama-server"))
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--curriculum", type=Path, default=Path("curriculum"))
-    parser.add_argument("--suite", choices=["local", "public", "mbpp", "sealed"], default="local")
+    parser.add_argument("--suite", choices=["local", "public", "mbpp", "sealed", "sealed-choice"], default="local")
     parser.add_argument("--test-file", type=Path, default=Path("runs/astra-v2/curriculum/test.jsonl"))
     parser.add_argument("--max-tokens", type=int, default=MAX_TOKENS)
     parser.add_argument("--reasoning", choices=["on", "off", "auto"], default="auto")
@@ -147,8 +156,12 @@ def main():
         parser.error("Custom parallelism, generation limits and reasoning mode require a GGUF server")
     if not 1 <= args.max_tokens < 2048:
         parser.error("The output budget must fit the inference context")
-    if args.suite == "sealed":
+    if args.suite in ("sealed", "sealed-choice"):
         tasks = [json.loads(line) for line in args.test_file.read_text().splitlines()]
+        if args.suite == "sealed-choice":
+            if not args.gguf:
+                parser.error("Constrained choices use the GGUF inference server")
+            tasks = [t for t in tasks if t["source"] == "arc"]
         args.code_runtime = "cpython"
     elif args.suite == "mbpp":
         from .benchmarks import mbpp
@@ -167,6 +180,8 @@ def main():
               "temperature": 0, "seed": 42, "max_tokens": args.max_tokens, "reasoning": args.reasoning, "complete": False,
               "suite": args.suite, "code_runtime": args.code_runtime, "jobs": args.jobs,
               "test_sha256": hashlib.sha256(json.dumps(tasks, sort_keys=True).encode()).hexdigest()}
+    if args.suite == "sealed-choice":
+        report["constrained_choices"] = True
     if args.gguf:
         with args.gguf.open("rb") as f:
             report["gguf_file_sha256"] = hashlib.file_digest(f, "sha256").hexdigest()

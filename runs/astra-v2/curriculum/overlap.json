@@ -1,8 +1,8 @@
 {
   "kept": {
     "test": 256,
-    "valid": 127,
-    "train": 3047
+    "valid": 200,
+    "train": 5879
   },
   "excluded": [
     {
@@ -171,6 +171,13 @@
       "split": "train",
       "matches": [
         "mbpp-699"
+      ]
+    },
+    {
+      "id": "quac-C_e665c68c09964e3aa76d063cec663051_1_q#3",
+      "split": "train",
+      "matches": [
+        "quac-C_1c0dd81e278e41eaada47c9402aeccab_0_q#1"
       ]
     }
   ],
