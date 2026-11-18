@@ -2,6 +2,8 @@
 
 import json
 import re
+import string
+from collections import Counter
 from fractions import Fraction
 from pathlib import Path
 
@@ -41,12 +43,33 @@ def same_value(actual, expected):
     )
 
 
+def span_score(answer, references):
+    """SQuAD-style exact match and token F1 on the final answer."""
+    def tokens(text):
+        text = text.lower().translate(str.maketrans("", "", string.punctuation))
+        return re.sub(r"\b(a|an|the)\b", " ", text).split()
+
+    final = answer.strip().splitlines()[-1] if answer.strip() else ""
+    final = re.sub(r"^\s*answer\s*:\s*", "", final, flags=re.I)
+    actual = tokens(final)
+    exact, f1 = False, 0.0
+    for ref in references:
+        expected = tokens(ref)
+        exact |= actual == expected
+        common = sum((Counter(actual) & Counter(expected)).values())
+        score = 2 * common / (len(actual) + len(expected)) if common else float(actual == expected)
+        f1 = max(score, f1)
+    return exact, f1
+
+
 def grade(task, answer, pool, *, cpython=False):
     spec = task["check"]
     answer = answer.strip()
     if not answer or len(answer) > 32_000:
         return False, "empty or excessive answer"
     kind = spec["kind"]
+    if kind == "span":
+        return span_score(answer, spec["answers"])[0], "normalized answer span"
     if kind == "code":
         fence = re.fullmatch(r"\x60{3}(?:python|py)?\s*\n(.*?)\n\x60{3}", answer, re.DOTALL | re.IGNORECASE)
         code = fence[1] if fence else answer

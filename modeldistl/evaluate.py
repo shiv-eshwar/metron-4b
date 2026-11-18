@@ -15,7 +15,7 @@ from urllib.request import Request, urlopen
 from pydantic_monty import Monty
 
 from .files import write_json
-from .tasks import curriculum, grade
+from .tasks import curriculum, grade, span_score
 from .weights import QUANT, REVISION
 
 MAX_TOKENS = 320
@@ -43,13 +43,15 @@ def mlx_inference(adapter):
 
 
 @contextmanager
-def gguf_inference(model, binary, log, jobs=1):
+def gguf_inference(model, binary, log, jobs=1, max_tokens=MAX_TOKENS, reasoning="auto"):
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
     base = f"http://127.0.0.1:{port}"
     command = [str(binary), "-m", str(model), "-c", str(2048 * jobs), "-np", str(jobs), "--jinja",
                "--host", "127.0.0.1", "--port", str(port), "--alias", "modeldistl"]
+    if reasoning != "auto":
+        command.extend(["--reasoning", reasoning])
     with log.open("w") as f, subprocess.Popen(command, stdout=f, stderr=subprocess.STDOUT) as server:
         try:
             deadline = time.monotonic() + 120
@@ -67,13 +69,13 @@ def gguf_inference(model, binary, log, jobs=1):
 
             def infer(prompt):
                 body = {"model": "modeldistl", "messages": [{"role": "user", "content": prompt}],
-                        "temperature": 0, "seed": 42, "max_tokens": MAX_TOKENS}
+                        "temperature": 0, "seed": 42, "max_tokens": max_tokens}
                 req = Request(base + "/v1/chat/completions", data=json.dumps(body).encode(),
                               headers={"Content-Type": "application/json"})
-                with urlopen(req, timeout=120) as r:
+                with urlopen(req, timeout=300) as r:
                     data = json.load(r)
                 choice = data["choices"][0]
-                return choice["message"]["content"], {"tokens": data["usage"]["completion_tokens"],
+                return choice["message"]["content"] or "", {"tokens": data["usage"]["completion_tokens"],
                                                       "finish": choice["finish_reason"]}
             yield infer
         finally:
@@ -85,7 +87,9 @@ def gguf_inference(model, binary, log, jobs=1):
 
 
 def run(infer, tasks, report, out):
-    results = report["results"] = []
+    results = report.setdefault("results", [])
+    done = {r["id"] for r in results}
+    pending = [t for t in tasks if t["id"] not in done]
     def predict(task):
         start = time.monotonic()
         answer, stats = infer(task["prompt"])
@@ -94,18 +98,20 @@ def run(infer, tasks, report, out):
     with ExitStack() as stack:
         pool = stack.enter_context(Monty(max_processes=1, request_timeout=3))
         if report["jobs"] == 1:
-            predictions = map(predict, tasks)
+            predictions = map(predict, pending)
         else:
             executor = stack.enter_context(ThreadPoolExecutor(max_workers=report["jobs"]))
-            predictions = executor.map(predict, tasks)
+            predictions = executor.map(predict, pending)
         for t, answer, stats, seconds in predictions:
             passed, detail = grade(t, answer, pool, cpython=report["code_runtime"] == "cpython")
             results.append({"id": t["id"], "domain": t["domain"], "pass": passed, "check": detail,
                             "answer": answer, "seconds": round(seconds, 3), **stats})
-            if t["domain"] == "arc":
+            if t["domain"] == "arc" or (t.get("source") == "arc" and t["check"]["kind"] == "choice"):
                 from .benchmarks import matches_arc_option
 
                 results[-1]["choice_content_pass"] = matches_arc_option(t, answer)
+            if t["check"]["kind"] == "span":
+                results[-1]["span_f1"] = span_score(answer, t["check"]["answers"])[1]
             print(f"{len(results)}/{len(tasks)} {t['id']} {'pass' if passed else 'fail'}", flush=True)
             write_json(out, report)
     report["domains"] = {}
@@ -128,13 +134,23 @@ def main():
     parser.add_argument("--server-bin", type=Path, default=Path(".tools/llama-bin/llama-server"))
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--curriculum", type=Path, default=Path("curriculum"))
-    parser.add_argument("--suite", choices=["local", "public", "mbpp"], default="local")
+    parser.add_argument("--suite", choices=["local", "public", "mbpp", "sealed"], default="local")
+    parser.add_argument("--test-file", type=Path, default=Path("runs/astra-v2/curriculum/test.jsonl"))
+    parser.add_argument("--max-tokens", type=int, default=MAX_TOKENS)
+    parser.add_argument("--reasoning", choices=["on", "off", "auto"], default="auto")
+    parser.add_argument("--source-revision", default=REVISION)
+    parser.add_argument("--resume", action="store_true")
     parser.add_argument("--code-runtime", choices=["monty", "cpython"], default="monty")
     parser.add_argument("--jobs", type=int, choices=range(1, 9), default=1, help="Concurrent 2,048-token GGUF slots")
     args = parser.parse_args()
-    if args.jobs != 1 and not args.gguf:
-        parser.error("--jobs applies to a GGUF server")
-    if args.suite == "mbpp":
+    if not args.gguf and (args.jobs != 1 or args.max_tokens != MAX_TOKENS or args.reasoning != "auto"):
+        parser.error("Custom parallelism, generation limits and reasoning mode require a GGUF server")
+    if not 1 <= args.max_tokens < 2048:
+        parser.error("The output budget must fit the inference context")
+    if args.suite == "sealed":
+        tasks = [json.loads(line) for line in args.test_file.read_text().splitlines()]
+        args.code_runtime = "cpython"
+    elif args.suite == "mbpp":
         from .benchmarks import mbpp
 
         args.code_runtime = "cpython"
@@ -146,15 +162,24 @@ def main():
     else:
         tasks = curriculum(args.curriculum)["test"]
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    report = {"backend": "llama.cpp" if args.gguf else "mlx", "source_revision": REVISION,
+    report = {"backend": "llama.cpp" if args.gguf else "mlx", "source_revision": args.source_revision,
               "model": str(args.gguf or QUANT), "adapter": str(args.adapter) if args.adapter else None,
-              "temperature": 0, "seed": 42, "max_tokens": MAX_TOKENS, "complete": False,
+              "temperature": 0, "seed": 42, "max_tokens": args.max_tokens, "reasoning": args.reasoning, "complete": False,
               "suite": args.suite, "code_runtime": args.code_runtime, "jobs": args.jobs,
               "test_sha256": hashlib.sha256(json.dumps(tasks, sort_keys=True).encode()).hexdigest()}
     if args.gguf:
         with args.gguf.open("rb") as f:
             report["gguf_file_sha256"] = hashlib.file_digest(f, "sha256").hexdigest()
-        with gguf_inference(args.gguf, args.server_bin, args.out.with_suffix(".server.log"), args.jobs) as infer:
+        if args.resume and args.out.exists():
+            old = json.loads(args.out.read_text())
+            if any(old.get(k) != v for k, v in report.items() if k != "complete"):
+                raise ValueError("Existing report has different inputs or inference settings")
+            if old.get("complete"):
+                print(f"Already evaluated {args.out}")
+                return
+            report["results"] = old["results"]
+        with gguf_inference(args.gguf, args.server_bin, args.out.with_suffix(".server.log"), args.jobs,
+                            args.max_tokens, args.reasoning) as infer:
             run(infer, tasks, report, args.out)
     else:
         if args.adapter:

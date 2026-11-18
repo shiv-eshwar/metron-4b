@@ -7,18 +7,28 @@ import uuid
 
 IMAGE = "python@sha256:c5ba3deef00c7758561a0f03c26f44f10589263d40e732b8748e0d1f38f6dd89"
 HARNESS = """
-import contextlib, json, os, sys
+import contextlib, json, os, subprocess, sys
 job = json.load(sys.stdin)
 scope = {"__name__": "submission"}
 try:
-    with open(os.devnull, "w") as quiet, contextlib.redirect_stdout(quiet), contextlib.redirect_stderr(quiet):
-        exec(job["code"], scope)
-        if "assertions" in job:
-            for test in job["assertions"]:
-                exec(test, scope)
-            result = True
-        else:
-            result = [scope["solve"](*args) for args in job["args"]]
+    if "stdin" in job:
+        result = []
+        for text in job["stdin"]:
+            run = subprocess.run([sys.executable, "-I", "-S", "-B", "-c", job["code"]],
+                                 input=text.encode(), stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                                 timeout=2, check=True)
+            if len(run.stdout) > 32000:
+                raise ValueError("excess output")
+            result.append(run.stdout.decode().split())
+    else:
+        with open(os.devnull, "w") as quiet, contextlib.redirect_stdout(quiet), contextlib.redirect_stderr(quiet):
+            exec(job["code"], scope)
+            if "assertions" in job:
+                for test in job["assertions"]:
+                    exec(test, scope)
+                result = True
+            else:
+                result = [scope["solve"](*args) for args in job["args"]]
     print(json.dumps({"result": result}, allow_nan=False))
 except BaseException as exc:
     print(json.dumps({"error": type(exc).__name__}))
@@ -36,7 +46,9 @@ def check_code(code, spec):
         IMAGE, "python", "-I", "-S", "-B", "-c", HARNESS,
     ]
     job = {"code": code}
-    if "assertions" in spec:
+    if "stdin" in spec:
+        job["stdin"] = spec["stdin"]
+    elif "assertions" in spec:
         job["assertions"] = spec["assertions"]
     else:
         job["args"] = [case["args"] for case in spec["cases"]]
@@ -58,6 +70,8 @@ def check_code(code, spec):
             return False, "invalid execution result"
     if "error" in value:
         return False, value["error"]
+    if "stdin" in spec:
+        return value["result"] == [s.split() for s in spec["stdout"]], "CPython stdin/stdout cases"
     if "assertions" in spec:
         return value["result"] is True, "CPython assertions"
     expected = [case["want"] for case in spec["cases"]]
