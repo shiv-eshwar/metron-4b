@@ -50,7 +50,7 @@ def span_score(answer, references):
         return re.sub(r"\b(a|an|the)\b", " ", text).split()
 
     final = answer.strip().splitlines()[-1] if answer.strip() else ""
-    final = re.sub(r"^\s*answer\s*:\s*", "", final, flags=re.I)
+    final = re.sub(r"^\s*answer\s*:\s*", "", final, flags=re.IGNORECASE)
     actual = tokens(final)
     exact, f1 = False, 0.0
     for ref in references:

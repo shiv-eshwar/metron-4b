@@ -1,0 +1,30 @@
+{
+  "seed": 621907,
+  "sources": {
+    "mbpp": [
+      "google-research-datasets/mbpp",
+      "4bb6404fdc6cacfda99d4ac4205087b89d32030c",
+      "CC BY 4.0"
+    ],
+    "gsm8k": [
+      "openai/gsm8k",
+      "740312add88f781978c0658806c59bc2815b9866",
+      "MIT"
+    ],
+    "arc": [
+      "allenai/ai2_arc",
+      "210d026faf9955653af8916fad021475a3f00453",
+      "CC BY-SA 4.0"
+    ],
+    "squad": [
+      "rajpurkar/squad_v2",
+      "3ffb306f725f7d2ce8394bc1873b24868140c412",
+      "CC BY-SA 4.0"
+    ],
+    "contests": [
+      "deepmind/code_contests",
+      "802411c3010cb00d1b05bad57ca77365a3c699d6",
+      "CC BY 4.0"
+    ]
+  }
+}

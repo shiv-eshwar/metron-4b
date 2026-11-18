@@ -24,12 +24,14 @@ def digest(path):
         return hashlib.file_digest(f, "sha256").hexdigest()
 
 
-def export(adapter, targets):
+def export(adapter, targets, model_name=None):
     revision = subprocess.check_output(["git", "-C", SOURCE, "rev-parse", "HEAD"], text=True).strip()
     if revision != COMMIT:
         raise SystemExit("Run bash scripts/setup-llama.sh to install the pinned converter.")
     metadata = {"base": REPO, "revision": REVISION, "llama_cpp": COMMIT,
                 "adapter_sha256": digest(adapter / "adapters.safetensors") if adapter else None}
+    if model_name:
+        metadata["name"] = model_name
     pending = {}
     for quantization, output in targets.items():
         receipt = output.with_suffix(".json")
@@ -63,7 +65,7 @@ def export(adapter, targets):
         bf16 = scratch / "bf16.gguf"
         quantized = scratch / "model.gguf"
         subprocess.run([sys.executable, SOURCE / "convert_hf_to_gguf.py", source, "--outfile", bf16,
-                        "--outtype", "bf16", "--model-name", "ModelDistl-4B-Pilot" if adapter else "Qwen3-4B-Instruct-2507"],
+                        "--outtype", "bf16", "--model-name", model_name or ("ModelDistl-4B-Pilot" if adapter else "Qwen3-4B-Instruct-2507")],
                        check=True)
         for quantization, output in pending.items():
             subprocess.run([".tools/llama-bin/llama-quantize", bf16, quantized, quantization], check=True)
@@ -80,16 +82,19 @@ def main():
     group.add_argument("--adapter", type=Path, default=DEFAULT_ADAPTER)
     group.add_argument("--base-only", action="store_true", help="Export the matching baseline")
     parser.add_argument("--quantization", nargs="+", choices=["Q4_K_M", "Q3_K_S"], default=["Q4_K_M"])
-    parser.add_argument("--out", type=Path)
+    output = parser.add_mutually_exclusive_group()
+    output.add_argument("--out", type=Path)
+    output.add_argument("--directory", type=Path, default=Path("artifacts/export"))
+    parser.add_argument("--name", help="Display name embedded in GGUF metadata")
     args = parser.parse_args()
     stem = "Qwen3-4B-base" if args.base_only else "ModelDistl-4B"
     if args.out and len(args.quantization) != 1:
         parser.error("--out specifies a single file; choose one quantization")
-    parent = args.out.parent if args.out else Path("artifacts/export")
+    parent = args.out.parent if args.out else args.directory
     targets = {q: args.out or parent / f"{stem}-{q}.gguf" for q in args.quantization}
     parent.mkdir(parents=True, exist_ok=True)
     with FileLock(parent / ".export.lock", timeout=0):
-        export(None if args.base_only else args.adapter, targets)
+        export(None if args.base_only else args.adapter, targets, args.name)
 
 
 if __name__ == "__main__":

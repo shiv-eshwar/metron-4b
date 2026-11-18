@@ -71,8 +71,23 @@ def train(config, output):
         datasets[split] = ds
         counts[split] = {"rows": len(rows), "completion_tokens": sum(supervised),
                          "longest_chat": max(lengths), "sha256": hashlib.sha256(source.read_bytes()).hexdigest()}
+    if getattr(args, "epochs", None):
+        if counts["train"]["rows"] % (args.batch_size * args.grad_accumulation_steps):
+            raise ValueError("The complete-epoch recipe needs a whole number of optimizer updates.")
+        args.iters = counts["train"]["rows"] // args.batch_size * args.epochs
+        updates = args.iters // args.grad_accumulation_steps
+        interval = max(1, updates // 4) * args.grad_accumulation_steps
+        args.save_every = args.steps_per_eval = interval
+        if getattr(args, "cosine_warmup_fraction", None):
+            warmup = max(1, round(updates * args.cosine_warmup_fraction))
+            args.lr_schedule = {"name": "cosine_decay", "arguments": [args.learning_rate, max(1, updates-warmup),
+                                 args.learning_rate / 10], "warmup": warmup, "warmup_init": args.learning_rate / 20}
     output.mkdir(parents=True)
     metrics = Metrics(output / "metrics.json", counts)
+    if getattr(args, "epochs", None):
+        metrics.data["base_validation_loss"] = float(evaluate(model, CacheDataset(datasets["valid"]), batch_size=1,
+                                                      num_batches=-1, max_seq_length=args.max_seq_length,
+                                                      loss=completion_loss))
     model.freeze()
     if not 1 <= args.num_layers <= len(model.layers):
         raise ValueError(f"num_layers must be in [1, {len(model.layers)}]")
@@ -93,6 +108,7 @@ def train(config, output):
                 train_dataset=CacheDataset(datasets["train"]), val_dataset=CacheDataset(datasets["valid"]),
                 training_callback=metrics)
     metrics.data["trainable_parameters"] = sum(p.size for _, p in tree_flatten(model.trainable_parameters()))
+    metrics.data["optimizer_updates"] = args.iters // args.grad_accumulation_steps
 
     # The trainer logs validation before the update at a reporting step. Score
     # the actual saved weights after training so the selected file is unambiguous.

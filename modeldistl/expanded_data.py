@@ -6,7 +6,8 @@ import json
 import random
 import re
 from collections import Counter, defaultdict
-from functools import lru_cache
+from functools import cache
+from itertools import pairwise
 from pathlib import Path
 
 from huggingface_hub import hf_hub_download
@@ -26,11 +27,11 @@ SOURCES = {
 # Keep teacher requests focused on ordinary language, arithmetic and benign programs.
 EXCLUDE = re.compile(r"\b(?:explosiv\w*|weapon\w*|missile\w*|firearm\w*|gunpowder|bomb\w*|"
                      r"virus\w*|viral|pathogen\w*|plasmid\w*|transfect\w*|bioweapon\w*|malware|"
-                     r"exploit\w*|hacking|phishing|payload\w*|rifle\w*|pistol\w*)\b", re.I)
+                     r"exploit\w*|hacking|phishing|payload\w*|rifle\w*|pistol\w*)\b", re.IGNORECASE)
 DOMAINS = ("coding", "general", "math", "reasoning")
 
 
-@lru_cache(maxsize=None)
+@cache
 def records(source, filename, columns=None):
     import pyarrow.parquet as pq
 
@@ -167,7 +168,7 @@ def trace(i, rng):
     a = [rng.randint(-3, 8) for _ in range(rng.randint(5, 10))]
     code = "def f(a):\n" + "\n".join("    " + line for line in body.splitlines())
     trusted = {}
-    exec(code, trusted)  # Constant project-authored reference code only.
+    exec(code, trusted)  # noqa: S102 - fixed, project-authored function body only.
     prompt = (f"Read this Python function. What does f({a}) return? Explain the decisive steps briefly "
               f"and finish with 'Answer: <integer>'.\n\n```python\n{code}\n```")
     return task("trace", i, "coding", prompt, {"kind": "number", "answer": str(trusted["f"](a))}, family="trace-" + name)
@@ -179,7 +180,7 @@ def symbolic(i, rng):
     mode = i % 5
     if mode == 0:
         index = rng.randrange(1, 5)
-        pairs = [f"{v} finishes immediately after {u}" for u, v in zip(names, names[1:])]
+        pairs = [f"{v} finishes immediately after {u}" for u, v in pairwise(names)]
         rng.shuffle(pairs)
         prompt = f"Six runners finish with no ties. {'; '.join(pairs)}. Who finishes in position {index+1}?"
         answer = names[index]
@@ -188,7 +189,7 @@ def symbolic(i, rng):
         times = [rng.randrange(2, 18) for _ in edges]
         x, y, z, w, p, q, t = times
         answer = str(min(x+y+p+q, z+w+p+q, z+t))
-        prompt = (f"One-way routes and journey times in minutes: " +
+        prompt = ("One-way routes and journey times in minutes: " +
                   ", ".join(f"{u} to {v} {n}" for (u, v), n in zip(edges, times, strict=True)) +
                   f". What is the shortest travel time from {a} to {f}?")
     elif mode == 2:

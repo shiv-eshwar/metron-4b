@@ -1,0 +1,178 @@
+{
+  "kept": {
+    "test": 256,
+    "valid": 127,
+    "train": 3047
+  },
+  "excluded": [
+    {
+      "id": "mbpp-574",
+      "split": "valid",
+      "matches": [
+        "mbpp-85"
+      ]
+    },
+    {
+      "id": "mbpp-636",
+      "split": "train",
+      "matches": [
+        "mbpp-880"
+      ]
+    },
+    {
+      "id": "mbpp-792",
+      "split": "train",
+      "matches": [
+        "mbpp-858"
+      ]
+    },
+    {
+      "id": "mbpp-767",
+      "split": "train",
+      "matches": [
+        "mbpp-527"
+      ]
+    },
+    {
+      "id": "mbpp-695",
+      "split": "train",
+      "matches": [
+        "mbpp-433"
+      ]
+    },
+    {
+      "id": "mbpp-635",
+      "split": "train",
+      "matches": [
+        "mbpp-940"
+      ]
+    },
+    {
+      "id": "mbpp-883",
+      "split": "train",
+      "matches": [
+        "mbpp-817"
+      ]
+    },
+    {
+      "id": "mbpp-964",
+      "split": "train",
+      "matches": [
+        "mbpp-79"
+      ]
+    },
+    {
+      "id": "mbpp-840",
+      "split": "train",
+      "matches": [
+        "mbpp-880"
+      ]
+    },
+    {
+      "id": "mbpp-716",
+      "split": "train",
+      "matches": [
+        "mbpp-654"
+      ]
+    },
+    {
+      "id": "mbpp-892",
+      "split": "train",
+      "matches": [
+        "mbpp-678"
+      ]
+    },
+    {
+      "id": "mbpp-779",
+      "split": "train",
+      "matches": [
+        "mbpp-758"
+      ]
+    },
+    {
+      "id": "mbpp-967",
+      "split": "train",
+      "matches": [
+        "mbpp-899"
+      ]
+    },
+    {
+      "id": "mbpp-879",
+      "split": "train",
+      "matches": [
+        "mbpp-794"
+      ]
+    },
+    {
+      "id": "mbpp-712",
+      "split": "train",
+      "matches": [
+        "mbpp-674"
+      ]
+    },
+    {
+      "id": "mbpp-872",
+      "split": "train",
+      "matches": [
+        "mbpp-651"
+      ]
+    },
+    {
+      "id": "mbpp-831",
+      "split": "train",
+      "matches": [
+        "mbpp-564"
+      ]
+    },
+    {
+      "id": "mbpp-719",
+      "split": "train",
+      "matches": [
+        "mbpp-930"
+      ]
+    },
+    {
+      "id": "mbpp-631",
+      "split": "train",
+      "matches": [
+        "mbpp-628"
+      ]
+    },
+    {
+      "id": "mbpp-965",
+      "split": "train",
+      "matches": [
+        "mbpp-933"
+      ]
+    },
+    {
+      "id": "mbpp-634",
+      "split": "train",
+      "matches": [
+        "mbpp-271"
+      ]
+    },
+    {
+      "id": "mbpp-973",
+      "split": "train",
+      "matches": [
+        "mbpp-799"
+      ]
+    },
+    {
+      "id": "mbpp-848",
+      "split": "train",
+      "matches": [
+        "mbpp-814"
+      ]
+    },
+    {
+      "id": "mbpp-838",
+      "split": "train",
+      "matches": [
+        "mbpp-699"
+      ]
+    }
+  ],
+  "criterion": "MBPP callable match or word five-gram Jaccard >=0.68"
+}
