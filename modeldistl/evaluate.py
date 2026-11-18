@@ -100,6 +100,8 @@ def run(infer, tasks, report, out):
             if task["check"]["answer"] not in labels or len(labels) < 2:
                 raise ValueError(f"Missing option labels for {task['id']}")
             answer, stats = infer(task["prompt"], labels)
+            if answer.strip() not in labels:
+                raise RuntimeError(f"Backend did not emit an allowed label at {task['id']}")
         else:
             answer, stats = infer(task["prompt"])
         return task, answer, stats, time.monotonic() - start
