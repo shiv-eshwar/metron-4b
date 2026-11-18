@@ -30,7 +30,19 @@ When every model could emit only an available science label, the student answere
 | Gemma 3 4B IT Q4 | 51/64 | 187/256 | 0.707 | 15/24 |
 | Gemma 4 E4B IT Q4 | 56/64 | 193/256 | 0.677 | 17/24 |
 
-The two totals share all questions and differ only in how the 64 science answers were generated. The local set contains six tasks per domain and informed the earlier pilot. The 256 primary questions were fixed before this training run. Public benchmarks may have appeared during pretraining of the original models. These measurements cover English text, a subset of Python, grade-school word problems, grounded reading and school science. [Protocol and source revisions](runs/astra-v2/PROTOCOL.md)
+The two totals share all questions and differ only in how the 64 science answers were generated. The local set contains six tasks per domain and informed the earlier pilot. On its six Python exercises the full student passed zero and stock Qwen passed all six. The 256 primary questions were fixed before this training run. Public benchmarks may have appeared during pretraining of the original models. These measurements cover English text, a subset of Python, grade-school word problems, grounded reading and school science. [Protocol and source revisions](runs/astra-v2/PROTOCOL.md)
+
+## Can a smaller update retain Python and math performance?
+
+Five adapter strengths were evaluated on 96 separate development questions. To qualify, a strength had to match stock Qwen's combined Python and math score and lose at most one answer in either domain. Stock Qwen was the only qualifying model. Every trained strength improved strict science-label following. When decoding was constrained to a valid label, all five answered the same number of development science questions correctly. [Frozen selection rule](runs/astra-v2/retention/PROTOCOL.md) · [Selection and scores](runs/astra-v2/retention/selection.json) · [Development responses](runs/astra-v2/retention/valid)
+
+| Adapter strength | Python / 24 | Math / 24 | Python + math / 48 | Strict science / 24 | Constrained science / 24 | Strict total / 96 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Stock Qwen (zero) | 16 | 24 | **40** | 9 | 22 | 64 |
+| 1/16 | 15 | 24 | 39 | 12 | 22 | 66 |
+| 1/4 | 14 | 24 | 38 | 20 | 22 | 74 |
+| 1/2 | 13 | 23 | 36 | 22 | 22 | 74 |
+| Full Astra student | 12 | 19 | 31 | 22 | 22 | 67 |
 
 ## Distillation
 
