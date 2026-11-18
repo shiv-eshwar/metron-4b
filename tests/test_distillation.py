@@ -10,10 +10,24 @@ from modeldistl.distill import charge, request, reservation, tasks
 from modeldistl.diverse_data import numeric_box
 from modeldistl.expanded_data import ROOT
 from modeldistl.overlap import audit
+from modeldistl.retention import RECORD, select
 from modeldistl.tasks import grade, span_score
 
 
 class DistillationTests(unittest.TestCase):
+    def test_retention_floors_and_fresh_holdout(self):
+        stock = {"coding": 18, "math": 19, "strict": 70, "forced_total": 79}
+        scores = {"base": stock, "one-sixteenth": stock | {"coding": 17, "math": 20, "strict": 75},
+                  "one-quarter": stock | {"coding": 15, "math": 22, "strict": 80},
+                  "one-half": stock | {"coding": 17}, "full": stock | {"math": 15, "strict": 84}}
+        self.assertEqual(select(scores), "one-sixteenth")
+        self.assertEqual(select({"base": stock, "full": stock}), "base")
+        old = {json.loads(l)["id"] for l in (ROOT / "curriculum/test.jsonl").read_text().splitlines()}
+        valid, test = ({json.loads(l)["id"] for l in (RECORD/f"{s}.jsonl").read_text().splitlines()}
+                       for s in ("valid", "test"))
+        self.assertEqual((len(valid), len(test)), (96, 128))
+        self.assertTrue(old.isdisjoint(test) and valid.isdisjoint(test))
+
     def test_sealed_set_and_overlap_audit(self):
         file = ROOT / "curriculum/test.jsonl"
         self.assertEqual(hashlib.sha256(file.read_bytes()).hexdigest(),

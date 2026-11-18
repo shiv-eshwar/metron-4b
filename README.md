@@ -1,20 +1,36 @@
 # ModelDistl
 
-ModelDistl fine-tunes Qwen3-4B-Instruct-2507 on verified demonstrations from OpenAI’s GPT-6.2 Astra. The 4,022,468,096-parameter student runs locally. The teacher is needed only when generating new demonstrations.
+ModelDistl 4B Astra v2 is a 4,022,468,096-parameter offline assistant derived from Qwen3-4B-Instruct-2507. It was fine-tuned on 5,200 conversations with verified GPT-6.2 Astra target answers spanning Python, math, general assistance and reasoning. Another 166 conversations selected the checkpoint. The study compares the exported weights with Gemma 3 4B IT, Gemma 4 E4B IT, stock Qwen and the previous pilot on the same questions. [Model card and scores](MODEL_CARD.md) · [Evaluation protocol and reproduction](runs/astra-v2/PROTOCOL.md)
 
-On the M5 MacBook Air, Q4_K_M generated 20.0 tokens/s and passed 6/6 local Python tasks. The smaller Q3_K_S build generated 18.4 tokens/s and passed 3/6. The Q4 student solved 14/16 sampled GSM8K problems versus 12/16 for stock Q4. [Model card and complete evaluation](MODEL_CARD.md)
+The Q4 student scored 193/256, tying Gemma 4 E4B and finishing nine answers ahead of Gemma 3 4B. Its strongest gain over stock Qwen was science-label instruction following. Stock Qwen solved more Python and math tasks. On an M5 MacBook Air, Q4 generated 23.0 tokens/s.
 
-## Download the trained model
+## Get the trained model
 
-| Build | File size | How to get it |
-| --- | ---: | --- |
-| Q4_K_M | 2.50 GB | Run `python3 scripts/model_file.py download` from this checkout with GitHub CLI signed in. The script downloads two release parts, verifies their SHA-256 hashes, and assembles the single GGUF in `artifacts/export/`. |
-| Q3_K_S | 1.89 GB | Download the single GGUF from the private release while signed in. [Download Q3_K_S](https://github.com/shiv-eshwar/modeldistl/releases/download/pilot-v0.1.0/ModelDistl-4B-Q3_K_S.gguf) |
-| MLX adapter | 4.85 MB compressed | Unzip alongside a local 4-bit MLX conversion of the pinned base. [Download adapter](https://github.com/shiv-eshwar/modeldistl/releases/download/pilot-v0.1.0/ModelDistl-4B-MLX-adapter.zip) |
+| Build | Download | File size |
+| --- | --- | ---: |
+| Q4_K_M | From an authenticated checkout, run `python3 scripts/model_file.py download --run astra-v2`. It verifies and joins the two parts into one GGUF. | 2.50 GB |
+| Q3_K_S | Download the single GGUF while signed in, then import it into a compatible runtime. [Mobile GGUF](https://github.com/shiv-eshwar/modeldistl/releases/download/astra-v0.2.0/ModelDistl-4B-Q3_K_S.gguf) | 1.89 GB |
+| MLX adapter | Unzip the adapter beside the pinned 4-bit MLX conversion and supply the directory as the adapter path. [MLX adapter](https://github.com/shiv-eshwar/modeldistl/releases/download/astra-v0.2.0/ModelDistl-4B-Astra-v2-MLX.zip) | 19.46 MB compressed |
 
-[Release and checksums](https://github.com/shiv-eshwar/modeldistl/releases/tag/pilot-v0.1.0)
+The release includes checksums and the Qwen license. The CPU release workflow rebuilds both model files from the original BF16 weights and the trained adapter. [GitHub release](https://github.com/shiv-eshwar/modeldistl/releases/tag/astra-v0.2.0) · [Rebuild workflow](.github/workflows/astra-release.yml)
 
-The private draft can also be rebuilt from the two compact weight updates. The on-demand GitHub workflow recreates the stock GGUFs from the original BF16 revision, applies the updates, checks the full model and part hashes, and attaches the verified files. [Release workflow](.github/workflows/rebuild-release.yml)
+## Run Astra v2
+
+Run this from the repository root on the training Mac.
+
+```sh
+.tools/llama-bin/llama-cli -m artifacts/astra-v2/export/ModelDistl-4B-Q4_K_M.gguf -c 2048
+```
+
+A fresh Mac checkout can install the pinned runner with `bash scripts/setup-llama.sh`. On Windows or Linux, point a compatible llama.cpp executable at the downloaded GGUF. For iOS or Android, transfer the single Q3 file or the reassembled Q4 file to a GGUF-capable app. A 2,048-token context was used for the laptop tests. [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) · [PocketPal](https://github.com/a-ghorbani/pocketpal-ai)
+
+## Reproduce Astra v2
+
+The repository includes training conversations, validation data, source revisions, run metrics, and the raw answers from each model. The supervised snapshot supports offline retraining. The protocol also gives the commands to regenerate teacher targets with an API credential, train with MLX-LM, export on CPU and run the comparative evaluations. [Run protocol](runs/astra-v2/PROTOCOL.md) · [Verified conversations](runs/astra-v2/data) · [Resolved training configuration](runs/astra-v2/training-config.json) · [Per-item responses](runs/astra-v2/results)
+
+## Earlier pilot
+
+The original release trained on 64 demonstrations and evaluated 24 local and 40 public tasks. Its weights and results are archived. [Pilot release](https://github.com/shiv-eshwar/modeldistl/releases/tag/pilot-v0.1.0) · [Pilot model card](https://github.com/shiv-eshwar/modeldistl/blob/pilot-v0.1.0/MODEL_CARD.md)
 
 ## Reproduce the pilot on Apple silicon
 
@@ -37,7 +53,7 @@ Calibration scores an unadapted control and five adapter strengths on the 12 val
 
 Training uses a 4-bit, group-size-64 MLX base. The rank-8 adapter updates the query and value projections in the final 16 of 36 layers. Export applies the learned delta to the pinned original BF16 weights, preserves the original tokenizer and chat template, and quantizes each deployment build directly from the merged BF16 weights.
 
-## Run the model
+## Run the pilot
 
 ```sh
 .tools/llama-bin/llama-cli -m artifacts/export/ModelDistl-4B-Q4_K_M.gguf -c 2048
@@ -45,7 +61,7 @@ Training uses a 4-bit, group-size-64 MLX base. The rank-8 adapter updates the qu
 
 Windows and Linux can use the same GGUF with a current llama.cpp build. On iOS or Android, transfer the single GGUF to the device and import it into a Qwen3-compatible app such as PocketPal. Start with a 2,048-token context. At that context the uncompressed FP16 key/value cache is about 288 MiB, in addition to the model and runtime buffers. Actual headroom depends on the device, the app’s memory limit, and the context setting. [llama.cpp releases](https://github.com/ggml-org/llama.cpp/releases) · [PocketPal](https://github.com/a-ghorbani/pocketpal-ai)
 
-## Generate a new supervised dataset
+## Generate a pilot-format supervised dataset
 
 Provide the project credential through the process environment. This shell example accepts it with terminal echo disabled. The checked-in demonstration snapshot can be used directly for the pilot.
 
@@ -61,7 +77,7 @@ The generator sends only the prompt and teacher instructions to the Responses AP
 
 Prompts and independent checks live in `curriculum/{train,valid,test}.jsonl`. Keep related variants in the same family and split. The loader checks normalized prompts, IDs, and family overlap. The teacher receives just the training and validation prompts. Coding examples run in Monty with isolated interpreter sessions, time and memory limits, and no host callbacks for filesystem or network access. Numerical answers use exact fractions. Label and JSON checks compare values. Short prose checks look for required content and enforce word limits. The prose checks are heuristic.
 
-## Evaluate
+## Evaluate the pilot suites
 
 ```sh
 python -m modeldistl.evaluate --out artifacts/eval/mlx-base.json
