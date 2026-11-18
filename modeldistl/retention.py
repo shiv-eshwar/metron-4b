@@ -262,7 +262,10 @@ def summarize():
         for suffix, subset in (("", tasks), ("-choice", [t for t in tasks if t["source"] == "arc"])):
             report = json.loads((RECORD / "test" / f"{name}{suffix}.json").read_text())
             fingerprint = hashlib.sha256(json.dumps(subset, sort_keys=True).encode()).hexdigest()
-            if report["test_sha256"] != fingerprint or report["total"] != len(subset):
+            results = report["results"]
+            if (report["test_sha256"] != fingerprint or len(results) != len(subset)
+                    or report["total"] != len(results) or report["correct"] != sum(a["pass"] for a in results)
+                    or {a["id"] for a in results} != {t["id"] for t in subset}):
                 raise ValueError(f"{name}{suffix} does not match the frozen confirmation set")
             reports.append(report)
         scores[name] = measurements(*reports)
