@@ -1,0 +1,60 @@
+{
+  "strengths": {
+    "base": 0,
+    "one-sixteenth": 0.0625,
+    "one-quarter": 0.25,
+    "one-half": 0.5,
+    "full": 1
+  },
+  "development": {
+    "base": {
+      "coding": 16,
+      "general": 15,
+      "math": 24,
+      "reasoning": 9,
+      "strict": 64,
+      "forced_science": 22,
+      "forced_total": 77
+    },
+    "one-sixteenth": {
+      "coding": 15,
+      "general": 15,
+      "math": 24,
+      "reasoning": 12,
+      "strict": 66,
+      "forced_science": 22,
+      "forced_total": 76
+    },
+    "one-quarter": {
+      "coding": 14,
+      "general": 16,
+      "math": 24,
+      "reasoning": 20,
+      "strict": 74,
+      "forced_science": 22,
+      "forced_total": 76
+    },
+    "one-half": {
+      "coding": 13,
+      "general": 16,
+      "math": 23,
+      "reasoning": 22,
+      "strict": 74,
+      "forced_science": 22,
+      "forced_total": 74
+    },
+    "full": {
+      "coding": 12,
+      "general": 14,
+      "math": 19,
+      "reasoning": 22,
+      "strict": 67,
+      "forced_science": 22,
+      "forced_total": 67
+    }
+  },
+  "selected": "base",
+  "multiplier": 0,
+  "validation_sha256": "ae2230389f20ce2c2b8f838e00dc33c9fc8fe874afc3515cb121fd66ef50d428",
+  "confirmation_sha256": "7f47a0a6841a1b544b143fb5494003501926e097c3c35994a56f1d8bbcda6157"
+}

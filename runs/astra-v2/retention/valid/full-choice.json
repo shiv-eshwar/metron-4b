@@ -1,0 +1,295 @@
+{
+  "backend": "llama.cpp",
+  "source_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "model": "artifacts/astra-v2/export/ModelDistl-4B-Q4_K_M.gguf",
+  "adapter": null,
+  "temperature": 0,
+  "seed": 42,
+  "max_tokens": 8,
+  "reasoning": "off",
+  "complete": true,
+  "suite": "sealed-choice",
+  "code_runtime": "cpython",
+  "jobs": 4,
+  "test_sha256": "0493432a32b830b70b99506a435d788ae76ae81ee3f7d875659249d42d9b3476",
+  "constrained_choices": true,
+  "gguf_file_sha256": "b858f46c998e0a13ef25d9bc7f357b443602e768ca3de51ba24a5f98747c6b47",
+  "results": [
+    {
+      "id": "arc-validation-10",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.744,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-228",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.743,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": false
+    },
+    {
+      "id": "arc-validation-227",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.744,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-70",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.744,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-210",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "E",
+      "seconds": 0.949,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-66",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.949,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-69",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 0.95,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-208",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.949,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-139",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.95,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-185",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.951,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-284",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.949,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-166",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.95,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-207",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 1.003,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-198",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 1.001,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": false
+    },
+    {
+      "id": "arc-validation-211",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 1.0,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-289",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 1.0,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-148",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.985,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-28",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.984,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-203",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.985,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-146",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 0.985,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-32",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 1.098,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-127",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 1.097,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-93",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 1.096,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-73",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 1.096,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    }
+  ],
+  "domains": {
+    "reasoning": {
+      "correct": 22,
+      "total": 24
+    }
+  },
+  "correct": 22,
+  "total": 24,
+  "arc_choice_content": {
+    "correct": 22,
+    "total": 24
+  }
+}

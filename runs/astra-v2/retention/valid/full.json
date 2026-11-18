@@ -1,0 +1,1050 @@
+{
+  "backend": "llama.cpp",
+  "source_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "model": "artifacts/astra-v2/export/ModelDistl-4B-Q4_K_M.gguf",
+  "adapter": null,
+  "temperature": 0,
+  "seed": 42,
+  "max_tokens": 512,
+  "reasoning": "off",
+  "complete": true,
+  "suite": "sealed",
+  "code_runtime": "cpython",
+  "jobs": 4,
+  "test_sha256": "e332f28e98dcb58603f5c1a7d9e3549ef48e390e48a60d9937b258cb86232385",
+  "gguf_file_sha256": "b858f46c998e0a13ef25d9bc7f357b443602e768ca3de51ba24a5f98747c6b47",
+  "results": [
+    {
+      "id": "arc-validation-10",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 1.444,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5727a7474b864d1900163988",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.974,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 0.0
+    },
+    {
+      "id": "squad-572ecd51c246551400ce46b0",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "virtual particles that hop into and out of existence",
+      "seconds": 2.698,
+      "tokens": 10,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "mbpp-544",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef flatten_tuple(tuples):\n    return \" \".join(item for tuple_ in tuples for item in tuple_)\n```",
+      "seconds": 4.708,
+      "tokens": 27,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-549",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef odd_Num_Sum(n):\n    return sum((i * 2 - 1) ** 5 for i in range(1, n + 1))\n```",
+      "seconds": 6.048,
+      "tokens": 39,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-56df76b85ca0a614008f9ab9",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "agricultural societies",
+      "seconds": 0.855,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "mbpp-518",
+      "domain": "coding",
+      "pass": false,
+      "check": "ValueError",
+      "answer": "```python\ndef sqrt_root(n):\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    if n == 4:\n        return 2\n    if n == 9:\n        return 3\n    if n == 16:\n        return 4\n    if n == 25:\n        return 5\n    if n == 36:\n        return 6\n    if n == 49:\n        return 7\n    if n == 64:\n        return 8\n    if n == 81:\n        return 9\n    if n == 100:\n        return 10\n    raise ValueError(\"n is not a perfect square\")\n```",
+      "seconds": 18.822,
+      "tokens": 179,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5706888d75f01819005e7bde",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "Indira Gandhi International Airport",
+      "seconds": 1.132,
+      "tokens": 6,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-5712",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "\\(5 \\times 20 \\times 7 \\times 2 = 1400\\)\n\nAnswer: 1400",
+      "seconds": 4.759,
+      "tokens": 31,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-572911821d04691400779013",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "triangles",
+      "seconds": 1.313,
+      "tokens": 3,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "squad-572f61e8b2c2fd1400568097",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "standardised SQL",
+      "seconds": 0.867,
+      "tokens": 4,
+      "finish": "stop",
+      "span_f1": 0.6666666666666666
+    },
+    {
+      "id": "gsm8k-train-6506",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Happy: \\(20 \\times 18 = 360\\)  \nHungry: \\(20 \\times 4 = 80\\)  \nMirror: \\(20 \\times 45 = 900\\)  \nTotal: \\(360 + 80 + 900 = 1340\\)\n\nAnswer: 1340",
+      "seconds": 7.438,
+      "tokens": 81,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-6531",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "\\(6 - 3 + 2 = 5\\)  \n\\(5 - 3 + 2 = 4\\)  \n\\(4 - 3 + 2 = 3\\)\n\nAnswer: 3",
+      "seconds": 4.126,
+      "tokens": 44,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-519",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef volume_tetrahedron(edge):\n    return (edge ** 3) / (6 * (2 ** (1 / 3)))\n```",
+      "seconds": 2.823,
+      "tokens": 35,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-574",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "5 + (4 × 1.5) + (2 × 3) = 5 + 6 + 6 = 17\n\nAnswer: 17",
+      "seconds": 3.475,
+      "tokens": 37,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-4113",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Nicholas bought \\(6 \\times 700 = 4200\\) oz.  \nHe paid \\(4200 \\times 40 = 168000\\) dollars.  \nKenneth paid \\(700 \\times 40 = 28000\\) dollars.  \nThe difference is \\(168000 - 28000 = 140000\\).\n\nAnswer: 140000",
+      "seconds": 10.002,
+      "tokens": 105,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-526",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef capitalize_first_last_letters(text):\n    if not text:\n        return text\n    return text[0].upper() + text[1:-1] + text[-1].upper()\n```",
+      "seconds": 3.594,
+      "tokens": 43,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-2817",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "\\(5 \\times 60 - 12 \\times 10 - 30 = 300 - 120 - 30 = 150\\)\n\n\\(150 \\div 10 = 15\\)\n\nAnswer: 15",
+      "seconds": 5.709,
+      "tokens": 62,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-228",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.456,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": false
+    },
+    {
+      "id": "squad-572a9ea734ae481900deabe4",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "the lieutenant governors of the provinces",
+      "seconds": 0.994,
+      "tokens": 7,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-3706",
+      "domain": "math",
+      "pass": false,
+      "check": "exact numerical value",
+      "answer": "Federal taxes: $450 × 1/3 = $150  \nState taxes: $450 × 8% = $36  \nTotal taxes: $150 + $36 = $186  \nTotal deductions: $186 + $50 + $20 + $10 = $276  \nFinal paycheck: $450 − $276 = $174\n\nAnswer: 174",
+      "seconds": 10.393,
+      "tokens": 101,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-56d9e3e8dc89441400fdb8a8",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "Persian mythology",
+      "seconds": 0.892,
+      "tokens": 4,
+      "finish": "stop",
+      "span_f1": 0.6666666666666666
+    },
+    {
+      "id": "gsm8k-train-7424",
+      "domain": "math",
+      "pass": false,
+      "check": "exact numerical value",
+      "answer": "\\(240 - 40 = 200\\).  \n\\(200 \\div (5 + 1) = 33\\frac13\\).\n\nAnswer: 33",
+      "seconds": 4.799,
+      "tokens": 44,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-550",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef find_Max(arr, left, right):\n    if left == right:\n        return arr[left]\n    if arr[left] > arr[right]:\n        return arr[left]\n    mid = (left + right) // 2\n    if arr[mid] > arr[mid + 1]:\n        return find_Max(arr, mid, right)\n    return find_Max(arr, left, mid)\n```",
+      "seconds": 8.145,
+      "tokens": 83,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-227",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 1.64,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-5047",
+      "domain": "math",
+      "pass": false,
+      "check": "exact numerical value",
+      "answer": "Day 1: \\(120 + (120 - 20) = 220\\)  \nDay 2: \\(120 \\div 3 + 2 \\times 20 = 40 + 40 = 80\\)  \nDay 3: \\(220\\)\n\nTotal: \\(220 + 80 + 220 = 520\\)\n\nAnswer: 520",
+      "seconds": 9.42,
+      "tokens": 98,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-572820664b864d19001644f6",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "a mixed or compound mode of government",
+      "seconds": 1.254,
+      "tokens": 8,
+      "finish": "stop",
+      "span_f1": 0.8
+    },
+    {
+      "id": "gsm8k-train-2792",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "(10 × 3 + 10 × 4) ÷ 2 = 35\n\nAnswer: 35",
+      "seconds": 2.191,
+      "tokens": 29,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-563",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef extract_values(text):\n    return text.strip('\"').split('\",\"')\n```",
+      "seconds": 3.59,
+      "tokens": 20,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5ad2123dd7d075001a4282f1",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "European-style bowl-back instruments",
+      "seconds": 2.014,
+      "tokens": 6,
+      "finish": "stop",
+      "span_f1": 0.0
+    },
+    {
+      "id": "mbpp-547",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef Total_Hamming_Distance(n):\n    if n < 0:\n        return 0\n    return sum((i ^ (i + 1)).bit_count() for i in range(n))\n```",
+      "seconds": 6.839,
+      "tokens": 47,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-6104",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Zendaya takes \\(6 + \\frac{1}{3} \\times 6 = 8\\) hours. The average is \\(\\frac{6 + 8}{2} = 7\\).\n\nAnswer: 7",
+      "seconds": 5.827,
+      "tokens": 47,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5ad4c24d5b96ef001a109f7b",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.14,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "arc-validation-70",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.466,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-210",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "E",
+      "seconds": 1.183,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5acfc16d77cf76001a685cec",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.61,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-3639",
+      "domain": "math",
+      "pass": false,
+      "check": "exact numerical value",
+      "answer": "\\(3 \\times 4 + 2 \\times 8 = 12 + 16 = 28\\)\n\n\\(3 + (3 + 1) + (3 + 1) + 3 + 3 = 13\\)\n\n\\(28 - 13 = 15\\)\n\nAnswer: 15",
+      "seconds": 8.289,
+      "tokens": 74,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-570",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef remove_words(words, remove):\n    return [word.replace(char, \"\") for char in remove for word in words]\n```",
+      "seconds": 3.313,
+      "tokens": 29,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-3271",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Monday: 5 × 2 = 10  \nTuesday: 15 × 2 = 30  \nTotal: 10 + 30 = 40\n\nAnswer: 40",
+      "seconds": 4.906,
+      "tokens": 45,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-66",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.669,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-598",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef armstrong_number(number):\n    digits = [int(d) for d in str(number)]\n    return sum(d ** len(digits) for d in digits) == number\n```",
+      "seconds": 4.56,
+      "tokens": 40,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5a5380cebdaabd001a3866d3",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "the rediscovery of Aristotle's works",
+      "seconds": 1.051,
+      "tokens": 8,
+      "finish": "stop",
+      "span_f1": 0.0
+    },
+    {
+      "id": "gsm8k-train-6451",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "(3000 ÷ 1000 − 1) × 50 = 150\n\nAnswer: 150",
+      "seconds": 4.657,
+      "tokens": 33,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5726c907dd62a815002e9020",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "The Cathedral of Saint Martin",
+      "seconds": 1.697,
+      "tokens": 6,
+      "finish": "stop",
+      "span_f1": 0.47058823529411764
+    },
+    {
+      "id": "mbpp-534",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef search_literal(pattern, string):\n    return string.find(pattern), string.find(pattern) + len(pattern)\n```",
+      "seconds": 6.385,
+      "tokens": 26,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-69",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 1.391,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-2113",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "20 + 30 + 30 + 40 − 20 = 100\n\nAnswer: 100",
+      "seconds": 7.575,
+      "tokens": 31,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-56df88ca4a1a83140091eafe",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.643,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 0.0
+    },
+    {
+      "id": "squad-56e16796cd28a01900c67882",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "The Trust for Public Land",
+      "seconds": 1.55,
+      "tokens": 6,
+      "finish": "stop",
+      "span_f1": 0.0
+    },
+    {
+      "id": "arc-validation-208",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.81,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5a8cc204fd22b3001a8d8e1a",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.152,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-4000",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Jenny: \\(18 + \\frac{1}{3} \\times 18 = 24\\)\n\nMark: \\(15 + 2 \\times 15 = 45\\)\n\nDifference: \\(45 - 24 = 21\\)\n\nAnswer: 21",
+      "seconds": 8.262,
+      "tokens": 65,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-570fe5335ab6b8190039109b",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "10%",
+      "seconds": 0.869,
+      "tokens": 4,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "arc-validation-139",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.513,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-185",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.538,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-6280",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "(45 ÷ (15 + 30 + 45)) × 100 = 50\n\nAnswer: 50",
+      "seconds": 4.244,
+      "tokens": 33,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-284",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 1.025,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-529",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef jacobsthal_lucas(n):\n    if n == 0:\n        return 2\n    if n == 1:\n        return 1\n    a, b = 2, 1\n    for _ in range(2, n + 1):\n        a, b = b, a + 2 * b\n    return b\n```",
+      "seconds": 9.994,
+      "tokens": 80,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5731bb10b9d445190005e4cf",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "Christians",
+      "seconds": 0.708,
+      "tokens": 3,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "mbpp-578",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef interleave_lists(list1, list2, list3):\n    return [item for sublist in zip(list1, list2, list3) for item in sublist]\n```",
+      "seconds": 3.593,
+      "tokens": 40,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-6864",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "\\(4 \\times 24 = 96\\)\n\\(96 - 5 - 30 = 61\\)\n\nAnswer: 61",
+      "seconds": 4.028,
+      "tokens": 35,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-562",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef Find_Max_Length(lists):\n    return max(len(sublist) for sublist in lists)\n```",
+      "seconds": 3.409,
+      "tokens": 24,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5705e90375f01819005e774b",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "storks, turtle doves, and swallows",
+      "seconds": 1.474,
+      "tokens": 11,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "arc-validation-166",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.422,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-2053",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "\\(30 \\times 4 + 230 = 350\\)\n\nAnswer: 350",
+      "seconds": 5.939,
+      "tokens": 26,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-207",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.496,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-198",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.49,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": false
+    },
+    {
+      "id": "arc-validation-211",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.962,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5730be6a2461fd1900a9d03c",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "Nukufetau and Funafuti",
+      "seconds": 3.125,
+      "tokens": 10,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-3133",
+      "domain": "math",
+      "pass": false,
+      "check": "exact numerical value",
+      "answer": "Total oranges = 3 × 110 × 600 = 198,000  \nJuice cups = 198,000 ÷ 3 = 66,000  \nRevenue = 66,000 × 4 = 264,000\n\nAnswer: 264000",
+      "seconds": 12.599,
+      "tokens": 82,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-289",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 1.461,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-516",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef radix_sort(items):\n    if not items:\n        return items\n    max_value = max(items)\n    place = 1\n    while max_value // place > 0:\n        items = counting_sort(items, place)\n        place *= 10\n    return items\n\n\ndef counting_sort(items, place):\n    count = [0] * 10\n    for item in items:\n        count[item // place % 10] += 1\n    for i in range(1, 10):\n        count[i] += count[i - 1]\n    result = [0] * len(items)\n    for item in reversed(items):\n        result[count[item // place % 10] - 1] = item\n        count[item // place % 10] -= 1\n    return result\n```",
+      "seconds": 20.159,
+      "tokens": 176,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5726a5d15951b619008f78f1",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "A Theory of Justice",
+      "seconds": 1.221,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "squad-57261ed8ec44d21400f3d921",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.021,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 0.0
+    },
+    {
+      "id": "mbpp-567",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef issort_list(lst):\n    return all(lst[i] <= lst[i + 1] for i in range(len(lst) - 1))\n```",
+      "seconds": 3.539,
+      "tokens": 35,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-539",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef basesnum_coresspondingnum(bases, powers):\n    return list(map(lambda base, power: base ** power, bases, powers))\n```",
+      "seconds": 3.564,
+      "tokens": 35,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-148",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.521,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-1672",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "In two years, Lennon will be 8 + 2 = 10. Ophelia will then be 4 × 10 = 40. So she is currently 40 − 2 = 38.\n\nAnswer: 38",
+      "seconds": 7.138,
+      "tokens": 55,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-28",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.482,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-203",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.495,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-146",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 0.482,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5ad3d77b604f3c001a3ff34d",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.157,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "arc-validation-32",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.759,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-127",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 0.487,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-592",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef sum_Of_product(n):\n    if n <= 1:\n        return 1\n    return n * (n + 1) // 2\n```",
+      "seconds": 3.646,
+      "tokens": 37,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-571",
+      "domain": "coding",
+      "pass": false,
+      "check": "AttributeError",
+      "answer": "```python\ndef max_sum_pair_diff_lessthan_K(arr, k, pairs):\n    pairs.sort()\n    pairs = pairs[:pairs]\n    return sum(pairs[i] + pairs[i + 1] for i in range(0, len(pairs), 2))\n```",
+      "seconds": 5.819,
+      "tokens": 60,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-417",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "20 × 15 × 0.6 = 180\n\nAnswer: 180",
+      "seconds": 2.772,
+      "tokens": 24,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-93",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.614,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-548",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef longest_increasing_subsequence(sequence):\n    if not sequence:\n        return 0\n    lengths = [1] * len(sequence)\n    for i in range(1, len(sequence)):\n        for j in range(i):\n            if sequence[j] < sequence[i]:\n                lengths[i] = max(lengths[i], lengths[j] + 1)\n    return max(lengths)\n```",
+      "seconds": 8.98,
+      "tokens": 83,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-5472",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "5 × 11 + 2 × 15 + 2 × 18 = 55 + 30 + 36 = 121\n\nAnswer: 121",
+      "seconds": 4.213,
+      "tokens": 44,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-525",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef parallel_lines(a, b):\n    return a[0] == b[0]\n```",
+      "seconds": 1.948,
+      "tokens": 23,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-73",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.542,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-546",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef last_occurence_char(text: str, char: str) -> int:\n    return text.rfind(char)\n```",
+      "seconds": 3.677,
+      "tokens": 28,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-1456",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "(6 + 4 + 8) × 5 = 90\n\nAnswer: 90",
+      "seconds": 3.529,
+      "tokens": 23,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-545",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef toggle_F_and_L_bits(n):\n    if n == 0:\n        return 1\n    return n ^ (1 << (n.bit_length() - 1)) | (1 << 0)\n```",
+      "seconds": 5.629,
+      "tokens": 48,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-572",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef two_unique_nums(numbers):\n    seen = set()\n    result = []\n    for number in numbers:\n        if number not in seen:\n            seen.add(number)\n            result.append(number)\n    return result\n```",
+      "seconds": 4.077,
+      "tokens": 47,
+      "finish": "stop"
+    }
+  ],
+  "domains": {
+    "coding": {
+      "correct": 12,
+      "total": 24
+    },
+    "general": {
+      "correct": 14,
+      "total": 24
+    },
+    "math": {
+      "correct": 19,
+      "total": 24
+    },
+    "reasoning": {
+      "correct": 22,
+      "total": 24
+    }
+  },
+  "correct": 67,
+  "total": 96,
+  "arc_choice_content": {
+    "correct": 22,
+    "total": 24
+  }
+}
