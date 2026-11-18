@@ -183,14 +183,25 @@ def evaluate(name, phase):
             raise RuntimeError("Incomplete retention report")
         write_json(reports / out.name, r)
         results.append(r)
-    regular, forced = results
+    values = measurements(*results)
+    print(phase, name, values, flush=True)
+    return values
+
+
+def measurements(regular, forced):
+    science_ids = {a["id"] for a in regular["results"] if a["domain"] == "reasoning"}
+    forced_ids = {a["id"] for a in forced["results"]}
+    if (not regular["complete"] or not forced["complete"] or regular["suite"] != "sealed"
+            or forced["suite"] != "sealed-choice" or not forced.get("constrained_choices")
+            or regular["gguf_file_sha256"] != forced["gguf_file_sha256"]
+            or science_ids != forced_ids or len(forced_ids) != forced["total"]):
+        raise ValueError("Strict and constrained reports must use the same model and science questions")
     values = {k: v["correct"] for k, v in regular["domains"].items()}
     values.update(
         strict=regular["correct"],
         forced_science=forced["correct"],
         forced_total=regular["correct"] - values["reasoning"] + forced["correct"],
     )
-    print(phase, name, values, flush=True)
     return values
 
 
@@ -235,6 +246,32 @@ def report_pairs(phase, winner, names):
     }
 
 
+def summarize():
+    result = json.loads((RECORD / "selection.json").read_text())
+    winner = result["selected"]
+    if winner != select(result["development"]):
+        raise ValueError("Stored selection differs from the development rule")
+    for phase, field in (("valid", "validation_sha256"), ("test", "confirmation_sha256")):
+        if hashlib.sha256((RECORD / f"{phase}.jsonl").read_bytes()).hexdigest() != result[field]:
+            raise ValueError(f"The frozen {phase} questions have changed")
+    tasks = read_lines(RECORD / "test.jsonl")
+    names = list(dict.fromkeys([winner, "base", "full", "gemma3", "gemma4"]))
+    scores = {}
+    for name in names:
+        reports = []
+        for suffix, subset in (("", tasks), ("-choice", [t for t in tasks if t["source"] == "arc"])):
+            report = json.loads((RECORD / "test" / f"{name}{suffix}.json").read_text())
+            fingerprint = hashlib.sha256(json.dumps(subset, sort_keys=True).encode()).hexdigest()
+            if report["test_sha256"] != fingerprint or report["total"] != len(subset):
+                raise ValueError(f"{name}{suffix} does not match the frozen confirmation set")
+            reports.append(report)
+        scores[name] = measurements(*reports)
+    result["confirmation"] = scores
+    result["paired"] = report_pairs("test", winner, names)
+    result["full_student_paired"] = result["paired"] if winner == "full" else report_pairs("test", "full", names)
+    write_json(RECORD / "comparison.json", result)
+
+
 def experiment():
     WORK.mkdir(parents=True, exist_ok=True)
     lock = Path("artifacts/astra-v2/metal.lock")
@@ -257,22 +294,22 @@ def experiment():
         write_json(RECORD / "selection.json", result)
         print("Selected on development", winner, flush=True)
         names = list(dict.fromkeys([winner, "base", "full", "gemma3", "gemma4"]))
-        result["confirmation"] = {}
         for name in names:
             with FileLock(lock):
-                result["confirmation"][name] = evaluate(name, "test")
-        result["paired"] = report_pairs("test", winner, names)
-        write_json(RECORD / "comparison.json", result)
+                evaluate(name, "test")
+        summarize()
 
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("action", choices=["prepare", "run"])
+    p.add_argument("action", choices=["prepare", "run", "summarize"])
     args = p.parse_args()
     if args.action == "prepare":
         prepare()
-    else:
+    elif args.action == "run":
         experiment()
+    else:
+        summarize()
 
 
 if __name__ == "__main__":

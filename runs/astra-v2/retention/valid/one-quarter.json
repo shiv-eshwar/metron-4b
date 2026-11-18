@@ -1,0 +1,1050 @@
+{
+  "backend": "llama.cpp",
+  "source_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "model": "artifacts/astra-v2/retention/one-quarter/ModelDistl-4B-Retention-Q4_K_M.gguf",
+  "adapter": null,
+  "temperature": 0,
+  "seed": 42,
+  "max_tokens": 512,
+  "reasoning": "off",
+  "complete": true,
+  "suite": "sealed",
+  "code_runtime": "cpython",
+  "jobs": 4,
+  "test_sha256": "e332f28e98dcb58603f5c1a7d9e3549ef48e390e48a60d9937b258cb86232385",
+  "gguf_file_sha256": "275f80370aa581b075e53d262c07e8787aa1825f3e90dbd02f4590ac92528649",
+  "results": [
+    {
+      "id": "arc-validation-10",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 1.223,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5727a7474b864d1900163988",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "extremely rare",
+      "seconds": 1.725,
+      "tokens": 4,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "squad-572ecd51c246551400ce46b0",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "virtual particles that hop into and out of existence",
+      "seconds": 2.531,
+      "tokens": 10,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "mbpp-544",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef flatten_tuple(tuple_list):\n    result = \"\"\n    for tuple_item in tuple_list:\n        for item in tuple_item:\n            if result:\n                result += \" \"\n            result += item\n    return result\n```",
+      "seconds": 5.788,
+      "tokens": 48,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-549",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef odd_Num_Sum(n):\n    total = 0\n    for i in range(1, 2*n, 2):\n        total += i ** 5\n    return total\n```",
+      "seconds": 4.566,
+      "tokens": 45,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-56df76b85ca0a614008f9ab9",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "Agricultural societies",
+      "seconds": 0.806,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "mbpp-518",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef sqrt_root(n):\n    if n < 0:\n        return None\n    if n == 0 or n == 1:\n        return n\n    left, right = 1, n\n    while left <= right:\n        mid = (left + right) // 2\n        square = mid * mid\n        if square == n:\n            return mid\n        elif square < n:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return None\n```",
+      "seconds": 11.229,
+      "tokens": 111,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5706888d75f01819005e7bde",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "Indira Gandhi International Airport",
+      "seconds": 0.985,
+      "tokens": 6,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-5712",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Each airplane has 20 rows × 7 seats = 140 seats.  \nEach airplane makes 2 flights a day, so it can accommodate 140 × 2 = 280 passengers per day.  \nFor 5 airplanes: 5 × 280 = 1,400 passengers per day.\n\nAnswer: 1400",
+      "seconds": 8.408,
+      "tokens": 80,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-572911821d04691400779013",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "alternating triangles",
+      "seconds": 2.728,
+      "tokens": 4,
+      "finish": "stop",
+      "span_f1": 0.6666666666666666
+    },
+    {
+      "id": "squad-572f61e8b2c2fd1400568097",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "standardised SQL",
+      "seconds": 2.727,
+      "tokens": 4,
+      "finish": "stop",
+      "span_f1": 0.6666666666666666
+    },
+    {
+      "id": "gsm8k-train-6506",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Happy: 20 minutes × 18 tweets/minute = 360 tweets  \nHungry: 20 minutes × 4 tweets/minute = 80 tweets  \nMirror: 20 minutes × 45 tweets/minute = 900 tweets  \n\nTotal = 360 + 80 + 900 = 1,340\n\nAnswer: 1340",
+      "seconds": 7.687,
+      "tokens": 90,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-6531",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Start: 6 logs  \nEach hour:  \n- The fire burns 3 logs  \n- Then 2 logs are added  \n\nAfter 1 hour:  \n6 - 3 + 2 = 5 logs  \n\nAfter 2 hours:  \n5 - 3 + 2 = 4 logs  \n\nAfter 3 hours:  \n4 - 3 + 2 = 3 logs  \n\nAnswer: 3",
+      "seconds": 7.098,
+      "tokens": 85,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-519",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\nimport math\n\ndef volume_tetrahedron(edge_length):\n    \"\"\"Calculate the volume of a regular tetrahedron given the edge length.\"\"\"\n    return (edge_length ** 3) / (6 * math.sqrt(2))\n\nassert volume_tetrahedron(10) == 117.85\n```",
+      "seconds": 6.367,
+      "tokens": 73,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-574",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Taco shells: $5  \nBell peppers: 4 × $1.5 = $6  \nMeat: 2 × $3 = $6  \n\nTotal: $5 + $6 + $6 = $17  \n\nAnswer: 17",
+      "seconds": 5.432,
+      "tokens": 54,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-4113",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Kenneth bought 700 oz at $40 per oz:  \n700 × 40 = $28,000\n\nNicholas bought 6 times as much:  \n6 × 700 = 4,200 oz  \n4,200 × 40 = $168,000\n\nDifference:  \n168,000 − 28,000 = 140,000\n\nAnswer: 140000",
+      "seconds": 10.985,
+      "tokens": 114,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-526",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef capitalize_first_last_letters(s):\n    words = s.split()\n    result = []\n    for word in words:\n        if len(word) == 1:\n            result.append(word.upper())\n        else:\n            result.append(word[0].upper() + word[1:-1] + word[-1].upper())\n    return ' '.join(result)\n```",
+      "seconds": 7.323,
+      "tokens": 76,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-2817",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Total time in studio: 5 hours = 5 × 60 = 300 minutes  \nRecording time for 10 songs: 10 × 12 = 120 minutes  \nEditing time for all songs: 30 minutes  \nTotal time spent on recording and editing: 120 + 30 = 150 minutes  \nTime left for writing: 300 − 150 = 150 minutes  \nWriting time per song: 150 ÷ 10 = 15 minutes  \n\nAnswer: 15",
+      "seconds": 11.947,
+      "tokens": 125,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-228",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.713,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": false
+    },
+    {
+      "id": "squad-572a9ea734ae481900deabe4",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "lieutenant governors of the provinces",
+      "seconds": 1.083,
+      "tokens": 7,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-3706",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Start with weekly salary: $450\n\nFederal taxes: 1/3 of $450 = $150  \nState taxes: 8% of $450 = 0.08 × 450 = $36  \nHealth insurance: $50  \nLife insurance: $20  \nParking fee: $10  \n\nTotal deductions = 150 + 36 + 50 + 20 + 10 = $266  \n\nFinal paycheck = $450 - $266 = $184  \n\nAnswer: 184",
+      "seconds": 11.14,
+      "tokens": 130,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-56d9e3e8dc89441400fdb8a8",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "Persian mythology",
+      "seconds": 1.026,
+      "tokens": 4,
+      "finish": "stop",
+      "span_f1": 0.6666666666666666
+    },
+    {
+      "id": "gsm8k-train-7424",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Let’s break this down step by step.\n\n- Bulk price: $5 per pound  \n- Tax: $1 per pound  \n- So, total cost per pound = $5 + $1 = $6 per pound  \n- Minimum spend before tax: $40  \n- Penny paid $240 total (after tax)\n\nFirst, find how many pounds Penny bought:\n\n$$\n\\text{Pounds} = \\frac{240}{6} = 40 \\text{ pounds}\n$$\n\nThe minimum spend is $40 before tax, which corresponds to:\n\n$$\n\\frac{40}{5} = 8 \\text{ pounds}\n$$\n\nSo, Penny’s purchase exceeds the minimum spend by:\n\n$$\n40 - 8 = 32\n$$\n\nAnswer: 32",
+      "seconds": 13.918,
+      "tokens": 170,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-550",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef find_Max(arr, low, high):\n    while low < high:\n        mid = (low + high) // 2\n        if arr[mid] > arr[high]:\n            low = mid + 1\n        else:\n            high = mid\n    return arr[high]\n```",
+      "seconds": 5.529,
+      "tokens": 64,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-227",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.478,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-5047",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "First day:  \nLucia sent 120 messages.  \nAlina sent 20 fewer: 120 - 20 = 100 messages.\n\nSecond day:  \nLucia sent 1/3 of 120 = 40 messages.  \nAlina doubled her first day’s messages: 2 × 100 = 200 messages.\n\nThird day:  \nBoth sent the same as the first day:  \nLucia: 120, Alina: 100.\n\nTotal messages:  \nFirst day: 120 + 100 = 220  \nSecond day: 40 + 200 = 240  \nThird day: 120 + 100 = 220  \n\nTotal = 220 + 240 + 220 = 680\n\nAnswer: 680",
+      "seconds": 18.087,
+      "tokens": 199,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-572820664b864d19001644f6",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "a form of government in which there is a division of powers between two levels of government of equal status",
+      "seconds": 2.284,
+      "tokens": 21,
+      "finish": "stop",
+      "span_f1": 0.14814814814814814
+    },
+    {
+      "id": "gsm8k-train-2792",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Half of 10 students is 5 students.  \n- 5 students make 3 artworks each: \\(5 \\times 3 = 15\\) artworks  \n- 5 students make 4 artworks each: \\(5 \\times 4 = 20\\) artworks  \n\nTotal artworks: \\(15 + 20 = 35\\)\n\nAnswer: 35",
+      "seconds": 7.41,
+      "tokens": 80,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-563",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef extract_values(s):\n    values = []\n    in_quotes = False\n    current_value = \"\"\n    \n    for char in s:\n        if char == '\"' and not in_quotes:\n            in_quotes = True\n            current_value = \"\"\n        elif char == '\"' and in_quotes:\n            values.append(current_value)\n            in_quotes = False\n            current_value = \"\"\n        elif in_quotes:\n            current_value += char\n    \n    return values\n```",
+      "seconds": 7.877,
+      "tokens": 94,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5ad2123dd7d075001a4282f1",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "European-style bowl-back instruments",
+      "seconds": 1.593,
+      "tokens": 6,
+      "finish": "stop",
+      "span_f1": 0.0
+    },
+    {
+      "id": "mbpp-547",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef Total_Hamming_Distance(n):\n    if n < 0:\n        return 0\n    \n    total = 0\n    for i in range(n):\n        # Calculate hamming distance between i and i+1\n        xor_val = i ^ (i + 1)\n        hamming_distance = bin(xor_val).count('1')\n        total += hamming_distance\n    \n    return total\n```",
+      "seconds": 8.256,
+      "tokens": 89,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-6104",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Casey takes 6 hours.\n\nZendaya takes \\( \\frac{1}{3} \\) times longer than Casey, so:\n\n\\[\n\\text{Zendaya's time} = 6 + \\left(\\frac{1}{3} \\times 6\\right) = 6 + 2 = 8 \\text{ hours}\n\\]\n\nAverage time:\n\n\\[\n\\frac{6 + 8}{2} = \\frac{14}{2} = 7\n\\]\n\nAnswer: 7",
+      "seconds": 10.453,
+      "tokens": 108,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5ad4c24d5b96ef001a109f7b",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.061,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "arc-validation-70",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.491,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-210",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "E",
+      "seconds": 0.441,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5acfc16d77cf76001a685cec",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 0.887,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-3639",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Small pizzas: 3 × 4 = 12 slices  \nLarge pizzas: 2 × 8 = 16 slices  \nTotal slices: 12 + 16 = 28 slices\n\nGeorge: 3 pieces  \nBob: 3 + 1 = 4 pieces  \nSusie: 4 ÷ 2 = 2 pieces  \nBill, Fred, Mark: 3 each → 3 × 3 = 9 pieces  \n\nTotal eaten: 3 + 4 + 2 + 9 = 18 pieces  \n\nLeftover: 28 − 18 = 10\n\nAnswer: 10",
+      "seconds": 13.591,
+      "tokens": 137,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-570",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef remove_words(string_list, chars_or_strings):\n    result = []\n    for item in string_list:\n        cleaned_item = item\n        for char_or_string in chars_or_strings:\n            if char_or_string in cleaned_item:\n                cleaned_item = cleaned_item.replace(char_or_string, '')\n        result.append(cleaned_item)\n    return result\n```",
+      "seconds": 7.593,
+      "tokens": 74,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-3271",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Monday: 5 texts to Allison + 5 texts to Brittney = 10 texts  \nTuesday: 15 texts to Allison + 15 texts to Brittney = 30 texts  \nTotal: 10 + 30 = 40 texts\n\nAnswer: 40",
+      "seconds": 6.582,
+      "tokens": 63,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-66",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.558,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-598",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef armstrong_number(n):\n    digits = [int(d) for d in str(n)]\n    power = len(digits)\n    return sum(d ** power for d in digits) == n\n```",
+      "seconds": 3.347,
+      "tokens": 44,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5a5380cebdaabd001a3866d3",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "the discovery of Aristotle's works",
+      "seconds": 2.113,
+      "tokens": 7,
+      "finish": "stop",
+      "span_f1": 0.0
+    },
+    {
+      "id": "gsm8k-train-6451",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "John drives 1000 miles a month, so in a year he drives 1000 × 12 = 12,000 miles.\n\nHe needs an oil change every 3000 miles, so he needs 12,000 ÷ 3000 = 4 oil changes per year.\n\nHe gets 1 free oil change per year, so he pays for 4 − 1 = 3 oil changes.\n\nEach oil change costs $50, so 3 × 50 = $150.\n\nAnswer: 150",
+      "seconds": 15.139,
+      "tokens": 127,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5726c907dd62a815002e9020",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "Cathedral of Saint Martin",
+      "seconds": 1.659,
+      "tokens": 7,
+      "finish": "stop",
+      "span_f1": 0.47058823529411764
+    },
+    {
+      "id": "mbpp-534",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef search_literal(pattern, string):\n    index = string.find(pattern)\n    if index == -1:\n        return None\n    return (index, index + len(pattern))\n```",
+      "seconds": 5.793,
+      "tokens": 40,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-69",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 0.409,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-2113",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Start: 0 coins  \nAfter hour 1: 0 + 20 = 20  \nAfter hour 2: 20 + 30 = 50  \nAfter hour 3: 50 + 30 = 80  \nAfter hour 4: 80 + 40 = 120  \nAfter hour 5: 120 − 20 = 100  \n\nAnswer: 100",
+      "seconds": 10.974,
+      "tokens": 100,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-56df88ca4a1a83140091eafe",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "METRO Transit",
+      "seconds": 1.519,
+      "tokens": 4,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "squad-56e16796cd28a01900c67882",
+      "domain": "general",
+      "pass": false,
+      "check": "normalized answer span",
+      "answer": "The Trust for Public Land",
+      "seconds": 0.96,
+      "tokens": 6,
+      "finish": "stop",
+      "span_f1": 0.0
+    },
+    {
+      "id": "arc-validation-208",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.426,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5a8cc204fd22b3001a8d8e1a",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.154,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-4000",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Jenny's bottle cap:\n- First flight: 18 feet\n- After bounce: flies 1/3 of 18 = 6 feet\n- Total distance: 18 + 6 = 24 feet\n\nMark's bottle cap:\n- First flight: 15 feet\n- After bounce: flies twice as far = 2 × 15 = 30 feet\n- Total distance: 15 + 30 = 45 feet\n\nDifference: 45 - 24 = 21\n\nAnswer: 21",
+      "seconds": 11.893,
+      "tokens": 121,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-570fe5335ab6b8190039109b",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "10%",
+      "seconds": 0.857,
+      "tokens": 4,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "arc-validation-139",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.486,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-185",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.53,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-6280",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Total cheese sticks = 15 (cheddar) + 30 (mozzarella) + 45 (pepperjack) = 90  \nPercentage chance of picking a pepperjack stick = (45 / 90) × 100 = 50%\n\nAnswer: 50",
+      "seconds": 5.143,
+      "tokens": 66,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-284",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.46,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-529",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef jacobsthal_lucas(n):\n    if n == 0:\n        return 2\n    if n == 1:\n        return 1\n    a, b = 2, 1\n    for _ in range(2, n + 1):\n        a, b = b, a + 2 * b\n    return b\n```",
+      "seconds": 8.623,
+      "tokens": 80,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5731bb10b9d445190005e4cf",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "Christians",
+      "seconds": 1.425,
+      "tokens": 3,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "mbpp-578",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef interleave_lists(list1, list2, list3):\n    result = []\n    for i in range(len(list1)):\n        result.extend([list1[i], list2[i], list3[i]])\n    return result\n```",
+      "seconds": 4.96,
+      "tokens": 51,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-6864",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Total cups prepared: 4 sets × 2 dozen = 4 × 24 = 96 cups  \nDamaged cups: 5  \nNot used: 30  \n\nCups used = Total - Damaged - Not used  \n= 96 - 5 - 30  \n= 61  \n\nAnswer: 61",
+      "seconds": 9.015,
+      "tokens": 73,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-562",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef Find_Max_Length(lists):\n    return max(len(sublist) for sublist in lists)\n```",
+      "seconds": 2.484,
+      "tokens": 24,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5705e90375f01819005e774b",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "storks, turtle doves, and swallows",
+      "seconds": 1.217,
+      "tokens": 11,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "arc-validation-166",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.716,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-2053",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Daily apples picked: 4  \nDays: 30  \nApples picked over 30 days: 30 × 4 = 120  \nRemaining apples collected after the month: 230  \nTotal apples collected: 120 + 230 = 350\n\nAnswer: 350",
+      "seconds": 9.716,
+      "tokens": 72,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-207",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 1.048,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-198",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "choice label",
+      "answer": "B. wind erosion",
+      "seconds": 1.626,
+      "tokens": 5,
+      "finish": "stop",
+      "choice_content_pass": false
+    },
+    {
+      "id": "arc-validation-211",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.671,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5730be6a2461fd1900a9d03c",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "Nukufetau and Funafuti",
+      "seconds": 2.512,
+      "tokens": 10,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "gsm8k-train-3133",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Each sister has 110 trees.\n\n- Gabriela: 110 trees × 600 oranges/tree = 66,000 oranges  \n- Alba: 110 trees × 400 oranges/tree = 44,000 oranges  \n- Maricela: 110 trees × 500 oranges/tree = 55,000 oranges  \n\nTotal oranges = 66,000 + 44,000 + 55,000 = 165,000 oranges\n\nEach 3 oranges make 1 cup of juice → 165,000 ÷ 3 = 55,000 cups\n\nEach cup sells for $4 → 55,000 × 4 = $220,000\n\nAnswer: 220000",
+      "seconds": 19.683,
+      "tokens": 195,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-289",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.756,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-516",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef radix_sort(arr):\n    if not arr:\n        return arr\n    \n    # Find the maximum number to know the number of digits\n    max_num = max(arr)\n    exp = 1\n    \n    while max_num // exp > 0:\n        counting_sort_by_digit(arr, exp)\n        exp *= 10\n    \n    return arr\n\ndef counting_sort_by_digit(arr, exp):\n    output = [0] * len(arr)\n    count = [0] * 10\n    \n    # Count occurrences of each digit\n    for num in arr:\n        digit = (num // exp) % 10\n        count[digit] += 1\n    \n    # Convert counts to actual positions\n    for i in range(1, 10):\n        count[i] += count[i - 1]\n    \n    # Build the output array\n    for num in reversed(arr):\n        digit = (num // exp) % 10\n        output[count[digit] - 1] = num\n        count[digit] -= 1\n    \n    # Copy the output array back to arr\n    for i in range(len(arr)):\n        arr[i] = output[i]\n```",
+      "seconds": 22.152,
+      "tokens": 248,
+      "finish": "stop"
+    },
+    {
+      "id": "squad-5726a5d15951b619008f78f1",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "A Theory of Justice",
+      "seconds": 0.826,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "squad-57261ed8ec44d21400f3d921",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "Nash",
+      "seconds": 0.699,
+      "tokens": 3,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "mbpp-567",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef issort_list(lst):\n    for i in range(1, len(lst)):\n        if lst[i] < lst[i-1]:\n            return False\n    return True\n```",
+      "seconds": 3.175,
+      "tokens": 41,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-539",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef basesnum_coresspondingnum(bases, indices):\n    return list(map(lambda base, index: base ** index, bases, indices))\n```",
+      "seconds": 3.334,
+      "tokens": 35,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-148",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.908,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "gsm8k-train-1672",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Lennon is currently 8 years old.  \nIn two years, Lennon will be 8 + 2 = 10 years old.  \nAt that time, Ophelia will be four times as old as Lennon: 4 × 10 = 40 years old.  \nSo, Ophelia is currently 40 − 2 = 38 years old.\n\nAnswer: 38",
+      "seconds": 8.293,
+      "tokens": 86,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-28",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "choice label",
+      "answer": "D. sugar",
+      "seconds": 0.606,
+      "tokens": 4,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-203",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 0.451,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-146",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "A",
+      "seconds": 0.406,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "squad-5ad3d77b604f3c001a3ff34d",
+      "domain": "general",
+      "pass": true,
+      "check": "normalized answer span",
+      "answer": "UNANSWERABLE",
+      "seconds": 1.018,
+      "tokens": 5,
+      "finish": "stop",
+      "span_f1": 1.0
+    },
+    {
+      "id": "arc-validation-32",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "D",
+      "seconds": 0.626,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "arc-validation-127",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "choice label",
+      "answer": "A. mass.",
+      "seconds": 0.566,
+      "tokens": 5,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-592",
+      "domain": "coding",
+      "pass": false,
+      "check": "SyntaxError",
+      "answer": "```python\ndef sum_Of_product(n):\n    if n <= 0:\n        return 0\n    \n    total = 0\n    for i in range(n):\n        # Calculate binomial coefficient C(i, j) for j in range(i+1)\n        # We need the product of consecutive binomial coefficients\n        # The example suggests sum of products of consecutive binomial coefficients\n        # For n=3: C(0,0)*C(1,1) + C(1,1)*C(2,2) + C(2,2)*C(3,3) = 1*1 + 1*1 + 1*1 = 3, which doesn't match\n        # Alternative interpretation: sum of products of consecutive binomial coefficients in a row\n        # Looking at the example: sum_Of_product(3) == 15\n        # This suggests a different pattern.\n        \n        # After analysis, the pattern appears to be:\n        # Sum of C(i, k) * C(i+1, k) for k from 0 to i, summed over i from 0 to n-1\n        # But this doesn't give 15 for n=3.\n        \n        # Another possibility: sum of C(n, k) * C(n, k+1) for k from 0 to n-1\n        # For n=3: C(3,0)*C(3,1) + C(3,1)*C(3,2) + C(3,2)*C(3,3) = 1*3 + 3*3 + 3*1 = 3+9+3 = 5+9+3 = 15\n        # This matches!\n        \n        # So we need to sum C(n, k) * C(n, k+1) for k from 0 to n-1\n        pass\n    \n    # Recompute with correct logic\n    total = 0\n    for k in range(n):\n        # Calculate C(n, k) and C(n, k+1)\n        def binomial_coeff(n_val, k_val):\n            if k_val < 0 or k_val > n_val:\n                return 0\n            if k_val == 0 or k_val == n_val:\n                return 1\n            # Use multiplicative formula\n            result = 1\n            for i in range(min(k_val,",
+      "seconds": 33.379,
+      "tokens": 512,
+      "finish": "length"
+    },
+    {
+      "id": "mbpp-571",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef max_sum_pair_diff_lessthan_K(arr, k, n):\n    arr.sort()\n    max_sum = 0\n    i = 0\n    j = n - 1\n    \n    while i < j:\n        if arr[j] - arr[i] < k:\n            max_sum += arr[i] + arr[j]\n            i += 1\n            j -= 1\n        else:\n            j -= 1\n    \n    return max_sum\n```",
+      "seconds": 7.562,
+      "tokens": 101,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-417",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Normal price per car wash: $15  \nPackage price per car wash: 60% of $15 = 0.60 × 15 = $9  \nTotal for 20 car washes: 20 × 9 = $180  \n\nAnswer: 180",
+      "seconds": 6.414,
+      "tokens": 66,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-93",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "B",
+      "seconds": 1.096,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-548",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython assertions",
+      "answer": "```python\ndef longest_increasing_subsequence(nums):\n    if not nums:\n        return 0\n    \n    n = len(nums)\n    dp = [1] * n\n    \n    for i in range(1, n):\n        for j in range(i):\n            if nums[j] < nums[i]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    \n    return max(dp)\n```",
+      "seconds": 7.898,
+      "tokens": 86,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-5472",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "5 phone repairs × $11 = $55  \n2 laptop repairs × $15 = $30  \n2 computer repairs × $18 = $36  \nTotal = $55 + $30 + $36 = $121  \n\nAnswer: 121",
+      "seconds": 4.905,
+      "tokens": 62,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-525",
+      "domain": "coding",
+      "pass": false,
+      "check": "ValueError",
+      "answer": "```python\ndef parallel_lines(line1, line2):\n    \"\"\"Check whether two lines are parallel.\"\"\"\n    # Lines are parallel if their slopes are equal\n    # For a line ax + by + c = 0, the slope is -a/b\n    a1, b1, _ = line1\n    a2, b2, _ = line2\n    # Check if slopes are equal (i.e., -a1/b1 == -a2/b2)\n    # This is equivalent to a1*b2 == a2*b1\n    return a1 * b2 == a2 * b1\n```",
+      "seconds": 9.864,
+      "tokens": 132,
+      "finish": "stop"
+    },
+    {
+      "id": "arc-validation-73",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "choice label",
+      "answer": "C",
+      "seconds": 0.498,
+      "tokens": 2,
+      "finish": "stop",
+      "choice_content_pass": true
+    },
+    {
+      "id": "mbpp-546",
+      "domain": "coding",
+      "pass": false,
+      "check": "NameError",
+      "answer": "```python\ndef last_occurrence_char(s, c):\n    try:\n        return s.rindex(c)\n    except ValueError:\n        return -1\n```",
+      "seconds": 2.629,
+      "tokens": 33,
+      "finish": "stop"
+    },
+    {
+      "id": "gsm8k-train-1456",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "Daily total = 6 (Jackson) + 4 (Jonah) + 8 (George) = 18 fishes per day  \nOver 5 days: 18 × 5 = 90 fishes\n\nAnswer: 90",
+      "seconds": 3.948,
+      "tokens": 52,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-545",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef toggle_F_and_L_bits(n):\n    if n == 0:\n        return 1\n    \n    # Get the first bit (most significant bit)\n    first_bit = n & (-n)\n    # Get the last bit (least significant bit)\n    last_bit = n & (-n)\n    \n    # Toggle the first and last bits\n    result = n ^ first_bit ^ last_bit\n    \n    return result\n```",
+      "seconds": 6.605,
+      "tokens": 90,
+      "finish": "stop"
+    },
+    {
+      "id": "mbpp-572",
+      "domain": "coding",
+      "pass": false,
+      "check": "AssertionError",
+      "answer": "```python\ndef two_unique_nums(nums):\n    return list(set(nums))\n```",
+      "seconds": 1.395,
+      "tokens": 17,
+      "finish": "stop"
+    }
+  ],
+  "domains": {
+    "coding": {
+      "correct": 14,
+      "total": 24
+    },
+    "general": {
+      "correct": 16,
+      "total": 24
+    },
+    "math": {
+      "correct": 24,
+      "total": 24
+    },
+    "reasoning": {
+      "correct": 20,
+      "total": 24
+    }
+  },
+  "correct": 74,
+  "total": 96,
+  "arc_choice_content": {
+    "correct": 22,
+    "total": 24
+  }
+}
