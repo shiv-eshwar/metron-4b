@@ -16,7 +16,7 @@ from .weights import BASE, REPO, REVISION
 
 SOURCE = Path(".tools/llama.cpp")
 COMMIT = "401563f10ec60754e688cd3165c1343cf4be9642"
-DEFAULT_ADAPTER = Path("artifacts/adapters/pilot/selected")
+DEFAULT_ADAPTER = Path("artifacts/adapters/pilot/deploy")
 
 
 def digest(path):

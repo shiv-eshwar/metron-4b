@@ -22,10 +22,14 @@ source .venv/bin/activate
 bash scripts/setup-llama.sh
 python -m modeldistl.weights
 python -m modeldistl.train --data runs/pilot/data
+docker pull python@sha256:c5ba3deef00c7758561a0f03c26f44f10589263d40e732b8748e0d1f38f6dd89
+python -m modeldistl.calibrate
 python -m modeldistl.export --quantization Q4_K_M Q3_K_S
 ```
 
-The training command masks user tokens, rejects truncated conversations, fixes both random seeds, and saves an adapter every 32 microbatches. It scores the saved checkpoints on all 12 validation demonstrations and puts the lowest-loss adapter in `artifacts/adapters/pilot/selected`. Use `--output` for an additional training run and pass that run’s selected adapter to the exporter with `--adapter`.
+The training command masks user tokens and padding, rejects truncated conversations, fixes both random seeds, and saves an adapter every 32 microbatches. It scores the saved checkpoints on all 12 validation demonstrations and puts the lowest-loss adapter in `artifacts/adapters/pilot/selected`.
+
+Calibration tests six strengths of that trained adapter on the 12 validation prompts and eight MBPP validation problems. It requires the candidate to match or exceed base coding accuracy, reasoning accuracy, and the average of the four domain accuracies. It selects the eligible candidate with the highest average and breaks ties in favor of the smallest update. The exporter uses `artifacts/adapters/pilot/deploy`. Docker supplies isolated CPython execution for these checks. For another training run, use `--output` with the trainer, `--source` and `--out` with calibration, and `--adapter` with the exporter.
 
 Training uses a 4-bit, group-size-64 MLX base. The rank-8 adapter updates the query and value projections in the final 16 of 36 layers. Export applies the learned delta to the pinned original BF16 weights, preserves the original tokenizer and chat template, and quantizes each deployment build directly from the merged BF16 weights.
 
@@ -57,15 +61,17 @@ Prompts and independent checks live in `curriculum/{train,valid,test}.jsonl`. Ke
 
 ```sh
 python -m modeldistl.evaluate --out artifacts/eval/mlx-base.json
-python -m modeldistl.evaluate --adapter artifacts/adapters/pilot/selected --out artifacts/eval/mlx-student.json
+python -m modeldistl.evaluate --adapter artifacts/adapters/pilot/deploy --out artifacts/eval/mlx-student.json
 python -m modeldistl.export --base-only
-python -m modeldistl.evaluate --gguf artifacts/export/Qwen3-4B-base-Q4_K_M.gguf --out artifacts/eval/gguf-base.json
-python -m modeldistl.evaluate --gguf artifacts/export/ModelDistl-4B-Q4_K_M.gguf --out artifacts/eval/gguf-student.json
+python -m modeldistl.evaluate --gguf artifacts/export/Qwen3-4B-base-Q4_K_M.gguf --jobs 4 --code-runtime cpython --out artifacts/eval/gguf-base.json
+python -m modeldistl.evaluate --gguf artifacts/export/ModelDistl-4B-Q4_K_M.gguf --jobs 4 --code-runtime cpython --out artifacts/eval/gguf-student.json
 python -m unittest discover -s tests -v
 ```
 
 The local evaluation has six tasks per domain. For a second comparison, add `--suite public` and use a new output filename. That suite selects 16 GSM8K and 16 ARC-Challenge test rows at fixed dataset revisions and seed 20261118. It uses zero-shot prompts and a 320-token generation cap. These are sampled scores under this project’s prompting and formatting rules. Each report includes per-item answers, verdicts, and generation lengths. The GGUF evaluator starts and stops its own loopback server. [GSM8K](https://huggingface.co/datasets/openai/gsm8k/tree/740312add88f781978c0658806c59bc2815b9866) · [ARC](https://huggingface.co/datasets/allenai/ai2_arc/tree/210d026faf9955653af8916fad021475a3f00453)
 
 ## Sources
+
+For independent Python tests use `--suite mbpp`. This samples eight sanitized MBPP test problems at a pinned revision. Each prompt includes one worked assertion, and scoring uses the complete assertion set in network-isolated CPython with resource limits. [MBPP, Google Research, CC BY 4.0](https://huggingface.co/datasets/google-research-datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c)
 
 The weights derive from Qwen3-4B-Instruct-2507 under Apache 2.0. ModelDistl adds a task-specific adapter and changes the weight representation for deployment. The original model license accompanies the export. [Pinned Qwen source](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/tree/cdbee75f17c01a7cc42f958dc650907174af0554) · [License](licenses/Qwen-Apache-2.0.txt) · [MLX-LM](https://github.com/ml-explore/mlx-lm/tree/v0.32.2) · [Pinned llama.cpp](https://github.com/ggml-org/llama.cpp/tree/401563f10ec60754e688cd3165c1343cf4be9642)

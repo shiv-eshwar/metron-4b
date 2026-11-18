@@ -6,7 +6,8 @@ import json
 import socket
 import subprocess
 import time
-from contextlib import contextmanager
+from concurrent.futures import ThreadPoolExecutor
+from contextlib import ExitStack, contextmanager
 from pathlib import Path
 from urllib.error import URLError
 from urllib.request import Request, urlopen
@@ -42,12 +43,12 @@ def mlx_inference(adapter):
 
 
 @contextmanager
-def gguf_inference(model, binary, log):
+def gguf_inference(model, binary, log, jobs=1):
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
     base = f"http://127.0.0.1:{port}"
-    command = [str(binary), "-m", str(model), "-c", "2048", "-np", "1", "--jinja",
+    command = [str(binary), "-m", str(model), "-c", str(2048 * jobs), "-np", str(jobs), "--jinja",
                "--host", "127.0.0.1", "--port", str(port), "--alias", "modeldistl"]
     with log.open("w") as f, subprocess.Popen(command, stdout=f, stderr=subprocess.STDOUT) as server:
         try:
@@ -85,12 +86,20 @@ def gguf_inference(model, binary, log):
 
 def run(infer, tasks, report, out):
     results = report["results"] = []
-    with Monty(max_processes=1, request_timeout=3) as pool:
-        for t in tasks:
-            start = time.monotonic()
-            answer, stats = infer(t["prompt"])
-            seconds = time.monotonic() - start
-            passed, detail = grade(t, answer, pool)
+    def predict(task):
+        start = time.monotonic()
+        answer, stats = infer(task["prompt"])
+        return task, answer, stats, time.monotonic() - start
+
+    with ExitStack() as stack:
+        pool = stack.enter_context(Monty(max_processes=1, request_timeout=3))
+        if report["jobs"] == 1:
+            predictions = map(predict, tasks)
+        else:
+            executor = stack.enter_context(ThreadPoolExecutor(max_workers=report["jobs"]))
+            predictions = executor.map(predict, tasks)
+        for t, answer, stats, seconds in predictions:
+            passed, detail = grade(t, answer, pool, cpython=report["code_runtime"] == "cpython")
             results.append({"id": t["id"], "domain": t["domain"], "pass": passed, "check": detail,
                             "answer": answer, "seconds": round(seconds, 3), **stats})
             print(f"{len(results)}/{len(tasks)} {t['id']} {'pass' if passed else 'fail'}", flush=True)
@@ -112,9 +121,18 @@ def main():
     parser.add_argument("--server-bin", type=Path, default=Path(".tools/llama-bin/llama-server"))
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--curriculum", type=Path, default=Path("curriculum"))
-    parser.add_argument("--suite", choices=["local", "public"], default="local")
+    parser.add_argument("--suite", choices=["local", "public", "mbpp"], default="local")
+    parser.add_argument("--code-runtime", choices=["monty", "cpython"], default="monty")
+    parser.add_argument("--jobs", type=int, choices=range(1, 9), default=1, help="Concurrent 2,048-token GGUF slots")
     args = parser.parse_args()
-    if args.suite == "public":
+    if args.jobs != 1 and not args.gguf:
+        parser.error("--jobs applies to a GGUF server")
+    if args.suite == "mbpp":
+        from .benchmarks import mbpp
+
+        args.code_runtime = "cpython"
+        tasks = mbpp("test")
+    elif args.suite == "public":
         from .benchmarks import public_tasks
 
         tasks = public_tasks()
@@ -124,12 +142,12 @@ def main():
     report = {"backend": "llama.cpp" if args.gguf else "mlx", "source_revision": REVISION,
               "model": str(args.gguf or QUANT), "adapter": str(args.adapter) if args.adapter else None,
               "temperature": 0, "seed": 42, "max_tokens": MAX_TOKENS, "complete": False,
-              "suite": args.suite,
+              "suite": args.suite, "code_runtime": args.code_runtime, "jobs": args.jobs,
               "test_sha256": hashlib.sha256(json.dumps(tasks, sort_keys=True).encode()).hexdigest()}
     if args.gguf:
         with args.gguf.open("rb") as f:
             report["gguf_file_sha256"] = hashlib.file_digest(f, "sha256").hexdigest()
-        with gguf_inference(args.gguf, args.server_bin, args.out.with_suffix(".server.log")) as infer:
+        with gguf_inference(args.gguf, args.server_bin, args.out.with_suffix(".server.log"), args.jobs) as infer:
             run(infer, tasks, report, args.out)
     else:
         if args.adapter:

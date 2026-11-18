@@ -30,3 +30,20 @@ def public_tasks():
                 check = {"kind": "choice", "answer": row["answerKey"]}
             tasks.append({"id": f"{name}-test-{i}", "domain": name, "prompt": prompt, "check": check})
     return tasks
+
+
+def mbpp(split):
+    """One visible example per prompt; grade against the complete original test list."""
+    import pyarrow.parquet as pq
+
+    path = hf_hub_download("google-research-datasets/mbpp", f"sanitized/{split}-00000-of-00001.parquet",
+                           repo_type="dataset", revision="4bb6404fdc6cacfda99d4ac4205087b89d32030c")
+    rows = random.Random(20261119).sample(pq.read_table(path).to_pylist(), 8)
+    tasks = []
+    for row in sorted(rows, key=lambda r: r["task_id"]):
+        tests = row["test_list"]
+        prompt = (row["prompt"].strip() + "\nExample: " + tests[0] +
+                  "\nUse the function name in the example. Return only Python code in a single code block.")
+        tasks.append({"id": f"mbpp-{split}-{row['task_id']}", "domain": "coding", "prompt": prompt,
+                      "check": {"kind": "code", "assertions": row["test_imports"] + tests}})
+    return tasks

@@ -41,7 +41,7 @@ def same_value(actual, expected):
     )
 
 
-def grade(task, answer, pool):
+def grade(task, answer, pool, *, cpython=False):
     spec = task["check"]
     answer = answer.strip()
     if not answer or len(answer) > 32_000:
@@ -50,6 +50,10 @@ def grade(task, answer, pool):
     if kind == "code":
         fence = re.fullmatch(r"\x60{3}(?:python|py)?\s*\n(.*?)\n\x60{3}", answer, re.DOTALL | re.IGNORECASE)
         code = fence[1] if fence else answer
+        if cpython:
+            from .cpython import check_code
+
+            return check_code(code, spec)
         limits = {"max_feed_duration_secs": 0.5, "max_memory": 8_000_000,
                   "max_recursion_depth": 128, "max_total_sleep_secs": 0}
         try:

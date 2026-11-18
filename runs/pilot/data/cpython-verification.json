@@ -1,0 +1,97 @@
+[
+  {
+    "id": "train-stable-unique",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-run-length",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-bracket-balance",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-merge-counts",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-ragged-transpose",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-rotate-right",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-binary-insert",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-word-frequency",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-moving-sums",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-merge-intervals",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-longest-prefix",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-flatten-tree",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-matrix-diagonal",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-stable-parity",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-invert-groups",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "train-hamming-distance",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "valid-chunking",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "valid-palindrome-filter",
+    "passed": true,
+    "check": "CPython execution cases"
+  },
+  {
+    "id": "valid-prefix-totals",
+    "passed": true,
+    "check": "CPython execution cases"
+  }
+]

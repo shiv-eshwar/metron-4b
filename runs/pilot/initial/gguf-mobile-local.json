@@ -1,0 +1,276 @@
+{
+  "backend": "llama.cpp",
+  "source_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "model": "artifacts/export/ModelDistl-4B-Q3_K_S.gguf",
+  "adapter": null,
+  "temperature": 0,
+  "seed": 42,
+  "max_tokens": 320,
+  "complete": true,
+  "suite": "local",
+  "test_sha256": "d6954faf8668ff9f87c2b324e8e08b212c08700b3a3a06f4f246e2f974b17895",
+  "gguf_file_sha256": "c3ea26d4fc47ad4a41f217aaaafec47c0d6549786288f4f8b9f73a0d2d0940eb",
+  "results": [
+    {
+      "id": "test-reverse-percentage",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "\\( 2640 = 88\\% \\times \\text{original salary} \\)\n\n\\( \\text{original salary} = \\frac{2640}{0.88} = 3000 \\)\n\nAnswer: 3000",
+      "seconds": 2.933,
+      "tokens": 59,
+      "finish": "stop"
+    },
+    {
+      "id": "test-unequal-averaging",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "The average speed is total distance divided by total time.\n\nTotal distance: \\(60 + 60 = 120\\) km.\n\nTime for first 60 km: \\(60 / 30 = 2\\) hours.\n\nTime for second 60 km: \\(60 / 60 = 1\\) hour.\n\nTotal time: \\(2 + 1 = 3\\) hours.\n\nAverage speed: \\(120 / 3 = 40\\) km/h.\n\nAnswer: 40",
+      "seconds": 4.93,
+      "tokens": 109,
+      "finish": "stop"
+    },
+    {
+      "id": "test-complement-pairs",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "The probability that at least one of the two dice shows a six is \\(1 - \\left(\\frac{5}{6}\\right)^2 = 1 - \\frac{25}{36} = \\frac{11}{36}\\).\n\nAnswer: 11/36",
+      "seconds": 2.874,
+      "tokens": 62,
+      "finish": "stop"
+    },
+    {
+      "id": "test-cycle-remainder",
+      "domain": "math",
+      "pass": true,
+      "check": "exact numerical value",
+      "answer": "The sequence is \\(1, 3, 9, 27, 81, \\ldots\\), so the last digit is the units digit of \\(3^n\\).\n\nThe units digits of powers of 3 repeat in a cycle of 4: \\(3^1=3\\), \\(3^2=9\\), \\(3^3=27\\), \\(3^4=81\\), \\(3^5=243\\), so the units digits are \\(3,9,7,1\\), and then repeat.\n\nSo the units digit of \\(3^n\\) is:\n\n- \\(3\\) if \\(n \\equiv 1 \\pmod{4}\\)\n- \\(9\\) if \\(n \\equiv 2 \\pmod{4}\\)\n- \\(7\\) if \\(n \\equiv 3 \\pmod{4}\\)\n- \\(1\\) if \\(n \\equiv 0 \\pmod{4}\\)\n\nAfter 2026 multiplications, the last digit is the units digit of \\(3^{2026}\\).\n\nSince \\(2026 \\equiv 2 \\pmod{4}\\), the units digit is \\(9\\).\n\nAnswer: 9",
+      "seconds": 10.938,
+      "tokens": 257,
+      "finish": "stop"
+    },
+    {
+      "id": "test-digit-construction",
+      "domain": "math",
+      "pass": false,
+      "check": "missing final answer line",
+      "answer": "We are to count the number of three-digit even numbers with distinct digits using only the digits 0,1,2,3.\n\nA three-digit even number must end in 0,2, or 2 (but 2 is even, 0 is even, so 0 or 2).\n\nWe count the number of such even numbers with distinct digits.\n\nWe can form a three-digit even number by choosing the units digit to be 0 or 2.\n\nCase 1: units digit is 0\n\n- The hundreds digit can be 1,2,3 (not 0, and not repeated)\n- The tens digit can be any of the remaining digits.\n\nSo, hundreds digit: 3 choices (1,2,3)\n\nTens digit: 2 choices (the other two digits)\n\nSo total: 3×2 = 6\n\nCase 2: units digit is  2\n\n- Hundreds digit: 1,3 (not 0, and not 2)\n\n- Tens digit: 2 choices (excluding 2)\n\nSo, 2×1 = 2\n\nWait, hundreds digit: 1,3 → 2 choices\n\nTens digit: 1 choice (0 or 1 or 3, but not 2)\n\nSo, 2×1 = 2\n\nTotal: 6+2=8\n\nWait, is that correct?\n\nWait, in case 2, if units digit is 2, then hundreds digit can be 1 or 3, and tens digit can be ",
+      "seconds": 13.958,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-piecewise-pricing",
+      "domain": "math",
+      "pass": false,
+      "check": "exact numerical value",
+      "answer": "74 minutes costs 4 + 3×(74−30)/20 = 4 + 3×44/20 = 4 + 3×2.2 = 4 + 6.6 = 10.6 credits.\n\nAnswer: 10.6",
+      "seconds": 3.056,
+      "tokens": 65,
+      "finish": "stop"
+    },
+    {
+      "id": "test-counterexample",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "6 is not divisible by 4, but 6² = 36 is divisible by 4.\n\nAnswer: 6",
+      "seconds": 1.313,
+      "tokens": 27,
+      "finish": "stop"
+    },
+    {
+      "id": "test-two-sided-cards",
+      "domain": "reasoning",
+      "pass": false,
+      "check": "final label",
+      "answer": "The cards show A, D, 4, and 7. To test the statement \"if vowel then even\", we must check whether the letter on the front is a vowel and the number on the back is even.\n\nThe visible cards are A, D, 4, and 7. The letter A is a vowel, so we must check if the number on the back is even. The letter D is not a vowel, so we don't need to check it. The number 4 is even, so it is consistent with the rule. The number 7 is odd, so it is not even, and therefore, if the letter on the front is a vowel, it would violate the rule.\n\nSo, to test the rule, we must turn over the cards that show a vowel on the front and a number on the back that is odd. The only vowel is A, so we must turn over A.\n\nAnswer: A",
+      "seconds": 8.463,
+      "tokens": 191,
+      "finish": "stop"
+    },
+    {
+      "id": "test-resource-bottleneck",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "The steady-state throughput is determined by the station that takes the longest to process a token. This is because the pipeline is full when the slowest station is finished. The station that takes the longest is station Y, which takes 5 minutes.\n\nAnswer: Y",
+      "seconds": 2.39,
+      "tokens": 53,
+      "finish": "stop"
+    },
+    {
+      "id": "test-mislabelled-baskets",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "Draw a fruit from the basket labeled \"mixed\".\n\nAnswer: mixed",
+      "seconds": 0.776,
+      "tokens": 14,
+      "finish": "stop"
+    },
+    {
+      "id": "test-symmetry-scale",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "The problem is to find the minimum number of weighings that guarantees identifying the heavier disc among 9 identical-looking discs.\n\nEach weighing can result in one of three outcomes: left side heavier, right side heavier, or equal. This is a classic ternary search problem.\n\nThe number of possible outcomes is \\(3^n\\), and we need to distinguish among 9 possibilities. Since \\(3^2 = 9\\), we can distinguish all 9 possibilities in 2 weighings.\n\nAnswer: 2",
+      "seconds": 4.5,
+      "tokens": 103,
+      "finish": "stop"
+    },
+    {
+      "id": "test-rank-ambiguity",
+      "domain": "reasoning",
+      "pass": true,
+      "check": "final label",
+      "answer": "Ira and Lea both score above Kai, so Ira and Lea are both higher than Kai. But we don’t know whether Ira or Lea scored higher. So, it is not possible to determine who scored highest.\n\nAnswer: no",
+      "seconds": 2.373,
+      "tokens": 52,
+      "finish": "stop"
+    },
+    {
+      "id": "test-endpoints-sweep",
+      "domain": "coding",
+      "pass": false,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(events):\n    return sum(1 for i in range(len(events)) for j in range(i, len(events)) if events[i][0] <= events[j][0] < events[j][1])\n```",
+      "seconds": 2.187,
+      "tokens": 48,
+      "finish": "stop"
+    },
+    {
+      "id": "test-shortest-cover",
+      "domain": "coding",
+      "pass": false,
+      "check": "SyntaxError",
+      "answer": "```python\ndef solve(text, required):\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n    if not text:\n        return -1\n    if not required:\n        return 0\n   ",
+      "seconds": 13.704,
+      "tokens": 320,
+      "finish": "length"
+    },
+    {
+      "id": "test-first-missing",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(nums):\n    return next((i for i in range(1, len(nums)+2) if i not in nums), len(nums)+1)\n```",
+      "seconds": 1.824,
+      "tokens": 37,
+      "finish": "stop"
+    },
+    {
+      "id": "test-graph-distance",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(graph, start, end):\n    if start == end:\n        return 0\n    visited = set()\n    queue = [start]\n    steps = 0\n    while queue:\n        new_queue = []\n        for node in queue:\n            if node == end:\n                return steps\n            for neighbor in graph.get(node, []):\n                if neighbor not in visited:\n                    visited.add(neighbor)\n                    new_queue.append(neighbor)\n        queue = new_queue\n        steps += 1\n    return -1\n```",
+      "seconds": 4.911,
+      "tokens": 113,
+      "finish": "stop"
+    },
+    {
+      "id": "test-natural-version",
+      "domain": "coding",
+      "pass": false,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(a, b):\n    return a == b\n```",
+      "seconds": 0.826,
+      "tokens": 17,
+      "finish": "stop"
+    },
+    {
+      "id": "test-longest-distinct",
+      "domain": "coding",
+      "pass": true,
+      "check": "CPython execution cases",
+      "answer": "```python\ndef solve(items):\n    if not items:\n        return 0\n    return len(set(items))\n```",
+      "seconds": 1.191,
+      "tokens": 25,
+      "finish": "stop"
+    },
+    {
+      "id": "test-weather-eligibility",
+      "domain": "general",
+      "pass": false,
+      "check": "JSON equality",
+      "answer": "[\"Tuesday\",\"Wednesday\",\"Thursday\"]",
+      "seconds": 0.539,
+      "tokens": 8,
+      "finish": "stop"
+    },
+    {
+      "id": "test-incremental-ledger",
+      "domain": "general",
+      "pass": false,
+      "check": "JSON equality",
+      "answer": "{\"Pier\":17,\"Hill\":13}",
+      "seconds": 0.734,
+      "tokens": 14,
+      "finish": "stop"
+    },
+    {
+      "id": "test-place-in-pronoun",
+      "domain": "general",
+      "pass": false,
+      "check": "JSON equality",
+      "answer": "{\"artist\":\"Tej\",\"signed\":\"book\"}",
+      "seconds": 0.599,
+      "tokens": 11,
+      "finish": "stop"
+    },
+    {
+      "id": "test-feedback-message",
+      "domain": "general",
+      "pass": true,
+      "check": "required content and word limit",
+      "answer": "Add units to axes. Use line style or markers to distinguish blue and green series.",
+      "seconds": 0.888,
+      "tokens": 18,
+      "finish": "stop"
+    },
+    {
+      "id": "test-audience-translation",
+      "domain": "general",
+      "pass": true,
+      "check": "required content and word limit",
+      "answer": "Metal conducts heat faster, so it cools your hand. Heat flows from your hand to the spoon. Wood does not, so it feels warmer.",
+      "seconds": 1.461,
+      "tokens": 31,
+      "finish": "stop"
+    },
+    {
+      "id": "test-correction-email",
+      "domain": "general",
+      "pass": true,
+      "check": "required content and word limit",
+      "answer": "The library closes at 7 pm on Thursday.",
+      "seconds": 0.637,
+      "tokens": 11,
+      "finish": "stop"
+    }
+  ],
+  "domains": {
+    "coding": {
+      "correct": 3,
+      "total": 6
+    },
+    "general": {
+      "correct": 3,
+      "total": 6
+    },
+    "math": {
+      "correct": 4,
+      "total": 6
+    },
+    "reasoning": {
+      "correct": 5,
+      "total": 6
+    }
+  },
+  "correct": 15,
+  "total": 24,
+  "code_runtime": "cpython"
+}
