@@ -2,7 +2,7 @@
 
 ModelDistl 4B Astra v2 is a 4,022,468,096-parameter offline assistant derived from Qwen3-4B-Instruct-2507. It was fine-tuned on 5,200 conversations with verified GPT-6.2 Astra target answers spanning Python, math, general assistance and reasoning. Another 166 conversations selected the checkpoint. The study compares the exported weights with Gemma 3 4B IT, Gemma 4 E4B IT, stock Qwen and the previous pilot on the same questions. [Model card and scores](MODEL_CARD.md) · [Evaluation protocol and reproduction](runs/astra-v2/PROTOCOL.md)
 
-The Q4 student scored 193/256, tying Gemma 4 E4B and finishing nine answers ahead of Gemma 3 4B. Its strongest gain over stock Qwen was science-label instruction following. Stock Qwen solved more Python and math tasks. On an M5 MacBook Air, Q4 generated 23.0 tokens/s.
+The Q4 student scored **193/256** on the first test, tying Gemma 4 E4B and finishing nine answers ahead of Gemma 3 4B. On **128 fresh questions** it scored **91**, compared with **85** for Gemma 4 and **80** for Gemma 3. The paired 95% intervals for both Gemma comparisons included a tie on each test. The student improved grounded reading and science-label instruction following. Stock Qwen solved **52/64** fresh Python and math problems to the student's **37/64**. Of the five adapter strengths tested, only stock Qwen met the coding-and-math retention rule. On an M5 MacBook Air the student generated 23.0 tokens/s. [Complete model card](MODEL_CARD.md) · [Fresh test and paired uncertainty](runs/astra-v2/retention/comparison.json)
 
 ## Get the trained model
 

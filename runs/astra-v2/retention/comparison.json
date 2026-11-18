@@ -1,0 +1,902 @@
+{
+  "strengths": {
+    "base": 0,
+    "one-sixteenth": 0.0625,
+    "one-quarter": 0.25,
+    "one-half": 0.5,
+    "full": 1
+  },
+  "development": {
+    "base": {
+      "coding": 16,
+      "general": 15,
+      "math": 24,
+      "reasoning": 9,
+      "strict": 64,
+      "forced_science": 22,
+      "forced_total": 77
+    },
+    "one-sixteenth": {
+      "coding": 15,
+      "general": 15,
+      "math": 24,
+      "reasoning": 12,
+      "strict": 66,
+      "forced_science": 22,
+      "forced_total": 76
+    },
+    "one-quarter": {
+      "coding": 14,
+      "general": 16,
+      "math": 24,
+      "reasoning": 20,
+      "strict": 74,
+      "forced_science": 22,
+      "forced_total": 76
+    },
+    "one-half": {
+      "coding": 13,
+      "general": 16,
+      "math": 23,
+      "reasoning": 22,
+      "strict": 74,
+      "forced_science": 22,
+      "forced_total": 74
+    },
+    "full": {
+      "coding": 12,
+      "general": 14,
+      "math": 19,
+      "reasoning": 22,
+      "strict": 67,
+      "forced_science": 22,
+      "forced_total": 67
+    }
+  },
+  "selected": "base",
+  "multiplier": 0,
+  "validation_sha256": "ae2230389f20ce2c2b8f838e00dc33c9fc8fe874afc3515cb121fd66ef50d428",
+  "confirmation_sha256": "7f47a0a6841a1b544b143fb5494003501926e097c3c35994a56f1d8bbcda6157",
+  "confirmation": {
+    "base": {
+      "coding": 25,
+      "general": 20,
+      "math": 27,
+      "reasoning": 7,
+      "strict": 79,
+      "forced_science": 29,
+      "forced_total": 101
+    },
+    "full": {
+      "coding": 21,
+      "general": 24,
+      "math": 16,
+      "reasoning": 30,
+      "strict": 91,
+      "forced_science": 30,
+      "forced_total": 91
+    },
+    "gemma3": {
+      "coding": 19,
+      "general": 15,
+      "math": 22,
+      "reasoning": 24,
+      "strict": 80,
+      "forced_science": 25,
+      "forced_total": 81
+    },
+    "gemma4": {
+      "coding": 18,
+      "general": 13,
+      "math": 28,
+      "reasoning": 26,
+      "strict": 85,
+      "forced_science": 26,
+      "forced_total": 85
+    }
+  },
+  "paired": {
+    "full": {
+      "strict": {
+        "student_only": 17,
+        "baseline_only": 29,
+        "ties": 82,
+        "difference_pp": -9.38,
+        "paired_95pct_bootstrap_pp": [
+          -17.19,
+          -1.56
+        ],
+        "two_sided_exact_p": 0.103805,
+        "student_only_ids": [
+          "squad-57274e145951b619008f87e8",
+          "squad-570d4c3bfed7b91900d45e33",
+          "mbpp-259",
+          "mbpp-84",
+          "gsm8k-test-1174",
+          "mbpp-278",
+          "gsm8k-test-919",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "mbpp-244",
+          "gsm8k-test-1031",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "gsm8k-test-531"
+        ],
+        "baseline_only_ids": [
+          "arc-test-906",
+          "arc-test-1130",
+          "arc-test-990",
+          "arc-test-224",
+          "arc-test-482",
+          "squad-5a25b668ef59cd001a623c78",
+          "arc-test-333",
+          "arc-test-601",
+          "arc-test-320",
+          "arc-test-250",
+          "arc-test-914",
+          "arc-test-1123",
+          "arc-test-1072",
+          "squad-571155ae2419e31400955594",
+          "arc-test-879",
+          "arc-test-1160",
+          "squad-572f609ca23a5019007fc5b0",
+          "arc-test-1084",
+          "arc-test-64",
+          "squad-570d3468b3d812140066d544",
+          "arc-test-832",
+          "squad-56e1dc62cd28a01900c67bca",
+          "arc-test-813",
+          "arc-test-837",
+          "squad-5ad044f077cf76001a686f59",
+          "arc-test-587",
+          "arc-test-1152",
+          "arc-test-940",
+          "arc-test-385"
+        ]
+      },
+      "coding_math": {
+        "student_only": 15,
+        "baseline_only": 0,
+        "ties": 49,
+        "difference_pp": 23.44,
+        "paired_95pct_bootstrap_pp": [
+          14.06,
+          34.38
+        ],
+        "two_sided_exact_p": 6.1e-05,
+        "student_only_ids": [
+          "mbpp-259",
+          "mbpp-84",
+          "gsm8k-test-1174",
+          "mbpp-278",
+          "gsm8k-test-919",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "mbpp-244",
+          "gsm8k-test-1031",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "gsm8k-test-531"
+        ],
+        "baseline_only_ids": []
+      },
+      "forced": {
+        "student_only": 18,
+        "baseline_only": 8,
+        "ties": 102,
+        "difference_pp": 7.81,
+        "paired_95pct_bootstrap_pp": [
+          0.78,
+          14.84
+        ],
+        "two_sided_exact_p": 0.075519,
+        "student_only_ids": [
+          "squad-57274e145951b619008f87e8",
+          "squad-570d4c3bfed7b91900d45e33",
+          "mbpp-259",
+          "mbpp-84",
+          "gsm8k-test-1174",
+          "mbpp-278",
+          "gsm8k-test-919",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "arc-test-139",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "mbpp-244",
+          "gsm8k-test-1031",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "gsm8k-test-531"
+        ],
+        "baseline_only_ids": [
+          "squad-5a25b668ef59cd001a623c78",
+          "arc-test-320",
+          "arc-test-1123",
+          "squad-571155ae2419e31400955594",
+          "squad-572f609ca23a5019007fc5b0",
+          "squad-570d3468b3d812140066d544",
+          "squad-56e1dc62cd28a01900c67bca",
+          "squad-5ad044f077cf76001a686f59"
+        ]
+      }
+    },
+    "gemma3": {
+      "strict": {
+        "student_only": 23,
+        "baseline_only": 24,
+        "ties": 81,
+        "difference_pp": -0.78,
+        "paired_95pct_bootstrap_pp": [
+          -10.16,
+          8.59
+        ],
+        "two_sided_exact_p": 1.0,
+        "student_only_ids": [
+          "squad-5729a3716aef05140015506b",
+          "mbpp-259",
+          "gsm8k-test-13",
+          "squad-5ad3c1ad604f3c001a3fef91",
+          "squad-5a57c667770dc0001aeefd6a",
+          "mbpp-84",
+          "gsm8k-test-1174",
+          "mbpp-278",
+          "mbpp-409",
+          "gsm8k-test-844",
+          "squad-5727565ef1498d1400e8f676",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "mbpp-74",
+          "arc-test-344",
+          "squad-5ad26e85d7d075001a4293f4",
+          "squad-571077ecb654c5140001f909",
+          "mbpp-19",
+          "mbpp-244",
+          "gsm8k-test-1031",
+          "mbpp-249",
+          "squad-5729f4b41d0469140077968f",
+          "squad-56de4b074396321400ee2795"
+        ],
+        "baseline_only_ids": [
+          "arc-test-906",
+          "arc-test-990",
+          "arc-test-482",
+          "arc-test-333",
+          "arc-test-601",
+          "mbpp-440",
+          "arc-test-250",
+          "arc-test-914",
+          "arc-test-1072",
+          "arc-test-879",
+          "arc-test-1160",
+          "squad-57097051ed30961900e84134",
+          "squad-572f609ca23a5019007fc5b0",
+          "arc-test-1084",
+          "arc-test-64",
+          "arc-test-832",
+          "squad-56e1dc62cd28a01900c67bca",
+          "arc-test-813",
+          "arc-test-837",
+          "mbpp-128",
+          "gsm8k-test-1129",
+          "arc-test-1152",
+          "arc-test-940",
+          "arc-test-385"
+        ]
+      },
+      "coding_math": {
+        "student_only": 14,
+        "baseline_only": 3,
+        "ties": 47,
+        "difference_pp": 17.19,
+        "paired_95pct_bootstrap_pp": [
+          4.69,
+          29.69
+        ],
+        "two_sided_exact_p": 0.012726,
+        "student_only_ids": [
+          "mbpp-259",
+          "gsm8k-test-13",
+          "mbpp-84",
+          "gsm8k-test-1174",
+          "mbpp-278",
+          "mbpp-409",
+          "gsm8k-test-844",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "mbpp-74",
+          "mbpp-19",
+          "mbpp-244",
+          "gsm8k-test-1031",
+          "mbpp-249"
+        ],
+        "baseline_only_ids": [
+          "mbpp-440",
+          "mbpp-128",
+          "gsm8k-test-1129"
+        ]
+      },
+      "forced": {
+        "student_only": 26,
+        "baseline_only": 6,
+        "ties": 96,
+        "difference_pp": 15.62,
+        "paired_95pct_bootstrap_pp": [
+          7.03,
+          24.22
+        ],
+        "two_sided_exact_p": 0.000535,
+        "student_only_ids": [
+          "squad-5729a3716aef05140015506b",
+          "arc-test-1130",
+          "mbpp-259",
+          "gsm8k-test-13",
+          "squad-5ad3c1ad604f3c001a3fef91",
+          "squad-5a57c667770dc0001aeefd6a",
+          "mbpp-84",
+          "gsm8k-test-1174",
+          "mbpp-278",
+          "mbpp-409",
+          "gsm8k-test-844",
+          "squad-5727565ef1498d1400e8f676",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "arc-test-139",
+          "mbpp-74",
+          "arc-test-344",
+          "squad-5ad26e85d7d075001a4293f4",
+          "squad-571077ecb654c5140001f909",
+          "mbpp-19",
+          "mbpp-244",
+          "gsm8k-test-1031",
+          "mbpp-249",
+          "squad-5729f4b41d0469140077968f",
+          "arc-test-587",
+          "squad-56de4b074396321400ee2795"
+        ],
+        "baseline_only_ids": [
+          "mbpp-440",
+          "squad-57097051ed30961900e84134",
+          "squad-572f609ca23a5019007fc5b0",
+          "squad-56e1dc62cd28a01900c67bca",
+          "mbpp-128",
+          "gsm8k-test-1129"
+        ]
+      }
+    },
+    "gemma4": {
+      "strict": {
+        "student_only": 17,
+        "baseline_only": 23,
+        "ties": 88,
+        "difference_pp": -4.69,
+        "paired_95pct_bootstrap_pp": [
+          -12.5,
+          3.12
+        ],
+        "two_sided_exact_p": 0.429591,
+        "student_only_ids": [
+          "squad-57274e145951b619008f87e8",
+          "squad-5729a3716aef05140015506b",
+          "mbpp-259",
+          "mbpp-100",
+          "mbpp-296",
+          "squad-5ad3c1ad604f3c001a3fef91",
+          "squad-5a2c116ebfd06b001a5ae9c3",
+          "squad-5a57c667770dc0001aeefd6a",
+          "mbpp-84",
+          "mbpp-278",
+          "mbpp-137",
+          "squad-5726926a5951b619008f7709",
+          "squad-5ad26e85d7d075001a4293f4",
+          "squad-571077ecb654c5140001f909",
+          "mbpp-244",
+          "mbpp-249",
+          "squad-5729f4b41d0469140077968f"
+        ],
+        "baseline_only_ids": [
+          "arc-test-906",
+          "arc-test-1130",
+          "arc-test-990",
+          "arc-test-224",
+          "arc-test-482",
+          "arc-test-601",
+          "arc-test-320",
+          "arc-test-250",
+          "arc-test-1072",
+          "squad-571155ae2419e31400955594",
+          "arc-test-879",
+          "squad-572f609ca23a5019007fc5b0",
+          "arc-test-1084",
+          "arc-test-64",
+          "arc-test-832",
+          "arc-test-813",
+          "arc-test-837",
+          "mbpp-128",
+          "gsm8k-test-1129",
+          "arc-test-587",
+          "arc-test-1152",
+          "arc-test-940",
+          "arc-test-385"
+        ]
+      },
+      "coding_math": {
+        "student_only": 8,
+        "baseline_only": 2,
+        "ties": 54,
+        "difference_pp": 9.38,
+        "paired_95pct_bootstrap_pp": [
+          0.0,
+          18.75
+        ],
+        "two_sided_exact_p": 0.109375,
+        "student_only_ids": [
+          "mbpp-259",
+          "mbpp-100",
+          "mbpp-296",
+          "mbpp-84",
+          "mbpp-278",
+          "mbpp-137",
+          "mbpp-244",
+          "mbpp-249"
+        ],
+        "baseline_only_ids": [
+          "mbpp-128",
+          "gsm8k-test-1129"
+        ]
+      },
+      "forced": {
+        "student_only": 21,
+        "baseline_only": 5,
+        "ties": 102,
+        "difference_pp": 12.5,
+        "paired_95pct_bootstrap_pp": [
+          5.47,
+          20.31
+        ],
+        "two_sided_exact_p": 0.002494,
+        "student_only_ids": [
+          "squad-57274e145951b619008f87e8",
+          "squad-5729a3716aef05140015506b",
+          "mbpp-259",
+          "mbpp-100",
+          "mbpp-296",
+          "squad-5ad3c1ad604f3c001a3fef91",
+          "squad-5a2c116ebfd06b001a5ae9c3",
+          "squad-5a57c667770dc0001aeefd6a",
+          "mbpp-84",
+          "arc-test-333",
+          "mbpp-278",
+          "mbpp-137",
+          "arc-test-914",
+          "squad-5726926a5951b619008f7709",
+          "arc-test-1160",
+          "arc-test-139",
+          "squad-5ad26e85d7d075001a4293f4",
+          "squad-571077ecb654c5140001f909",
+          "mbpp-244",
+          "mbpp-249",
+          "squad-5729f4b41d0469140077968f"
+        ],
+        "baseline_only_ids": [
+          "arc-test-320",
+          "squad-571155ae2419e31400955594",
+          "squad-572f609ca23a5019007fc5b0",
+          "mbpp-128",
+          "gsm8k-test-1129"
+        ]
+      }
+    }
+  },
+  "full_student_paired": {
+    "base": {
+      "strict": {
+        "student_only": 29,
+        "baseline_only": 17,
+        "ties": 82,
+        "difference_pp": 9.38,
+        "paired_95pct_bootstrap_pp": [
+          1.56,
+          17.19
+        ],
+        "two_sided_exact_p": 0.103805,
+        "student_only_ids": [
+          "arc-test-906",
+          "arc-test-1130",
+          "arc-test-990",
+          "arc-test-224",
+          "arc-test-482",
+          "squad-5a25b668ef59cd001a623c78",
+          "arc-test-333",
+          "arc-test-601",
+          "arc-test-320",
+          "arc-test-250",
+          "arc-test-914",
+          "arc-test-1123",
+          "arc-test-1072",
+          "squad-571155ae2419e31400955594",
+          "arc-test-879",
+          "arc-test-1160",
+          "squad-572f609ca23a5019007fc5b0",
+          "arc-test-1084",
+          "arc-test-64",
+          "squad-570d3468b3d812140066d544",
+          "arc-test-832",
+          "squad-56e1dc62cd28a01900c67bca",
+          "arc-test-813",
+          "arc-test-837",
+          "squad-5ad044f077cf76001a686f59",
+          "arc-test-587",
+          "arc-test-1152",
+          "arc-test-940",
+          "arc-test-385"
+        ],
+        "baseline_only_ids": [
+          "squad-57274e145951b619008f87e8",
+          "squad-570d4c3bfed7b91900d45e33",
+          "mbpp-259",
+          "mbpp-84",
+          "gsm8k-test-1174",
+          "mbpp-278",
+          "gsm8k-test-919",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "mbpp-244",
+          "gsm8k-test-1031",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "gsm8k-test-531"
+        ]
+      },
+      "coding_math": {
+        "student_only": 0,
+        "baseline_only": 15,
+        "ties": 49,
+        "difference_pp": -23.44,
+        "paired_95pct_bootstrap_pp": [
+          -34.38,
+          -14.06
+        ],
+        "two_sided_exact_p": 6.1e-05,
+        "student_only_ids": [],
+        "baseline_only_ids": [
+          "mbpp-259",
+          "mbpp-84",
+          "gsm8k-test-1174",
+          "mbpp-278",
+          "gsm8k-test-919",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "mbpp-244",
+          "gsm8k-test-1031",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "gsm8k-test-531"
+        ]
+      },
+      "forced": {
+        "student_only": 8,
+        "baseline_only": 18,
+        "ties": 102,
+        "difference_pp": -7.81,
+        "paired_95pct_bootstrap_pp": [
+          -14.84,
+          -0.78
+        ],
+        "two_sided_exact_p": 0.075519,
+        "student_only_ids": [
+          "squad-5a25b668ef59cd001a623c78",
+          "arc-test-320",
+          "arc-test-1123",
+          "squad-571155ae2419e31400955594",
+          "squad-572f609ca23a5019007fc5b0",
+          "squad-570d3468b3d812140066d544",
+          "squad-56e1dc62cd28a01900c67bca",
+          "squad-5ad044f077cf76001a686f59"
+        ],
+        "baseline_only_ids": [
+          "squad-57274e145951b619008f87e8",
+          "squad-570d4c3bfed7b91900d45e33",
+          "mbpp-259",
+          "mbpp-84",
+          "gsm8k-test-1174",
+          "mbpp-278",
+          "gsm8k-test-919",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "arc-test-139",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "mbpp-244",
+          "gsm8k-test-1031",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "gsm8k-test-531"
+        ]
+      }
+    },
+    "gemma3": {
+      "strict": {
+        "student_only": 24,
+        "baseline_only": 13,
+        "ties": 91,
+        "difference_pp": 8.59,
+        "paired_95pct_bootstrap_pp": [
+          0.0,
+          17.19
+        ],
+        "two_sided_exact_p": 0.098872,
+        "student_only_ids": [
+          "squad-5729a3716aef05140015506b",
+          "arc-test-1130",
+          "arc-test-224",
+          "gsm8k-test-13",
+          "squad-5ad3c1ad604f3c001a3fef91",
+          "squad-5a57c667770dc0001aeefd6a",
+          "squad-5a25b668ef59cd001a623c78",
+          "mbpp-409",
+          "arc-test-320",
+          "gsm8k-test-844",
+          "squad-5727565ef1498d1400e8f676",
+          "arc-test-1123",
+          "squad-571155ae2419e31400955594",
+          "mbpp-74",
+          "arc-test-344",
+          "squad-570d3468b3d812140066d544",
+          "squad-5ad26e85d7d075001a4293f4",
+          "squad-571077ecb654c5140001f909",
+          "mbpp-19",
+          "squad-5ad044f077cf76001a686f59",
+          "mbpp-249",
+          "squad-5729f4b41d0469140077968f",
+          "arc-test-587",
+          "squad-56de4b074396321400ee2795"
+        ],
+        "baseline_only_ids": [
+          "squad-57274e145951b619008f87e8",
+          "squad-570d4c3bfed7b91900d45e33",
+          "gsm8k-test-919",
+          "mbpp-440",
+          "squad-57097051ed30961900e84134",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "mbpp-128",
+          "gsm8k-test-1129",
+          "gsm8k-test-531"
+        ]
+      },
+      "coding_math": {
+        "student_only": 6,
+        "baseline_only": 10,
+        "ties": 48,
+        "difference_pp": -6.25,
+        "paired_95pct_bootstrap_pp": [
+          -17.19,
+          6.25
+        ],
+        "two_sided_exact_p": 0.454498,
+        "student_only_ids": [
+          "gsm8k-test-13",
+          "mbpp-409",
+          "gsm8k-test-844",
+          "mbpp-74",
+          "mbpp-19",
+          "mbpp-249"
+        ],
+        "baseline_only_ids": [
+          "gsm8k-test-919",
+          "mbpp-440",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "mbpp-128",
+          "gsm8k-test-1129",
+          "gsm8k-test-531"
+        ]
+      },
+      "forced": {
+        "student_only": 23,
+        "baseline_only": 13,
+        "ties": 92,
+        "difference_pp": 7.81,
+        "paired_95pct_bootstrap_pp": [
+          -0.78,
+          16.41
+        ],
+        "two_sided_exact_p": 0.132498,
+        "student_only_ids": [
+          "squad-5729a3716aef05140015506b",
+          "arc-test-1130",
+          "gsm8k-test-13",
+          "squad-5ad3c1ad604f3c001a3fef91",
+          "squad-5a57c667770dc0001aeefd6a",
+          "squad-5a25b668ef59cd001a623c78",
+          "mbpp-409",
+          "arc-test-320",
+          "gsm8k-test-844",
+          "squad-5727565ef1498d1400e8f676",
+          "arc-test-1123",
+          "squad-571155ae2419e31400955594",
+          "mbpp-74",
+          "arc-test-344",
+          "squad-570d3468b3d812140066d544",
+          "squad-5ad26e85d7d075001a4293f4",
+          "squad-571077ecb654c5140001f909",
+          "mbpp-19",
+          "squad-5ad044f077cf76001a686f59",
+          "mbpp-249",
+          "squad-5729f4b41d0469140077968f",
+          "arc-test-587",
+          "squad-56de4b074396321400ee2795"
+        ],
+        "baseline_only_ids": [
+          "squad-57274e145951b619008f87e8",
+          "squad-570d4c3bfed7b91900d45e33",
+          "gsm8k-test-919",
+          "mbpp-440",
+          "squad-57097051ed30961900e84134",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "mbpp-128",
+          "gsm8k-test-1129",
+          "gsm8k-test-531"
+        ]
+      }
+    },
+    "gemma4": {
+      "strict": {
+        "student_only": 20,
+        "baseline_only": 14,
+        "ties": 94,
+        "difference_pp": 4.69,
+        "paired_95pct_bootstrap_pp": [
+          -3.12,
+          12.5
+        ],
+        "two_sided_exact_p": 0.391528,
+        "student_only_ids": [
+          "squad-5729a3716aef05140015506b",
+          "mbpp-100",
+          "mbpp-296",
+          "squad-5ad3c1ad604f3c001a3fef91",
+          "squad-5a2c116ebfd06b001a5ae9c3",
+          "squad-5a57c667770dc0001aeefd6a",
+          "squad-5a25b668ef59cd001a623c78",
+          "arc-test-333",
+          "mbpp-137",
+          "arc-test-914",
+          "arc-test-1123",
+          "squad-5726926a5951b619008f7709",
+          "arc-test-1160",
+          "squad-570d3468b3d812140066d544",
+          "squad-5ad26e85d7d075001a4293f4",
+          "squad-571077ecb654c5140001f909",
+          "squad-56e1dc62cd28a01900c67bca",
+          "squad-5ad044f077cf76001a686f59",
+          "mbpp-249",
+          "squad-5729f4b41d0469140077968f"
+        ],
+        "baseline_only_ids": [
+          "squad-570d4c3bfed7b91900d45e33",
+          "gsm8k-test-1174",
+          "gsm8k-test-919",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "gsm8k-test-1031",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "mbpp-128",
+          "gsm8k-test-1129",
+          "gsm8k-test-531"
+        ]
+      },
+      "coding_math": {
+        "student_only": 4,
+        "baseline_only": 13,
+        "ties": 47,
+        "difference_pp": -14.06,
+        "paired_95pct_bootstrap_pp": [
+          -25.0,
+          -3.12
+        ],
+        "two_sided_exact_p": 0.049042,
+        "student_only_ids": [
+          "mbpp-100",
+          "mbpp-296",
+          "mbpp-137",
+          "mbpp-249"
+        ],
+        "baseline_only_ids": [
+          "gsm8k-test-1174",
+          "gsm8k-test-919",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "gsm8k-test-1031",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "mbpp-128",
+          "gsm8k-test-1129",
+          "gsm8k-test-531"
+        ]
+      },
+      "forced": {
+        "student_only": 20,
+        "baseline_only": 14,
+        "ties": 94,
+        "difference_pp": 4.69,
+        "paired_95pct_bootstrap_pp": [
+          -3.12,
+          12.5
+        ],
+        "two_sided_exact_p": 0.391528,
+        "student_only_ids": [
+          "squad-5729a3716aef05140015506b",
+          "mbpp-100",
+          "mbpp-296",
+          "squad-5ad3c1ad604f3c001a3fef91",
+          "squad-5a2c116ebfd06b001a5ae9c3",
+          "squad-5a57c667770dc0001aeefd6a",
+          "squad-5a25b668ef59cd001a623c78",
+          "arc-test-333",
+          "mbpp-137",
+          "arc-test-914",
+          "arc-test-1123",
+          "squad-5726926a5951b619008f7709",
+          "arc-test-1160",
+          "squad-570d3468b3d812140066d544",
+          "squad-5ad26e85d7d075001a4293f4",
+          "squad-571077ecb654c5140001f909",
+          "squad-56e1dc62cd28a01900c67bca",
+          "squad-5ad044f077cf76001a686f59",
+          "mbpp-249",
+          "squad-5729f4b41d0469140077968f"
+        ],
+        "baseline_only_ids": [
+          "squad-570d4c3bfed7b91900d45e33",
+          "gsm8k-test-1174",
+          "gsm8k-test-919",
+          "gsm8k-test-857",
+          "gsm8k-test-1310",
+          "gsm8k-test-1307",
+          "gsm8k-test-496",
+          "gsm8k-test-419",
+          "gsm8k-test-1031",
+          "gsm8k-test-1100",
+          "gsm8k-test-404",
+          "mbpp-128",
+          "gsm8k-test-1129",
+          "gsm8k-test-531"
+        ]
+      }
+    }
+  }
+}

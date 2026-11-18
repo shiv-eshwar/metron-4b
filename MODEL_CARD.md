@@ -1,6 +1,6 @@
 # ModelDistl 4B Astra v2
 
-The Q4 student answered 193 of 256 questions correctly. Gemma 4 E4B also answered 193 correctly and Gemma 3 4B answered 184. Gemma 4 used a 4.98 GB text model and the student used 2.50 GB. The student's nine-answer lead over Gemma 3 had a paired 95% bootstrap interval from −2.73 to +9.77 percentage points. Both models' strengths depended on the task. [Paired comparisons](runs/astra-v2/comparison.json) · [All responses](runs/astra-v2/results)
+The Q4 student answered 193 of 256 questions correctly. Gemma 4 E4B also answered 193 correctly and Gemma 3 4B answered 184. Gemma 4 used a 4.98 GB text model and the student used 2.50 GB. On an independent 128-question test, the student scored 91, Gemma 4 scored 85 and Gemma 3 scored 80. The paired intervals for the differences with both Gemma models included a tie in each test. Stock Qwen solved more Python and math problems than the student on both tests. [Primary comparisons](runs/astra-v2/comparison.json) · [Independent comparisons](runs/astra-v2/retention/comparison.json)
 
 ## Preselected head-to-head
 
@@ -19,7 +19,7 @@ Each domain has 64 questions. Python functions run against the MBPP reference as
 
 Against stock Qwen, the student gained 39 strict science answers and lost none. On Python it gained two cases and lost 12. Ten of those newly failing programs produced an incorrect result under the reference assertions, one had a syntax error and one raised a type error. On math it gained three and lost 13. All 13 newly missed math problems contained an incorrect final number. Reading gained five answers and lost three.
 
-When every model could emit only an available science label, the student answered 57/64 correctly, stock Qwen 55/64, Gemma 3 51/64 and Gemma 4 56/64. Substituting those scores into the four-domain total gives the student 193, stock Qwen 209, Gemma 3 187 and Gemma 4 193. The original Q4 student therefore improved substantially at following the requested format, while stock Qwen retained stronger Python and math performance. A follow-up uses separate development and confirmation questions to test adapter strength. [Retention protocol](runs/astra-v2/retention/PROTOCOL.md)
+When every model could emit only an available science label, the student answered 57/64 correctly, stock Qwen 55/64, Gemma 3 51/64 and Gemma 4 56/64. Substituting those scores into the four-domain total gives the student 193, stock Qwen 209, Gemma 3 187 and Gemma 4 193. The nine-answer strict lead over Gemma 3 had a paired 95% bootstrap interval from −2.73 to +9.77 percentage points. [Paired comparisons](runs/astra-v2/comparison.json) · [Per-item answers](runs/astra-v2/results)
 
 | Model | Constrained science | Total with constrained science | Reading token F1 | Local tasks |
 | --- | ---: | ---: | ---: | ---: |
@@ -43,6 +43,21 @@ Five adapter strengths were evaluated on 96 separate development questions. To q
 | 1/4 | 14 | 24 | 38 | 20 | 22 | 74 |
 | 1/2 | 13 | 23 | 36 | 22 | 22 | 74 |
 | Full Astra student | 12 | 19 | 31 | 22 | 22 | 67 |
+
+## Independent confirmation on 128 fresh questions
+
+The four distinct models answered the same 32 new questions per domain after the selection was fixed. Q4 files and decoding settings matched the primary comparison. The last column replaces the strict science score with the result of constraining the output to one of the offered labels. [Confirmation responses](runs/astra-v2/retention/test) · [Scores, per-item differences and paired intervals](runs/astra-v2/retention/comparison.json)
+
+| Model | Python / 32 | Math / 32 | Reading / 32 | Science label / 32 | Strict total / 128 | Python + math / 64 | Total with constrained science / 128 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Full Astra student Q4 | 21 | 16 | **24** | **30** | **91** | 37 | 91 |
+| Stock Qwen Q4 (selected) | **25** | 27 | 20 | 7 | 79 | **52** | **101** |
+| Gemma 3 4B IT Q4 | 19 | 22 | 15 | 24 | 80 | 41 | 81 |
+| Gemma 4 E4B IT Q4 | 18 | **28** | 13 | 26 | 85 | 46 | 85 |
+
+Stock Qwen solved all 37 Python and math questions that the student solved, plus another 15. The student’s paired difference was −23.44 percentage points, with a stratified 95% bootstrap interval of −34.38 to −14.06 and a two-sided exact p-value of 0.000061. In science, the student led stock Qwen 30 to 7 under the requested answer format. Constraining both models to an available label narrowed that lead to 30 to 29.
+
+On the strict four-domain total the student led Gemma 3 by 8.59 percentage points (95% interval 0.00 to +17.19, exact p = 0.099) and Gemma 4 by 4.69 points (−3.12 to +12.50, p = 0.392). The clearest advantages on this set were grounded reading and following the single-label instruction. The published weights contain the full trained update. The separate coding-and-math retention rule selected the original Qwen weights.
 
 ## Distillation
 
