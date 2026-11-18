@@ -1,0 +1,9 @@
+{
+  "base": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "llama_cpp": "401563f10ec60754e688cd3165c1343cf4be9642",
+  "adapter_sha256": null,
+  "quantization": "Q3_K_S",
+  "bytes": 1886995616,
+  "sha256": "b85e3a73b81842ab37d0666587c4d90bd1583f890b65a2d5afcb451d36330ef4"
+}

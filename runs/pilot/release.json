@@ -3,7 +3,7 @@
   "tag": "pilot-v0.1.0",
   "file": "ModelDistl-4B-Q4_K_M.gguf",
   "bytes": 2497279136,
-  "sha256": "3afffc55801810e007fd508473253d4b9b25d8cd5ceb6dff92996262bfb308d9",
+  "sha256": "e43b845632b710ac106a3c9677ced3b7076961590a14bdbdcaaed2dee024009a",
   "parts": [
     {
       "file": "ModelDistl-4B-Q4_K_M.gguf.part-01",
@@ -13,7 +13,7 @@
     {
       "file": "ModelDistl-4B-Q4_K_M.gguf.part-02",
       "bytes": 1197279136,
-      "sha256": "09245352c68777c08768e5df2203e515177200b3b724c639bde1926713b6bfe8"
+      "sha256": "7213b8a91d8e024de0c2fa1b8c3e185ddf2e98e7ffa280df37493f7449095375"
     }
   ]
 }

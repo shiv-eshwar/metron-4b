@@ -1,0 +1,40 @@
+name: Rebuild release files
+on: workflow_dispatch
+permissions:
+  contents: read
+jobs:
+  rebuild:
+    if: github.ref == 'refs/heads/main'
+    runs-on: macos-15
+    timeout-minutes: 25
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: astral-sh/setup-uv@37802adc94f370d6bfd71619e3f0bf239e1f3b78 # v7
+        with:
+          version: "0.12.19"
+      - name: Install the pinned CPU export tools
+        run: |
+          df -h .
+          uv sync --locked --extra export
+          bash scripts/setup-llama.sh
+      - name: Build both stock GGUFs from the upstream revision
+        run: |
+          uv run --no-sync python -m modeldistl.weights --fetch-only
+          uv run --no-sync python -m modeldistl.export --base-only --quantization Q4_K_M Q3_K_S
+      - name: Reconstruct and verify the exact student files
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          test "$(gh release view pilot-v0.1.0 --json isDraft --jq .isDraft)" = true
+          gh release download pilot-v0.1.0 --pattern '*.xor.gz' --dir artifacts/release
+          uv run --no-sync python scripts/weight_delta.py apply Q4_K_M
+          uv run --no-sync python scripts/weight_delta.py apply Q3_K_S
+          uv run --no-sync python scripts/model_file.py pack --manifest "$RUNNER_TEMP/release.json"
+          cmp "$RUNNER_TEMP/release.json" runs/pilot/release.json
+      - name: Attach verified builds to the private draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload pilot-v0.1.0 --clobber artifacts/release/ModelDistl-4B-Q4_K_M.gguf.part-0{1,2} artifacts/export/ModelDistl-4B-Q3_K_S.gguf
