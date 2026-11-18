@@ -1,0 +1,16 @@
+.DS_Store
+.venv/
+.env
+.env.*
+!.env.example
+.tools/
+artifacts/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+*.safetensors
+*.gguf
+*.pem
+*.key
